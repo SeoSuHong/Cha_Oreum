@@ -11,7 +11,7 @@
 	<groupId>com.ChaOreum</groupId>
 	<artifactId>ChaOreum</artifactId>
 	<version>1</version>
-	<packaging>war</packaging>
+	<packaging>jar</packaging>
 	<name>ChaOreum</name>
 	<description>Developer Blog</description>
 	<properties>
@@ -44,7 +44,7 @@
 			<groupId>javax.servlet</groupId>
 			<artifactId>jstl</artifactId>
 		</dependency>
-		<!-- <dependency>
+		<dependency>
 			<groupId>org.mybatis.spring.boot</groupId>
 			<artifactId>mybatis-spring-boot-starter</artifactId>
 			<version>2.2.2</version>
@@ -53,7 +53,7 @@
 			<groupId>mysql</groupId>
 			<artifactId>mysql-connector-java</artifactId>
 			<scope>runtime</scope>
-		</dependency> -->
+		</dependency>
 		<dependency>
 		    <groupId>org.mybatis.spring.boot</groupId>
 		    <artifactId>mybatis-spring-boot-starter-test</artifactId>

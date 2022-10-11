@@ -20,6 +20,11 @@ CREATE TABLE subCategory(
     PRIMARY KEY(no)
 );
 
+CREATE VIEW subCategoryView
+AS 
+SELECT M.name mainCategory_name , S.* FROM subCategory S 
+JOIN mainCategory M ON M.no = S.mainCategory_no;
+
 CREATE TABLE post(
     no                 INT(11)        NOT NULL    AUTO_INCREMENT,
     member_nickname    VARCHAR(20)    NOT NULL,
@@ -29,6 +34,7 @@ CREATE TABLE post(
     regDate            DATE           NOT NULL,
     fileName           VARCHAR(30),
     fileSize           INT(11),
+    view               INT(11)        NOT NULL    DEFAULT 0,
     FOREIGN KEY(member_nickname) REFERENCES member(nickname),
     FOREIGN KEY(subCategory_no) REFERENCES subCategory(no),
     PRIMARY KEY(no)

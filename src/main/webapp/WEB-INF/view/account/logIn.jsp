@@ -5,12 +5,12 @@
             <p id="Loginst">Login</p>
             <div id="loginiputbox">
                 <div id="login">
-                    <form action="" method="post" name="login_frm">
+                    <form action="/account/logIn" method="post" name="login_frm">
                         <div id="loginid" class="logininput_box">
-                            <input type="text" class="logininput" id="input_id" name="login_id">
+                            <input type="text" class="logininput" id="input_id" name="id">
                         </div>
                         <div id="loginpassword" class="logininput_box">
-                            <input type="password" class="logininput" id="input_password" name="login_password">
+                            <input type="password" class="logininput" id="input_password" name="password">
                         </div>
                     </form>
                 </div>

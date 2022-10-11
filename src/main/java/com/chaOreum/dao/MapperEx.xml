@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.newlecture.web.dao.NoticeDao">
+  <select id="getViewList" resultType="com.newlecture.web.entity.NoticeView">
+  	SELECT * FROM noticeview 
+	<where>
+		<if test="query != null and query != ''">
+			${field} LIKE '%${query}%'
+		</if>
+		AND pub = #{pub}
+	</where> 
+	ORDER BY regdate DESC 
+	LIMIT #{offset}, #{size}
+  </select>
+  <select id="getCount" resultType="int">
+  	SELECT count(id) count FROM notice 
+  	<where>
+		<if test="query != null and query != ''">
+			${field} LIKE '%${query}%'
+		</if>
+		AND pub = #{pub}
+	</where>
+  </select>
+  
+  <select id="getView" resultType="com.newlecture.web.entity.NoticeView">
+  	SELECT * FROM noticeview 
+  	WHERE id=#{id}
+  </select>
+  <select id="getNext" resultType="com.newlecture.web.entity.Notice">
+  	SELECT * FROM notice 
+  	WHERE regdate &gt; (SELECT regdate FROM notice WHERE id = #{id}) 
+  	LIMIT 1
+  </select>
+  <select id="getPrev" resultType="com.newlecture.web.entity.Notice">
+  	SELECT * FROM notice 
+  	WHERE regdate &lt; (SELECT regdate FROM notice WHERE id = #{id}) 
+  	ORDER BY regdate DESC 
+  	LIMIT 1
+  </select>
+  
+  <update id="update"  parameterType="com.newlecture.web.entity.Notice">
+  	UPDATE notice 
+  	SET
+  		title = #{title},
+  		content = #{content},
+  		hit = #{hit},
+  		pub = #{pub}
+  	WHERE id = #{id}
+  </update>
+  <insert id="insert" parameterType="com.newlecture.web.entity.Notice">
+  	INSERT INTO notice(title, content, memberId) 
+  	VALUES(#{title}, #{content}, #{memberId})
+  </insert>
+  <delete id="delete">
+  	DELETE FROM notice
+  	WHERE id = #{id}
+  </delete>
+  
+  <update id="updatePubAll">
+  	UPDATE notice
+  	SET pub = #{pub}
+  	WHERE id IN 
+  		<foreach item="id" collection="ids" 
+  				open="(" separator=", " close=")">
+  			#{id}
+  		</foreach>
+  
+  
+  	<!--
+  	UPDATE notice 
+  	SET pud = CASE id
+  				<foreach item="id" collection="pubIds">
+  					when #{id} then 1
+  				</foreach>
+  				<foreach item="id" collection="closeIds">
+  					when #{id} then 0
+  				</foreach>
+  	WHERE id IN (
+  		<foreach item="id" collection="pubIds" separator=", ">
+  			#{id}
+  		</foreach>
+  		,
+  		<foreach item="id" collection="closeIds" separator=", ">
+  			#{id}
+  		</foreach>
+  	)
+  	-->
+  </update>
+  <delete id="deleteAll">
+  	DELETE FROM notice
+  	WHERE id IN 
+  		<foreach item="id" collection="ids" 
+  				open="(" separator=", " close=")">
+  			#{id}
+  		</foreach>
+  </delete>
+</mapper>

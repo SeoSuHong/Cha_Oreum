@@ -1,20 +1,18 @@
 function login_check() {
-    var id = document.getElementById("input_id");
-    var pwd = document.getElementById("input_password");
+    var id = login_frm.id;
+    var pwd = login_frm.password;
 
     if (id.value == "") {
-        alert("아이디를 입력하세요.");
+        alert("아이디를 입력해 주세요.");
         id.focus();
-        return false;
+        return;
     }
 
     if (pwd.value == "") {
-        alert("비밀번호를 입력하세요.");
+        alert("비밀번호를 입력해 주세요.");
         pwd.focus();
-        return false;
+        return;
     }
 
-    alert("로그인 되었습니다.");
-
-    document.login_frm.submit();
+    login_frm.submit();
 }

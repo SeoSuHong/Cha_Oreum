@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 			<!-- aside -->
             <aside>
                 <div id="hideMenu"><img src="../image/hideMenu.png" alt="숨기기" class="hide_btn"></div>
@@ -10,7 +11,17 @@
                         <button id="my">My</button>
                     </div>
                     <div id="category">
-                        <div class="mainCategory">Language</div>
+                    	<c:forEach var="mainCategory" items="${mainCategories}">
+	                    	<div class="mainCategory">${mainCategory}</div>
+	                        <div class="sub">
+	                        	<c:forEach var="subCategory" items="${subCategories}">
+	                        		<c:if test="${mainCategory eq subCategory.mainCategory_name}">
+			                            <div class="subCategory"><p>${subCategory.name}</p></div>
+			                        </c:if>
+		                        </c:forEach>
+	                        </div>
+                        </c:forEach>
+                        <!-- <div class="mainCategory">Language</div>
                         <div class="sub">
                             <div class="subCategory"><p>JAVA</p></div>
                             <div class="subCategory"><p>Python</p></div>
@@ -46,7 +57,7 @@
                         <div class="sub">
                             <div class="subCategory"><p>Error</p></div>
                             <div class="subCategory"><p>QnA</p></div>
-                        </div>
+                        </div> -->
                         
                     </div>
                 </div>
