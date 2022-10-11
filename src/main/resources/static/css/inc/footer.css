@@ -1,0 +1,11 @@
+@charset "UTF-8";
+/* footer */
+#footer {
+    height: 80px;
+    font-size: 25px;
+    line-height: 70px;
+    border-width: 2px 3px 3px 3px;
+    border-style: solid;
+    border-color: #AEAEAE;
+    padding-left: 30px;
+}

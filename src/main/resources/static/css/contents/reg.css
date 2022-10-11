@@ -1,0 +1,291 @@
+/* @font-face {
+    font-family: 'NanumGothic';
+    src: url('../font/NanumGothic.eot');
+    src: url('../font/NanumGothic.eot') format('embedded-opentype')
+        ,url('../font/NanumGothic.woff') format('woff');
+} */
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+*:focus {
+    outline: none;
+}
+
+body {
+    width: 1280px;
+    margin: 0 auto;
+    font-family: 'NanumGothic', 'serif';
+}
+
+#body {
+    min-height: 800px;
+    border-left: 3px solid #AEAEAE;
+    border-right: 3px solid #AEAEAE;
+    display: flex;
+    
+}
+
+a {
+    color: black;
+    text-decoration: none;
+}
+
+ul {
+    list-style: none;
+}
+
+/* header */
+#header {
+    height: 250px;
+    background-color: #393939;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#header_empty {
+    width: 180px;
+}
+
+#logo {
+    height: 150px;
+}
+
+#account {
+    width: 160px;
+    margin-right: 20px;
+    display: flex;
+    justify-content: space-between;
+}
+
+#account a {
+    font-size: 20px;
+    color: #AEAEAE;
+    margin-bottom: 200px;
+}
+
+#account a:hover {
+    text-decoration: underline;
+}
+
+/* aside */
+aside {
+    border-right: 2px solid #AEAEAE;
+    width: 300px;
+}
+
+#hideMenu {
+    height: 0px;
+    left: 300px;
+    position: relative;
+}
+
+#hideMenu img {
+    border-right: 2px solid #AEAEAE;
+    border-bottom: 2px solid #AEAEAE;
+    border-bottom-right-radius: 10px;
+    padding: 16px 2px;
+    cursor: pointer;
+}
+
+#showMenu {
+    height: 0px;
+    left: 0px;
+    position: relative;
+    display: none;
+}
+
+#showMenu img {
+    border-right: 2px solid #AEAEAE;
+    border-bottom: 2px solid #AEAEAE;
+    border-bottom-right-radius: 10px;
+    padding: 16px 2px;
+    cursor: pointer;
+}
+
+#aside_wrap {
+    overflow: hidden;
+}
+
+#menu_btn {
+    width: 300px;
+    border-bottom: 2px solid #AEAEAE;
+    display: flex;
+    justify-content: center;
+}
+
+#menu_btn button {
+    width: 150px;
+    height: 60px;
+    font-size: 25px;
+    font-weight: bold;
+    border: none;
+    background-color: white;
+    cursor: pointer;
+}
+
+#menu_btn #world {
+    color: #38424A;
+    border-right: 2px solid #AEAEAE;
+}
+
+#menu_btn #my {
+    color: #AEAEAE;
+}
+
+.mainCategory {
+    height: 60px;
+    font-size: 28px;
+    font-weight: bold;
+    color: #38424A;
+    line-height: 60px;
+    padding-left: 10px;
+    text-overflow: hidden;
+    white-space: nowrap;
+    cursor: pointer;
+}
+
+.sub {
+    width: 200px;
+    height: 0;
+    overflow: hidden;
+}
+
+.subCategory {
+    height: 30px;
+    font-size: 20px;
+    color: #38424A;
+    line-height: 30px;
+    margin: 10px 0;
+    padding-left: 20px;
+    position: relative;
+    cursor: pointer;
+}
+
+.subCategory p {
+    padding-left: 10px;
+}
+
+.subCategory::after {
+    content: "";
+    position: absolute;
+    width: 0;
+    height: 2px;
+    background-color: #AEAEAE;
+    transition: all .5s;
+}
+
+.subCategory:hover::after {
+    width: 100%;
+}
+
+/* main */
+main {
+    min-width: 0;
+    width: 100%;
+    padding: 80px 50px;
+    flex: 1;
+}
+
+hr {
+    margin: 30px 0;
+}
+
+#regCategory {
+    display: flex;
+}
+
+#regCategory>div {
+    font-size: 22px;
+    font-weight: bold;
+    margin-right: 10px;
+}
+
+#regCategory>select {
+    max-width: 300px;
+    font-size: 16px;
+}
+
+#mainCategory {
+    margin-right: 100px;
+}
+
+#mainCategory, #subCategory {
+    height: 37px;
+    border: 2px solid #d9d9d9;
+    border-radius: 8px;
+}
+
+#mainCategory:focus, #subCategory:focus {
+    border: 2px solid #393939;
+}
+
+#title_wrap>div {
+    font-size: 22px;
+    font-weight: bold;
+}
+
+#title {
+    width: 98%;
+    font-size: 20px;
+    font-weight: bold;
+    border: 2px solid #d9d9d9;
+    border-radius: 8px;
+    margin-top: 15px;
+    padding: 10px 5px;
+}
+
+#title:focus {
+    border: 2px solid #393939;
+}
+
+#file_wrap>div {
+    font-size: 22px;
+    font-weight: bold;
+}
+
+#file {
+    font-size: 17px;
+    margin-top: 15px;
+}
+
+#contents_wrap>div {
+    font-size: 22px;
+    font-weight: bold;
+    margin-bottom: 15px;
+}
+
+#reg_btn {
+    float: right;
+}
+
+#reg {
+    color: #AEAEAE;
+    font-size: 22px;
+    font-weight: bold;
+    border: 3px solid #AEAEAE;
+    border-radius: 10px;
+    background-color: white;
+    margin-top: -10px;
+    margin-right: 25px;
+    padding: 5px 20px;
+}
+
+#reg:hover {
+    color: #393939;
+    border-color: #393939;
+}
+
+/* footer */
+#footer {
+    height: 80px;
+    font-size: 25px;
+    line-height: 70px;
+    border-width: 2px 3px 3px 3px;
+    border-style: solid;
+    border-color: #AEAEAE;
+    padding-left: 30px;
+}

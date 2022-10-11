@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE tiles-definitions PUBLIC
+       "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN"
+       "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
+<tiles-definitions>
+  <definition name="layout.common" template="/WEB-INF/view/inc/layout.jsp">
+    <put-attribute name="header" value="/WEB-INF/view/inc/header.jsp" />
+    <put-attribute name="aside" value="/WEB-INF/view/inc/aside.jsp" />
+    <put-attribute name="footer" value="/WEB-INF/view/inc/footer.jsp" />
+  </definition>
+
+  <definition name="home.*" extends="layout.common">
+    <put-attribute name="css" value="/css/{1}.css" />
+    <put-attribute name="js" value="/js/{1}.js" />
+    <put-attribute name="title" value="홈" />
+    <put-attribute name="main" value="/WEB-INF/view/{1}.jsp" />
+  </definition>
+  
+  <definition name="contents.*" template="/WEB-INF/view/contents/inc/layout.jsp" extends="layout.common">
+    <put-attribute name="css" value="/css/contents/{1}.css" />
+    <put-attribute name="js" value="/js/contents/{1}.js" />
+    <put-attribute name="title" value="" />
+    <put-attribute name="main" value="/WEB-INF/view/contents/{1}.jsp" />
+  </definition>
+  
+  <definition name="account.*" template="/WEB-INF/view/account/inc/layout.jsp" extends="layout.common">
+    <put-attribute name="css" value="/css/account/{1}.css" />
+    <put-attribute name="js" value="/js/account/{1}.js" />
+    <put-attribute name="title" value="" />
+    <put-attribute name="main" value="/WEB-INF/view/account/{1}.jsp" />
+  </definition>
+</tiles-definitions>

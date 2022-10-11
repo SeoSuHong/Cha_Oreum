@@ -1,0 +1,103 @@
+/* @font-face {
+    font-family: 'NanumGothic';
+    src: url('../font/NanumGothic.eot');
+    src: url('../font/NanumGothic.eot') format('embedded-opentype')
+        ,url('../font/NanumGothic.woff') format('woff');
+} */
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+*:focus {
+    outline: none;
+}
+
+body {
+    width: 1280px;
+    margin: 0 auto;
+}
+
+#body {
+    min-height: 1000px;
+    border-left: 3px solid #AEAEAE;
+    border-right: 3px solid #AEAEAE;
+    display: flex;
+    overflow: hidden;
+}
+
+a {
+    color: black;
+    text-decoration: none;
+}
+
+ul {
+    list-style: none;
+}
+
+/* herder */
+#header {
+    height: 250px;
+    background-color: #393939;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#header_empty {
+    width: 180px;
+}
+
+#logo {
+    height: 150px;
+}
+
+#account {
+    width: 160px;
+    margin-right: 20px;
+    display: flex;
+    justify-content: space-between;
+}
+
+#account a {
+    font-size: 20px;
+    color: #AEAEAE;
+    margin-bottom: 200px;
+}
+
+#account a:hover {
+    text-decoration: underline;
+}
+
+/* findid_main */
+#findid_main {width: 1274px; height: 90vh; margin: 0 auto; display: flex; align-items: center; 
+    border-width: 0px 3px 0px 3px; border-style: solid; border-color: #AEAEAE;}
+#findid {font-size: 2rem; font-weight: bold;}
+#findid_box {width: 541px; margin: 0 auto;}
+#input_findid_box {display: flex; margin-top: 30px;}
+#email_box {width: 100px; display: flex; align-items: center;}
+#find_email {font-size: 1.2rem;}
+.input_email {width: 200px; height: 40px; 
+    border: 1px solid #2d2d2d; border-radius: 10px;
+    outline: none; font-size: 1.2rem;}
+#email_sp_box {width: 40px; height: 40px; display: flex; font-weight: bold;
+    align-items: center; justify-content: center; font-size: 1.3rem;}
+#btn_box {margin-top: 30px; margin-left: 90px;}
+    #findid_btn {width: 104px; height: 40px; background-color: #2d2d2d;
+    border: 1px solid #2d2d2d; border-radius: 10px; cursor: pointer;}
+#findid_sp {font-size: 1rem; font-weight: bold; color: white;}
+#login_uri,#find_pwd_uri {text-decoration: none; font-size: 1rem;
+    color: #2d2d2d;}
+#login_uri:hover,#find_pwd_uri:hover {font-weight: bold;}
+
+/* footer */
+#footer {
+    height: 80px;
+    font-size: 25px;
+    line-height: 70px;
+    border-width: 2px 3px 3px 3px;
+    border-style: solid;
+    border-color: #AEAEAE;
+    padding-left: 30px;
+}

@@ -1,0 +1,30 @@
+package com.chaOreum.controller.account;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+@Controller
+@RequestMapping("/account/")
+public class MemberController {
+
+	@GetMapping("logIn")
+	public String logIn() {
+		return "account.logIn";
+	}
+	
+	@GetMapping("signUp")
+	public String signUp() {
+		return "account.signUp";
+	}
+	
+	@GetMapping("findId")
+	public String findId() {
+		return "account.findId";
+	}
+	
+	@GetMapping("findPw")
+	public String findPw() {
+		return "account.findPw";
+	}
+}

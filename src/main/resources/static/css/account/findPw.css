@@ -1,0 +1,108 @@
+/* @font-face {
+    font-family: 'NanumGothic';
+    src: url('../font/NanumGothic.eot');
+    src: url('../font/NanumGothic.eot') format('embedded-opentype')
+        ,url('../font/NanumGothic.woff') format('woff');
+} */
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+*:focus {
+    outline: none;
+}
+
+body {
+    width: 1280px;
+    margin: 0 auto;
+}
+
+#body {
+    min-height: 1000px;
+    border-left: 3px solid #AEAEAE;
+    border-right: 3px solid #AEAEAE;
+    display: flex;
+    overflow: hidden;
+}
+
+a {
+    color: black;
+    text-decoration: none;
+}
+
+ul {
+    list-style: none;
+}
+
+/* herder */
+#header {
+    height: 250px;
+    background-color: #393939;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#header_empty {
+    width: 180px;
+}
+
+#logo {
+    height: 150px;
+}
+
+#account {
+    width: 160px;
+    margin-right: 20px;
+    display: flex;
+    justify-content: space-between;
+}
+
+#account a {
+    font-size: 20px;
+    color: #AEAEAE;
+    margin-bottom: 200px;
+}
+
+#account a:hover {
+    text-decoration: underline;
+}
+
+/* findpwd_main */
+#findpwd_main {width: 1274px; height: 90vh; margin: 0 auto; display: flex; align-items: center; 
+    border-width: 0px 3px 0px 3px; border-style: solid; border-color: #AEAEAE;}
+#findpwd_box {width: 578px; margin: 0 auto;}
+#findpwd {font-size: 2rem; font-weight: bold; color: #2d2d2d;}
+.findpwd_inputbox {display: flex; margin-top: 30px;}
+.info {width: 143px; margin-right: 10px; display: flex; align-items: center;}
+.info_sp {font-size: 1.2rem; font-weight: 600; color: #2d2d2d;}
+.findpwd_info_to {width: 307px; height: 40px; border: 1px solid #2d2d2d; border-radius: 10px 0px 0px 10px;
+    display: flex; align-items: center;}
+.findpwd_input_to {width: 310px; height: 30px; margin-left: 2px; font-size: 1.3rem; border: none; outline: none;}
+.certification_btn {width: 120px; border: 1px solid #2d2d2d; border-left: none; border-radius: 0px 10px 10px 0px;
+    background-color: #2d2d2d; cursor: pointer;}
+.certification_sp {font-size: 1rem; font-weight: bold; color: white;}
+.findpwd_info {width: 428px; height: 40px; border: 1px solid #2d2d2d; border-radius: 10px; display: flex; align-items: center;}
+.findpwd_input {width: 410px; height: 30px; margin-left: 2px; font-size: 1.3rem; border: none; outline: none;}
+.findpwd_input_email {width: 186px; height: 40px; border: 1px solid #2d2d2d; border-radius: 10px; outline: none;
+    font-size: 1.3rem;}
+#email {width: 40px; height: 40px; display: flex; align-items: center; justify-content: center;}
+#email_sp {font-size: 1.5rem; font-weight: bold;}
+#findpwd_btn {width: 120px; height: 40px; border:1px solid #2d2d2d; border-radius: 10px;
+    margin-top: 30px; margin-left: 152px; background-color: #2d2d2d; cursor: pointer;}
+#findpwd_sp {font-size: 1rem; font-weight: bold; color: white; }
+.uri {text-decoration: none; color: #2d2d2d;}
+.uri:hover {font-weight: bold;}
+
+/* footer */
+#footer {
+    height: 80px;
+    font-size: 25px;
+    line-height: 70px;
+    border-width: 2px 3px 3px 3px;
+    border-style: solid;
+    border-color: #AEAEAE;
+    padding-left: 30px;
+}
