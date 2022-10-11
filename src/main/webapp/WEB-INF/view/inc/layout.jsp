@@ -12,6 +12,7 @@
     <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
     <link rel="stylesheet" href="css/inc/layout.css">
     <link rel="stylesheet" href="<tiles:getAsString name="css" />">
+    <script src="js/inc/header.js"></script>
     <script src="js/inc/aside.js"></script>
     <script src="<tiles:getAsString name="js" />"></script>
 </head>
