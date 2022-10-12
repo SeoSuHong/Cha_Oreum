@@ -22,4 +22,10 @@ public class MybatisMemberDao implements MemberDao {
 		return mapper.get(id, password);
 	}
 
+	@Override
+	public int id_check(String id) {
+		int result = mapper.id_check(id);
+		return result;
+	}
+
 }

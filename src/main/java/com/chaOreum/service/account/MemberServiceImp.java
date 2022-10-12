@@ -16,4 +16,10 @@ public class MemberServiceImp implements MemberService {
 	public Member get(String id, String password) {
 		return memberDao.get(id, password);
 	}
+
+	@Override
+	public int id_check(String id) {
+		int result = memberDao.id_check(id);
+		return result;
+	}
 }

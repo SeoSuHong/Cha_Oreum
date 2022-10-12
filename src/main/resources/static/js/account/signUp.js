@@ -1,3 +1,6 @@
+var id_ch = false;
+var nickname_ch = false;
+
 function signup_check() {
     var id = document.getElementById("input_id");
     var pwd = document.getElementById("input_password");
@@ -48,7 +51,45 @@ function signup_check() {
         return false;
     }
 
+    if (id_ch == "true" && nickname_ch == "true"){
     alert("회원가입 되었습니다.");
 
     document.signup_frm.submit();
+    }
+}
+
+function id_check() {
+	$.ajax({
+		url : "",
+		type : "POST",
+		dataType : "JSON",
+		data : {"id" : $("#input_id").val()},
+		success : function (data) {
+			if(data == 1){
+				alert("중복된 아이디입니다.");
+				id_ch = false;
+			} else if (data == 0){
+				alert("사용가능한 아이디입니다.");
+				id_ch = true;
+			}
+		}
+	})
+}
+
+function nickname_check() {
+	$.ajax({
+		url : "",
+		type : "POST",
+		dataType : "JSON",
+		data : {"nickname" : $("#input_nickname").val()},
+		success : function (data) {
+			if(data == 1){
+				alert("중복된 닉네임입니다.");
+				id_ch = false;
+			} else if (data == 0){
+				alert("사용가능한 닉네임입니다.");
+				id_ch = true;
+			}
+		}
+	})
 }

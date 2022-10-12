@@ -6,5 +6,8 @@ public interface MemberDao {
 
 	// 로그인
 	public Member get(String id, String password);
-	
+
+	public int id_check(String id);
+
+
 }
