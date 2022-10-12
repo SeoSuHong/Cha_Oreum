@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.chaOreum.dao.include.IncludeDao">
+
+  <select id="getMainCategories" resultType="com.chaOreum.entity.MainCategory">
+  	SELECT M.* FROM mainCategory M 
+  	<if test="nickname != null and nickname != ''">
+  		JOIN subCategory S ON S.mainCategory_no = M.no
+		JOIN post P ON P.subCategory_no = S.no
+		WHERE P.member_nickname = #{nickname};
+  	</if>
+  </select>
+  
+  <select id="getSubCategories" resultType="com.chaOreum.entity.SubCategory">
+  	SELECT S.* FROM subCategory S
+  	<if test="nickname != null and nickname != ''">
+  		JOIN post P ON P.subCategory_no = S.no 
+		WHERE P.member_nickname = #{nickname};
+  	</if>
+  </select>
+  
+</mapper>

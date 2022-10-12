@@ -34,13 +34,28 @@ $(function() {
     })
 })
 
+// My 클릭 시
+function myContents(nickname) {
+	if(nickname != null) {
+		location.href = "/?n=" + nickname;
+	} else {
+		const message = confirm('회원만 이용이 가능합니다.\n로그인 하시겠습니까?');
+		
+		if(message) {
+			location.href = "account/logIn";
+		}
+	}
+}
+
 // 카테고리 클릭 시 parameter 전달
-$(function() {
-    let categories = $('.subCategory');
-
-    $(categories).click(function() {
-        let name = $(this).children('p').text();
-
-        location.href = '/?c=' + name;
-    })
-})
+function category(category_no, nickname) {
+	let path;
+	
+	if(nickname != '') {
+	    path = '/?c=' + category_no + '&n=' + nickname;
+	} else {
+		path = '/?c=' + category_no;
+	}
+	
+	location.href = path;
+}

@@ -35,9 +35,11 @@
                 </div>
 
                 <!-- 글 쓰기 -->
-                <div id="reg_wrap">
-                    <a href="/contents/reg" id="reg">글 쓰기</a>
-                </div>
+                <c:if test="${nickname eq n}">
+	                <div id="reg_wrap">
+	                    <a href="/contents/reg" id="reg">글 쓰기</a>
+	                </div>
+	            </c:if>
 
                 <!-- 컨텐츠 -->
                 <div id="contents">
