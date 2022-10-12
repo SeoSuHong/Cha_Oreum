@@ -11,6 +11,7 @@
     <title>Signup</title>
     <link rel="stylesheet" href="/css/inc/layout.css">
     <link rel="stylesheet" href="<tiles:getAsString name="css" />">
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
     <script src="<tiles:getAsString name="js" />"></script>
 </head>
 <body>

@@ -48,13 +48,70 @@ public class MemberController {
 		return "account.signUp";
 	}
 	
+	@ResponseBody
+	@PostMapping("signUp")
+	public String signUp(String id, String nickname, String password, String email_front, String email_back, String email, HttpSession session, HttpServletResponse response) {
+		
+		email = email_front + "@" + email_back;
+		
+		String message = "";
+		
+		if(memberService.signup(id, nickname, password, email)) {
+		
+		message = "<script>alert('회원가입이 완료 되었습니다.'); location.href='/account/logIn';</script>";
+		} else {
+			message = "<script>alert('회원가입이 되지않았습니다.\\n회원가입을 다시 진행해 주세요.'); history.go(-1);</script>";
+		}
+		return message;
+	}
+	
 	@GetMapping("findId")
 	public String findId() {
 		return "account.findId";
 	}
 	
+	@ResponseBody
+	@PostMapping("findId")
+	public String findId(String email_front, String email_back, String email, HttpSession session, HttpServletResponse response) {
+		
+		email = email_front + "@" + email_back;
+		
+		String message = "";
+		
+		Member member = memberService.findId(email);
+		
+		if(member != null) {
+			
+		message = "<script>alert('귀하의 ID는 \\'" + member.getId() + "\\' 입니다.'); location.href='/account/findId';</script>";
+		} else {
+			message = "<script>alert('가입되어있지 않은 이메일입니다.\\n회원가입을 해주세요.'); history.go(-1);</script>";
+		}
+		return message;
+	}
+	
 	@GetMapping("findPw")
 	public String findPw() {
 		return "account.findPw";
+	}
+	
+	@ResponseBody
+	@PostMapping("id_check")
+	public int id_check(String id) {
+		int result = memberService.id_check(id);
+		return result;
+	}
+	
+	@ResponseBody
+	@PostMapping("nickname_check")
+	public int nickname_check(String nickname) {
+		int result = memberService.nickname_check(nickname);
+		return result;
+	}
+	
+	@ResponseBody
+	@PostMapping("email_check")
+	public int email_check(String email) {
+		int result = memberService.email_check(email);
+		return result;
 	}
 }

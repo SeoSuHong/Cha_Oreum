@@ -22,4 +22,28 @@ public class MemberServiceImp implements MemberService {
 		int result = memberDao.id_check(id);
 		return result;
 	}
+
+	@Override
+	public int nickname_check(String nickname) {
+		int result = memberDao.nickname_check(nickname);
+		return result;
+	}
+
+	@Override
+	public boolean signup(String id, String password, String nickname, String email) {
+		boolean result = memberDao.signup(id, nickname, password, email);
+		return result;
+	}
+
+	@Override
+	public Member findId(String email) {
+		Member result = memberDao.findId(email);
+		return result;
+	}
+
+	@Override
+	public int email_check(String email) {
+		int result = memberDao.email_check(email);
+		return result;
+	}
 }
