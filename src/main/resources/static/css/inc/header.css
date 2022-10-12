@@ -32,3 +32,48 @@
 #account a:hover {
     text-decoration: underline;
 }
+
+#user {
+    margin-top: -170px;
+    margin-right: 50px;
+    position: relative;
+}
+
+#userNick {
+    height: 40px;
+    line-height: 100%;
+    color: #AEAEAE;
+    font-size: 22px;
+    font-weight: bold;
+    border: 2px solid #393939;
+    border-radius: 25px;
+    padding: 5px 10px;
+    box-sizing: border-box;
+    cursor: pointer;
+}
+
+#userNick:hover {
+    border: 2px solid #AEAEAE;
+}
+
+#userInfo {
+    min-width: 130px;
+    text-align: center;
+    background-color: white;
+    border-radius: 10px;
+    margin-top: 1px;
+    padding: 10px 0;
+    position: absolute;
+    display: none;
+}
+
+#userInfo div {
+    font-size: 18px;
+    font-weight: bold;
+    padding: 5px 10px;
+    cursor: pointer;
+}
+
+#userInfo div:hover {
+    background-color: #E2E2E2;
+}
