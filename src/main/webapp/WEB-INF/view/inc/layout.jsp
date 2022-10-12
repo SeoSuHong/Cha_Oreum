@@ -35,11 +35,11 @@
 
             <!------------------------------------------------------------------------------------->
 
-            <input type="hidden" name="c" id="category" value="">
-            <input type="hidden" name="t" id="title" value="">
-            <input type="hidden" name="n" id="nickname" value="">
-            <input type="hidden" name="s" id="sort" value="">
-            <input type="hidden" name="p" id="page" value="">
+            <input type="hidden" name="c" id="category" value="${c}">
+            <input type="hidden" name="t" id="title" value="${t}">
+            <input type="hidden" name="n" id="nickname" value="${n}">
+            <input type="hidden" name="s" id="sort" value="${s}">
+            <input type="hidden" name="p" id="page" value="${p}">
         </div>
     </form>
 

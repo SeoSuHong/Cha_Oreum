@@ -7,57 +7,32 @@
                 <div id="showMenu"><img src="../image/showMenu.png" alt="보이기" class="show_btn"></div>
                 <div id="aside_wrap">
                     <div id="menu_btn">
-                        <button id="world">World</button>
-                        <button id="my">My</button>
+                    	<c:if test="${nickname eq n}">
+	                        <input type="button" id="world" value="World" style="color: #AEAEAE" onclick="location.href='/'">
+	                        <input type="button" id="my" value="My" style="color: #38424A" onclick="myContents('${nickname}')">
+                        </c:if>
+                        
+                        <c:if test="${nickname ne n}">
+	                        <input type="button" id="world" value="World" style="color: #38424A" onclick="location.href='/'">
+	                        <input type="button" id="my" value="My" style="color: #AEAEAE" onclick="myContents('${nickname}')">
+	                    </c:if>
                     </div>
                     <div id="category">
                     	<c:forEach var="mainCategory" items="${mainCategories}">
-	                    	<div class="mainCategory">${mainCategory}</div>
+	                    	<div class="mainCategory">${mainCategory.name}</div>
 	                        <div class="sub">
 	                        	<c:forEach var="subCategory" items="${subCategories}">
-	                        		<c:if test="${mainCategory eq subCategory.mainCategory_name}">
-			                            <div class="subCategory"><p>${subCategory.name}</p></div>
+	                        		<c:if test="${mainCategory.no eq subCategory.mainCategory_no}">
+	                        			<c:if test="${nickname eq n}">
+			                            	<div class="subCategory" onclick="category(${subCategory.no}, '${nickname}')"><p>${subCategory.name}</p></div>
+			                            </c:if>
+			                            <c:if test="${nickname ne n}">
+			                            	<div class="subCategory" onclick="category(${subCategory.no}, '')"><p>${subCategory.name}</p></div>
+			                            </c:if>
 			                        </c:if>
 		                        </c:forEach>
 	                        </div>
                         </c:forEach>
-                        <!-- <div class="mainCategory">Language</div>
-                        <div class="sub">
-                            <div class="subCategory"><p>JAVA</p></div>
-                            <div class="subCategory"><p>Python</p></div>
-                            <div class="subCategory"><p>C</p></div>
-                        </div>
-
-                        <div class="mainCategory">Front-End</div>
-                        <div class="sub">
-                            <div class="subCategory"><p>HTML</p></div>
-                            <div class="subCategory"><p>CSS</p></div>
-                            <div class="subCategory"><p>JavaScript</p></div>
-                        </div>
-
-                        <div class="mainCategory">Back-End</div>
-                        <div class="sub">
-                            <div class="subCategory"><p>PHP</p></div>
-                            <div class="subCategory"><p>JSP</p></div>
-                            <div class="subCategory"><p>Spring</p></div>
-                        </div>
-
-                        <div class="mainCategory">Database</div>
-                        <div class="sub">
-                            <div class="subCategory"><p>Oracle</p></div>
-                            <div class="subCategory"><p>MySQL</p></div>
-                        </div>
-
-                        <div class="mainCategory">Project Management</div>
-                        <div class="sub">
-                            <div class="subCategory"><p>GitHub</p></div>
-                        </div>
-
-                        <div class="mainCategory">ETC</div>
-                        <div class="sub">
-                            <div class="subCategory"><p>Error</p></div>
-                            <div class="subCategory"><p>QnA</p></div>
-                        </div> -->
                         
                     </div>
                 </div>

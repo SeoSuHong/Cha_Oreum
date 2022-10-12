@@ -37,4 +37,9 @@ public class SubCategory {
 	public void setName(String name) {
 		this.name = name;
 	}
+
+	@Override
+	public String toString() {
+		return "SubCategory [no=" + no + ", mainCategory_no=" + mainCategory_no + ", name=" + name + "]";
+	}
 }

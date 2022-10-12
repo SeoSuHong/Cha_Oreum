@@ -20,18 +20,13 @@ CREATE TABLE subCategory(
     PRIMARY KEY(no)
 );
 
-CREATE VIEW subCategoryView
-AS 
-SELECT M.name mainCategory_name , S.* FROM subCategory S 
-JOIN mainCategory M ON M.no = S.mainCategory_no;
-
 CREATE TABLE post(
     no                 INT(11)        NOT NULL    AUTO_INCREMENT,
     member_nickname    VARCHAR(20)    NOT NULL,
     subCategory_no     INT(11)        NOT NULL,
     title              VARCHAR(50)    NOT NULL,
     contents           TEXT           NOT NULL,
-    regDate            DATE           NOT NULL,
+    regDate            DATE           NOT NULL    DEFAULT (CURRENT_DATE),
     fileName           VARCHAR(30),
     fileSize           INT(11),
     view               INT(11)        NOT NULL    DEFAULT 0,

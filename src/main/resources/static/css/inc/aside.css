@@ -45,7 +45,7 @@ aside {
     justify-content: center;
 }
 
-#menu_btn button {
+#menu_btn input {
     width: 150px;
     height: 60px;
     font-size: 25px;
@@ -56,12 +56,7 @@ aside {
 }
 
 #menu_btn #world {
-    color: #38424A;
     border-right: 2px solid #AEAEAE;
-}
-
-#menu_btn #my {
-    color: #AEAEAE;
 }
 
 .mainCategory {
