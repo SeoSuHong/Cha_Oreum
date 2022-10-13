@@ -46,4 +46,16 @@ public class MemberServiceImp implements MemberService {
 		int result = memberDao.email_check(email);
 		return result;
 	}
+
+	@Override
+	public Member getInfo(String id) {
+		Member result = memberDao.getInfo(id);
+		return result;
+	}
+
+	@Override
+	public boolean updateInfo(String id, String nickname, String password, String email) {
+		boolean result = memberDao.updateInfo(id, nickname, password, email);
+		return result;
+	}
 }

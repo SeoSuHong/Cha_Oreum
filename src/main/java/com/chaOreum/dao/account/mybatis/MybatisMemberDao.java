@@ -52,4 +52,16 @@ public class MybatisMemberDao implements MemberDao {
 		return result;
 	}
 
+	@Override
+	public Member getInfo(String id) {
+		Member result = mapper.getInfo(id);
+		return result;
+	}
+
+	@Override
+	public boolean updateInfo(String id, String nickname, String password, String email) {
+		boolean result = mapper.updateInfo(id, nickname, password, email);
+		return result;
+	}
+
 }

@@ -21,6 +21,12 @@ public interface MemberDao {
 	
 	//이메일 중복확인
 	public int email_check(String email);
+	
+	//info page get member info
+	public Member getInfo(String id);
+	
+	//infoReg page update info
+	public boolean updateInfo(String id, String nickname, String password, String email);
 
 
 }
