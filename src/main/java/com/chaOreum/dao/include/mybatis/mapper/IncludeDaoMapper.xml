@@ -5,20 +5,26 @@
 <mapper namespace="com.chaOreum.dao.include.IncludeDao">
 
   <select id="getMainCategories" resultType="com.chaOreum.entity.MainCategory">
-  	SELECT M.* FROM mainCategory M 
+  	SELECT MC.* FROM mainCategory MC 
   	<if test="nickname != null and nickname != ''">
-  		JOIN subCategory S ON S.mainCategory_no = M.no
-		JOIN post P ON P.subCategory_no = S.no
-		WHERE P.member_nickname = #{nickname};
+  		JOIN subCategory SC ON SC.mainCategory_no = MC.no
+		JOIN post P ON P.subCategory_no = SC.no
+		JOIN member M ON M.id = P.member_id
+		WHERE M.nickname = #{nickname} 
+		GROUP BY MC.name
   	</if>
+  	ORDER BY MC.no
   </select>
   
   <select id="getSubCategories" resultType="com.chaOreum.entity.SubCategory">
-  	SELECT S.* FROM subCategory S
+  	SELECT SC.* FROM subCategory SC
   	<if test="nickname != null and nickname != ''">
-  		JOIN post P ON P.subCategory_no = S.no 
-		WHERE P.member_nickname = #{nickname};
+  		JOIN post P ON P.subCategory_no = SC.no
+  		JOIN member M ON M.id = P.member_id 
+		WHERE M.nickname = #{nickname}
+		GROUP BY SC.name 
   	</if>
+  	ORDER BY SC.no
   </select>
   
 </mapper>

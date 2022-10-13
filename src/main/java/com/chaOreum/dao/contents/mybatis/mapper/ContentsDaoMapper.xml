@@ -4,8 +4,48 @@
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.chaOreum.dao.contents.ContentsDao">
 
-  <select id="">
-  	
+  <select id="getViewList" resultType="com.chaOreum.entity.PostView">
+  	SELECT MC.name mainCategory, SC.name subCategory, M.nickname, P.*, (SELECT count(*) FROM hot WHERE post_no = P.no) hot FROM post P 
+		JOIN subCategory SC ON SC.no = P.subCategory_no 
+		JOIN mainCategory MC ON MC.no = SC.mainCategory_no
+		JOIN member M ON M.id = P.member_id
+			<where>
+				<if test="category_no != 0">
+					P.subCategory_no = #{category_no}
+				</if>
+				<if test="nickname != null and nickname != ''">
+					AND M.nickname LIKE '%${nickname}%'
+				</if>
+				<if test="title != null and title != ''"> 
+					AND P.title LIKE '%${title}%'
+				</if>
+			</where>
+			<if test="sort == 'new' or sort == null and sort == ''">
+	        	ORDER BY P.regDate DESC
+	        </if>
+	        <if test="sort == 'hot'">
+	        	ORDER BY hot DESC
+	        </if>
+	        <if test="sort == 'look'">
+	        	ORDER BY P.view DESC
+	        </if> 
+	        LIMIT #{offset}, #{size};
+  </select>
+  
+  <select id="getEndPage" resultType="int">
+  	SELECT COUNT(*) FROM post P
+  	JOIN member M ON M.id = P.member_id
+  		<where>
+			<if test="category_no != 0">
+				subCategory_no = #{category_no}
+			</if>
+			<if test="nickname != null and nickname != ''">
+				AND M.nickname LIKE '%${nickname}%'
+			</if>
+			<if test="title != null and title != ''"> 
+				AND title LIKE '%${title}%'
+			</if>
+		</where>
   </select>
   
 </mapper>

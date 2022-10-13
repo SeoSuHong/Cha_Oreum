@@ -4,7 +4,7 @@ import java.util.Date;
 
 public class Post {
 	private int no;
-	private String member_nickname;
+	private String member_id;
 	private int subCategory_no;
 	private String title;
 	private String contents;
@@ -15,10 +15,10 @@ public class Post {
 	
 	public Post() {}
 
-	public Post(int no, String member_nickname, int subCategory_no, String title, String contents, Date regDate,
+	public Post(int no, String member_id, int subCategory_no, String title, String contents, Date regDate,
 			String fileName, int fileSize, int view) {
 		this.no = no;
-		this.member_nickname = member_nickname;
+		this.member_id = member_id;
 		this.subCategory_no = subCategory_no;
 		this.title = title;
 		this.contents = contents;
@@ -36,12 +36,12 @@ public class Post {
 		this.no = no;
 	}
 
-	public String getMember_nickname() {
-		return member_nickname;
+	public String getMember_id() {
+		return member_id;
 	}
 
-	public void setMember_nickname(String member_nickname) {
-		this.member_nickname = member_nickname;
+	public void setMember_id(String member_id) {
+		this.member_id = member_id;
 	}
 
 	public int getSubCategory_no() {
@@ -102,7 +102,7 @@ public class Post {
 
 	@Override
 	public String toString() {
-		return "Post [no=" + no + ", member_nickname=" + member_nickname + ", subCategory_no=" + subCategory_no
+		return "Post [no=" + no + ", member_id=" + member_id + ", subCategory_no=" + subCategory_no
 				+ ", title=" + title + ", contents=" + contents + ", regDate=" + regDate + ", fileName=" + fileName
 				+ ", fileSize=" + fileSize + ", view=" + view + "]";
 	}

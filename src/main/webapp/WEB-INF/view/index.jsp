@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 			<main>
 
                 <!-- 검색 기능 -->
@@ -21,16 +22,34 @@
                 <!-- 정렬 기능 -->
                 <div id="sort_wrap">
                     <div id="newSort_wrap" style="cursor: pointer;" onclick="sort('new')">
-                        <img src="../image/checkedSort.png">
-                        <span style="color: #38424A;">최신</span>
+                    	<c:if test="${s eq 'new' || empty s}">
+	                        <img src="../image/checkedSort.png">
+	                        <span style="color: #38424A;">최신</span>
+                        </c:if>
+                        <c:if test="${s ne 'new' && not empty s}">
+	                        <img src="../image/uncheckedSort.png">
+	                        <span style="color: #AEAEAE;">최신</span>
+                        </c:if>
                     </div>
                     <div id="hotSort_wrap" style="cursor: pointer;" onclick="sort('hot')">
-                        <img src="../image/uncheckedSort.png">
-                        <span style="color: #AEAEAE;">인기</span>
+                    	<c:if test="${s eq 'hot'}">
+	                        <img src="../image/checkedSort.png">
+	                        <span style="color: #38424A;">인기</span>
+	                    </c:if>
+	                    <c:if test="${s ne 'hot'}">
+	                        <img src="../image/uncheckedSort.png">
+	                        <span style="color: #AEAEAE;">인기</span>
+	                    </c:if>
                     </div>
                     <div id="lookSort_wrap" style="cursor: pointer;" onclick="sort('look')">
-                        <img src="../image/uncheckedSort.png">
-                        <span style="color: #AEAEAE;">조회</span>
+                    	<c:if test="${s eq 'look'}">
+	                        <img src="../image/checkedSort.png">
+	                        <span style="color: #38424A;">조회</span>
+	                    </c:if>
+	                    <c:if test="${s ne 'look'}">
+	                        <img src="../image/uncheckedSort.png">
+	                        <span style="color: #AEAEAE;">조회</span>
+	                    </c:if>
                     </div>
                 </div>
 
@@ -43,196 +62,25 @@
 
                 <!-- 컨텐츠 -->
                 <div id="contents">
-
-                    <div class="content">
-                        <div class="information">
-                            <div class="info">
-                                <span>Dev_Hong</span>
-                                <span>❤️86</span>
-                                <span><img src="../image/look.png">130</span>
-                                <span class="cate">Language - JAVA</span>
-                            </div>
-                            <div class="reg">
-                                <span>2022-10-07</span>
-                            </div>
-                        </div>
-
-                        <div class="title"><a href="/contents/detail?no=1">자바 데이터 타입, 변수 그리고 배열</a></div>
-                        <div class="cont">
-                            우리가 주로 사용하는 값의 종류는 크게 문자와 숫자로 나눌 수 있으며 여기서 숫자는 다시 정수와 실수로 나뉜다. 기본형은 모두 8가지의 타입(자료형)이 있으며, 크게 논리형, 문자형, 정수형, 실수형으로 구분된다. 우리가 주로 사용하는 값의 종류는 크게 문자와 숫자로 나눌 수 있으며 여기서 숫자는 다시 정수와 실수로 나뉜다. 기본형은 모두 8가지의 타입(자료형)이 있으며, 크게 논리형, 문자형, 정수형, 실수형으로 구분된다. 우리가 주로 사용하는 값의 종류는 크게 문자와 숫자로 나눌 수 있으며 여기서 숫자는 다시 정수와 실수로 나뉜다. 기본형은 모두 8가지의 타입(자료형)이 있으며, 크게 논리형, 문자형, 정수형, 실수형으로 구분된다.
-                        </div>
-                    </div>
-
-                    <div class="content">
-                        <div class="information">
-                            <div class="info">
-                                <span>Dev_Hong</span>
-                                <span>❤️86</span>
-                                <span><img src="../image/look.png">130</span>
-                                <span class="cate">Language - JAVA</span>
-                            </div>
-                            <div class="reg">
-                                <span>2022-10-07</span>
-                            </div>
-                        </div>
-
-                        <div class="title">자바 데이터 타입, 변수 그리고 배열</div>
-                        <div class="cont">
-                            우리가 주로 사용하는 값의 종류는 크게 문자와 숫자로 나눌 수 있으며 여기서 숫자는 다시 정수와 실수로 나뉜다. 기본형은 모두 8가지의 타입(자료형)이 있으며, 크게 논리형, 문자형, 정수형, 실수형으로 구분된다. 우리가 주로 사용하는 값의 종류는 크게 문자와 숫자로 나눌 수 있으며 여기서 숫자는 다시 정수와 실수로 나뉜다. 기본형은 모두 8가지의 타입(자료형)이 있으며, 크게 논리형, 문자형, 정수형, 실수형으로 구분된다. 우리가 주로 사용하는 값의 종류는 크게 문자와 숫자로 나눌 수 있으며 여기서 숫자는 다시 정수와 실수로 나뉜다. 기본형은 모두 8가지의 타입(자료형)이 있으며, 크게 논리형, 문자형, 정수형, 실수형으로 구분된다.
-                        </div>
-                    </div>
-
-                    <div class="content">
-                        <div class="information">
-                            <div class="info">
-                                <span>Dev_Hong</span>
-                                <span>❤️86</span>
-                                <span><img src="../image/look.png">130</span>
-                                <span class="cate">Language - JAVA</span>
-                            </div>
-                            <div class="reg">
-                                <span>2022-10-07</span>
-                            </div>
-                        </div>
-
-                        <div class="title">자바 데이터 타입, 변수 그리고 배열</div>
-                        <div class="cont">
-                            우리가 주로 사용하는 값의 종류는 크게 문자와 숫자로 나눌 수 있으며 여기서 숫자는 다시 정수와 실수로 나뉜다. 기본형은 모두 8가지의 타입(자료형)이 있으며, 크게 논리형, 문자형, 정수형, 실수형으로 구분된다. 우리가 주로 사용하는 값의 종류는 크게 문자와 숫자로 나눌 수 있으며 여기서 숫자는 다시 정수와 실수로 나뉜다. 기본형은 모두 8가지의 타입(자료형)이 있으며, 크게 논리형, 문자형, 정수형, 실수형으로 구분된다. 우리가 주로 사용하는 값의 종류는 크게 문자와 숫자로 나눌 수 있으며 여기서 숫자는 다시 정수와 실수로 나뉜다. 기본형은 모두 8가지의 타입(자료형)이 있으며, 크게 논리형, 문자형, 정수형, 실수형으로 구분된다.
-                        </div>
-                    </div>
-
-                    <div class="content">
-                        <div class="information">
-                            <div class="info">
-                                <span>Dev_Hong</span>
-                                <span>❤️86</span>
-                                <span><img src="../image/look.png">130</span>
-                                <span class="cate">Language - JAVA</span>
-                            </div>
-                            <div class="reg">
-                                <span>2022-10-07</span>
-                            </div>
-                        </div>
-
-                        <div class="title">자바 데이터 타입, 변수 그리고 배열</div>
-                        <div class="cont">
-                            우리가 주로 사용하는 값의 종류는 크게 문자와 숫자로 나눌 수 있으며 여기서 숫자는 다시 정수와 실수로 나뉜다. 기본형은 모두 8가지의 타입(자료형)이 있으며, 크게 논리형, 문자형, 정수형, 실수형으로 구분된다. 우리가 주로 사용하는 값의 종류는 크게 문자와 숫자로 나눌 수 있으며 여기서 숫자는 다시 정수와 실수로 나뉜다. 기본형은 모두 8가지의 타입(자료형)이 있으며, 크게 논리형, 문자형, 정수형, 실수형으로 구분된다. 우리가 주로 사용하는 값의 종류는 크게 문자와 숫자로 나눌 수 있으며 여기서 숫자는 다시 정수와 실수로 나뉜다. 기본형은 모두 8가지의 타입(자료형)이 있으며, 크게 논리형, 문자형, 정수형, 실수형으로 구분된다.
-                        </div>
-                    </div>
-
-                    <div class="content">
-                        <div class="information">
-                            <div class="info">
-                                <span>Dev_Hong</span>
-                                <span>❤️86</span>
-                                <span><img src="../image/look.png">130</span>
-                                <span class="cate">Language - JAVA</span>
-                            </div>
-                            <div class="reg">
-                                <span>2022-10-07</span>
-                            </div>
-                        </div>
-
-                        <div class="title">자바 데이터 타입, 변수 그리고 배열</div>
-                        <div class="cont">
-                            우리가 주로 사용하는 값의 종류는 크게 문자와 숫자로 나눌 수 있으며 여기서 숫자는 다시 정수와 실수로 나뉜다. 기본형은 모두 8가지의 타입(자료형)이 있으며, 크게 논리형, 문자형, 정수형, 실수형으로 구분된다. 우리가 주로 사용하는 값의 종류는 크게 문자와 숫자로 나눌 수 있으며 여기서 숫자는 다시 정수와 실수로 나뉜다. 기본형은 모두 8가지의 타입(자료형)이 있으며, 크게 논리형, 문자형, 정수형, 실수형으로 구분된다. 우리가 주로 사용하는 값의 종류는 크게 문자와 숫자로 나눌 수 있으며 여기서 숫자는 다시 정수와 실수로 나뉜다. 기본형은 모두 8가지의 타입(자료형)이 있으며, 크게 논리형, 문자형, 정수형, 실수형으로 구분된다.
-                        </div>
-                    </div>
-
-                    <div class="content">
-                        <div class="information">
-                            <div class="info">
-                                <span>Dev_Hong</span>
-                                <span>❤️86</span>
-                                <span><img src="../image/look.png">130</span>
-                                <span class="cate">Language - JAVA</span>
-                            </div>
-                            <div class="reg">
-                                <span>2022-10-07</span>
-                            </div>
-                        </div>
-
-                        <div class="title">자바 데이터 타입, 변수 그리고 배열</div>
-                        <div class="cont">
-                            우리가 주로 사용하는 값의 종류는 크게 문자와 숫자로 나눌 수 있으며 여기서 숫자는 다시 정수와 실수로 나뉜다. 기본형은 모두 8가지의 타입(자료형)이 있으며, 크게 논리형, 문자형, 정수형, 실수형으로 구분된다. 우리가 주로 사용하는 값의 종류는 크게 문자와 숫자로 나눌 수 있으며 여기서 숫자는 다시 정수와 실수로 나뉜다. 기본형은 모두 8가지의 타입(자료형)이 있으며, 크게 논리형, 문자형, 정수형, 실수형으로 구분된다. 우리가 주로 사용하는 값의 종류는 크게 문자와 숫자로 나눌 수 있으며 여기서 숫자는 다시 정수와 실수로 나뉜다. 기본형은 모두 8가지의 타입(자료형)이 있으며, 크게 논리형, 문자형, 정수형, 실수형으로 구분된다.
-                        </div>
-                    </div>
-
-                    <div class="content">
-                        <div class="information">
-                            <div class="info">
-                                <span>Dev_Hong</span>
-                                <span>❤️86</span>
-                                <span><img src="../image/look.png">130</span>
-                                <span class="cate">Language - JAVA</span>
-                            </div>
-                            <div class="reg">
-                                <span>2022-10-07</span>
-                            </div>
-                        </div>
-
-                        <div class="title">자바 데이터 타입, 변수 그리고 배열</div>
-                        <div class="cont">
-                            우리가 주로 사용하는 값의 종류는 크게 문자와 숫자로 나눌 수 있으며 여기서 숫자는 다시 정수와 실수로 나뉜다. 기본형은 모두 8가지의 타입(자료형)이 있으며, 크게 논리형, 문자형, 정수형, 실수형으로 구분된다. 우리가 주로 사용하는 값의 종류는 크게 문자와 숫자로 나눌 수 있으며 여기서 숫자는 다시 정수와 실수로 나뉜다. 기본형은 모두 8가지의 타입(자료형)이 있으며, 크게 논리형, 문자형, 정수형, 실수형으로 구분된다. 우리가 주로 사용하는 값의 종류는 크게 문자와 숫자로 나눌 수 있으며 여기서 숫자는 다시 정수와 실수로 나뉜다. 기본형은 모두 8가지의 타입(자료형)이 있으며, 크게 논리형, 문자형, 정수형, 실수형으로 구분된다.
-                        </div>
-                    </div>
-
-                    <div class="content">
-                        <div class="information">
-                            <div class="info">
-                                <span>Dev_Hong</span>
-                                <span>❤️86</span>
-                                <span><img src="../image/look.png">130</span>
-                                <span class="cate">Language - JAVA</span>
-                            </div>
-                            <div class="reg">
-                                <span>2022-10-07</span>
-                            </div>
-                        </div>
-
-                        <div class="title">자바 데이터 타입, 변수 그리고 배열</div>
-                        <div class="cont">
-                            우리가 주로 사용하는 값의 종류는 크게 문자와 숫자로 나눌 수 있으며 여기서 숫자는 다시 정수와 실수로 나뉜다. 기본형은 모두 8가지의 타입(자료형)이 있으며, 크게 논리형, 문자형, 정수형, 실수형으로 구분된다. 우리가 주로 사용하는 값의 종류는 크게 문자와 숫자로 나눌 수 있으며 여기서 숫자는 다시 정수와 실수로 나뉜다. 기본형은 모두 8가지의 타입(자료형)이 있으며, 크게 논리형, 문자형, 정수형, 실수형으로 구분된다. 우리가 주로 사용하는 값의 종류는 크게 문자와 숫자로 나눌 수 있으며 여기서 숫자는 다시 정수와 실수로 나뉜다. 기본형은 모두 8가지의 타입(자료형)이 있으며, 크게 논리형, 문자형, 정수형, 실수형으로 구분된다.
-                        </div>
-                    </div>
-
-                    <div class="content">
-                        <div class="information">
-                            <div class="info">
-                                <span>Dev_Hong</span>
-                                <span>❤️86</span>
-                                <span><img src="../image/look.png">130</span>
-                                <span class="cate">Language - JAVA</span>
-                            </div>
-                            <div class="reg">
-                                <span>2022-10-07</span>
-                            </div>
-                        </div>
-
-                        <div class="title">자바 데이터 타입, 변수 그리고 배열</div>
-                        <div class="cont">
-                            우리가 주로 사용하는 값의 종류는 크게 문자와 숫자로 나눌 수 있으며 여기서 숫자는 다시 정수와 실수로 나뉜다. 기본형은 모두 8가지의 타입(자료형)이 있으며, 크게 논리형, 문자형, 정수형, 실수형으로 구분된다. 우리가 주로 사용하는 값의 종류는 크게 문자와 숫자로 나눌 수 있으며 여기서 숫자는 다시 정수와 실수로 나뉜다. 기본형은 모두 8가지의 타입(자료형)이 있으며, 크게 논리형, 문자형, 정수형, 실수형으로 구분된다. 우리가 주로 사용하는 값의 종류는 크게 문자와 숫자로 나눌 수 있으며 여기서 숫자는 다시 정수와 실수로 나뉜다. 기본형은 모두 8가지의 타입(자료형)이 있으며, 크게 논리형, 문자형, 정수형, 실수형으로 구분된다.
-                        </div>
-                    </div>
-
-                    <div class="content">
-                        <div class="information">
-                            <div class="info">
-                                <span>Dev_Hong</span>
-                                <span>❤️86</span>
-                                <span><img src="../image/look.png">130</span>
-                                <span class="cate">Language - JAVA</span>
-                            </div>
-                            <div class="reg">
-                                <span>2022-10-07</span>
-                            </div>
-                        </div>
-
-                        <div class="title">자바 데이터 타입, 변수 그리고 배열</div>
-                        <div class="cont">
-                            우리가 주로 사용하는 값의 종류는 크게 문자와 숫자로 나눌 수 있으며 여기서 숫자는 다시 정수와 실수로 나뉜다. 기본형은 모두 8가지의 타입(자료형)이 있으며, 크게 논리형, 문자형, 정수형, 실수형으로 구분된다. 우리가 주로 사용하는 값의 종류는 크게 문자와 숫자로 나눌 수 있으며 여기서 숫자는 다시 정수와 실수로 나뉜다. 기본형은 모두 8가지의 타입(자료형)이 있으며, 크게 논리형, 문자형, 정수형, 실수형으로 구분된다. 우리가 주로 사용하는 값의 종류는 크게 문자와 숫자로 나눌 수 있으며 여기서 숫자는 다시 정수와 실수로 나뉜다. 기본형은 모두 8가지의 타입(자료형)이 있으며, 크게 논리형, 문자형, 정수형, 실수형으로 구분된다.
-                        </div>
-                    </div>
+	
+					<c:forEach var="post" items="${list}">
+	                    <div class="content">
+	                        <div class="information">
+	                            <div class="info">
+	                                <span>${post.nickname}</span>
+	                                <span>❤️${post.hot}</span>
+	                                <span><img src="../image/look.png"> ${post.view}</span>
+	                                <span class="cate">${post.mainCategory} - ${post.subCategory}</span>
+	                            </div>
+	                            <div class="reg">
+	                                <span><fmt:formatDate value="${post.regDate}" pattern="yyyy-MM-dd"/></span>
+	                            </div>
+	                        </div>
+	
+	                        <div class="title"><a href="/contents/detail?no=${post.no}">${post.title}</a></div>
+	                        <div class="cont">${post.contents}</div>
+	                    </div>
+                    </c:forEach>
                     
                 </div>
                 <!-- 맨 위로 -->
@@ -242,15 +90,26 @@
 
                 <!-- 페이징 -->
                 <div id="pages">
-                    <span class="page">1</span>
-                    <span>..</span>
-                    <span class="page">6</span>
-                    <span class="page">7</span>
-                    <span class="myPage">8</span>
-                    <span class="page">9</span>
-                    <span class="page">10</span>
-                    <span>..</span>
-                    <span class="page">17</span>
+                	<c:if test="${p > block_per_page}">
+	                	<span id="firstPage" class="movePage">First</span>
+	                	<span id="prevPage" class="movePage" onclick="movePrevPage(${block_firstPage})">Prev</span>
+                	</c:if>
+                	
+                	<c:forEach var="pageNo" begin="${block_firstPage}" end="${block_endPage}">
+                		<c:if test="${pageNo <= endPage}">
+	                		<c:if test="${p eq pageNo}">
+	                			<span class="myPage">${pageNo}</span>
+	                		</c:if>
+	                		<c:if test="${p ne pageNo}">
+		                		<span class="page">${pageNo}</span>
+	                		</c:if>
+	                	</c:if>
+                	</c:forEach>
+                	
+                	<c:if test="${p < endBlock_firstPage}">
+	                	<span id="nextPage" class="movePage" onclick="moveNextPage(${block_firstPage})">Next</span>
+	                	<span id="lastPage" class="movePage" onclick="moveLastPage(${endPage})">Last</span>
+	                </c:if>
                 </div>
 
             </main>

@@ -185,6 +185,17 @@ main {
 }
 
 /* 페이징 */
+.movePage {
+	font-size: 19px;
+	font-weight: bold;
+	margin: 0 10px;
+	cursor: pointer;
+}
+
+.movePage:hover {
+	text-decoration: underline;
+}
+
 #pages {
     text-align: center;
     margin: 50px 0 100px;
