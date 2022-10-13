@@ -35,7 +35,7 @@
                 </div>
 
                 <!-- 글 쓰기 -->
-                <c:if test="${nickname eq n}">
+                <c:if test="${not empty nickname && nickname eq n}">
 	                <div id="reg_wrap">
 	                    <a href="/contents/reg" id="reg">글 쓰기</a>
 	                </div>

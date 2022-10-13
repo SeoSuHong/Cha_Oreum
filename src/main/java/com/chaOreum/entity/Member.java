@@ -46,4 +46,9 @@ public class Member {
 	public void setEmail(String email) {
 		this.email = email;
 	}
+
+	@Override
+	public String toString() {
+		return "Member [id=" + id + ", nickname=" + nickname + ", password=" + password + ", email=" + email + "]";
+	}
 }

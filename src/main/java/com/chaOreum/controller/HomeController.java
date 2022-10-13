@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.chaOreum.entity.MainCategory;
+import com.chaOreum.entity.Post;
 import com.chaOreum.entity.SubCategory;
 import com.chaOreum.service.contents.ContentsService;
 import com.chaOreum.service.include.IncludeService;
@@ -34,18 +35,22 @@ public class HomeController {
 						@RequestParam(required = false) String s,
 						@RequestParam(defaultValue = "1") int p) {
 		
+		// aside
 		String nickname = (String) session.getAttribute("nickname");
 		
 		List<MainCategory> mainCategories = null;
 		List<SubCategory> subCategories = null;
 		
-		if(nickname.equals(n)) {
-			mainCategories = includeService.getMainCategories(nickname);
-			subCategories = includeService.getSubCategories(nickname);
-		} else {
+		if(nickname == null || !nickname.equals(n)) {
 			mainCategories = includeService.getMainCategories();
 			subCategories = includeService.getSubCategories();
+		} else if(nickname.equals(n)) {
+			mainCategories = includeService.getMainCategories(nickname);
+			subCategories = includeService.getSubCategories(nickname);
 		}
+		
+		// main
+		//List<Post> list = contentsService.getList(c, n, t, s, p);
 		
 		model.addAttribute("mainCategories", mainCategories);
 		model.addAttribute("subCategories", subCategories);
@@ -56,6 +61,11 @@ public class HomeController {
 		model.addAttribute("p", p);
 		
 		return "home.index";
+	}
+
+	private void getPostList(Integer c, String n, String t, String s, int p) {
+		// TODO Auto-generated method stub
+		
 	}
 
 	@PostMapping("/")

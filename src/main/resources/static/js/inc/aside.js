@@ -36,7 +36,7 @@ $(function() {
 
 // My 클릭 시
 function myContents(nickname) {
-	if(nickname != null) {
+	if(nickname != null && nickname != '') {
 		location.href = "/?n=" + nickname;
 	} else {
 		const message = confirm('회원만 이용이 가능합니다.\n로그인 하시겠습니까?');

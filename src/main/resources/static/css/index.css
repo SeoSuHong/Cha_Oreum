@@ -165,10 +165,13 @@ main {
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
+}
+
+.title a {	
     cursor: pointer;
 }
 
-.title:hover {
+.title a:hover {
     text-decoration: underline;
     text-decoration-thickness: 1.5px;
 }

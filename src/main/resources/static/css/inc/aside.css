@@ -104,3 +104,13 @@ aside {
 .subCategory:hover::after {
     width: 100%;
 }
+
+#emptyCategory {
+	height: 100px;
+	font-size: 20px;
+	font-weight: bold;
+	text-align: center;
+	line-height: 100px;
+	text-overflow: ellipsis;
+	white-space: pre;
+}

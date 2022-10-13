@@ -7,17 +7,24 @@
                 <div id="showMenu"><img src="../image/showMenu.png" alt="보이기" class="show_btn"></div>
                 <div id="aside_wrap">
                     <div id="menu_btn">
-                    	<c:if test="${nickname eq n}">
+                    
+                        <c:if test="${empty nickname || nickname ne n}">
+	                        <input type="button" id="world" value="World" style="color: #38424A" onclick="location.href='/'">
+	                        <input type="button" id="my" value="My" style="color: #AEAEAE" onclick="myContents('${nickname}')">
+	                    </c:if>
+	                    
+                    	<c:if test="${not empty nickname && nickname eq n}">
 	                        <input type="button" id="world" value="World" style="color: #AEAEAE" onclick="location.href='/'">
 	                        <input type="button" id="my" value="My" style="color: #38424A" onclick="myContents('${nickname}')">
                         </c:if>
                         
-                        <c:if test="${nickname ne n}">
-	                        <input type="button" id="world" value="World" style="color: #38424A" onclick="location.href='/'">
-	                        <input type="button" id="my" value="My" style="color: #AEAEAE" onclick="myContents('${nickname}')">
-	                    </c:if>
                     </div>
                     <div id="category">
+                    
+                    	<c:if test="${empty mainCategories}">
+                    		<div id="emptyCategory">등록된 개시글이 없습니다.</div>
+                    	</c:if>
+                    
                     	<c:forEach var="mainCategory" items="${mainCategories}">
 	                    	<div class="mainCategory">${mainCategory.name}</div>
 	                        <div class="sub">
