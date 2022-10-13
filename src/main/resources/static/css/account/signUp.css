@@ -83,7 +83,7 @@ ul {
 .signup_input_to {width: 310px; height: 30px; margin-left: 2px; font-size: 1.3rem; border: none; outline: none;}
 .duplication_check {width: 104px; border: 1px solid #2d2d2d; border-left: none; border-radius: 0px 10px 10px 0px;
     background-color: #2d2d2d; cursor: pointer;}
-.duplication_sp {font-size: 1rem; font-weight: bold; color: white;}
+#id_check,#nickname_check {font-size: 1rem; font-weight: bold; color: white;}
 .signup_info {width: 428px; height: 40px; border: 1px solid #2d2d2d; border-radius: 10px; display: flex; align-items: center;}
 .signup_input {width: 410px; height: 30px; margin-left: 2px; font-size: 1.3rem; border: none; outline: none;}
 .signup_input_email {width: 186px; height: 40px; border: 1px solid #2d2d2d; border-radius: 10px; outline: none;
