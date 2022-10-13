@@ -97,8 +97,8 @@ public class MemberController {
 	
 	@GetMapping("info")
 	public String info(Model model, HttpSession session) {
-		String nickname = (String) session.getAttribute("nickname");
-		Member getMemberInfo = memberService.getInfo(nickname);
+		String id = (String) session.getAttribute("id");
+		Member getMemberInfo = memberService.getInfo(id);
 		
 		model.addAttribute("getMemberInfo", getMemberInfo);
 		return "account.info";
@@ -119,10 +119,7 @@ public class MemberController {
 			
 		email = email_front + "@" + email_back;
 		String message = "";
-		System.out.println(id);
-		System.out.println(nickname);
-		System.out.println(password);
-		System.out.println(email);
+		
 		if(memberService.updateInfo(id, nickname, password, email)) {
 		
 			message = "<script>alert('회원정보 수정이 완료 되었습니다.'); location.href='/account/info';</script>";
