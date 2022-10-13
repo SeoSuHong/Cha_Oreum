@@ -41,4 +41,17 @@
 	WHERE email = #{email}
   </select>
   
+  <select id="getInfo" parameterType="string" resultType="com.chaOreum.entity.Member">
+  	SELECT * FROM member
+	WHERE id = #{id} ;
+  </select>
+  
+  <update id="updateInfo" parameterType="com.chaOreum.entity.Member">
+  	UPDATE member SET 
+	nickname = #{nickname}, 
+	password = #{password}, 
+	email = #{email} 
+	WHERE id = #{id};
+  </update>
+  
 </mapper>

@@ -9,16 +9,18 @@
   	<if test="nickname != null and nickname != ''">
   		JOIN subCategory S ON S.mainCategory_no = M.no
 		JOIN post P ON P.subCategory_no = S.no
-		WHERE P.member_nickname = #{nickname};
+		WHERE P.member_nickname = #{nickname} 
   	</if>
+  	ORDER BY M.no
   </select>
   
   <select id="getSubCategories" resultType="com.chaOreum.entity.SubCategory">
   	SELECT S.* FROM subCategory S
   	<if test="nickname != null and nickname != ''">
   		JOIN post P ON P.subCategory_no = S.no 
-		WHERE P.member_nickname = #{nickname};
+		WHERE P.member_nickname = #{nickname}
   	</if>
+  	ORDER BY S.no
   </select>
   
 </mapper>

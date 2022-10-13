@@ -68,7 +68,6 @@ function signup_check() {
 				email_front.focus();
 				return false;
 			} else if (data == 0) {
-				alert("사용가능한 이메일 입니다.");
 				email_check = true;
 				join_id = document.getElementById("input_id").value;
 				join_nickname = document.getElementById("input_nickname").value;

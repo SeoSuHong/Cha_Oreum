@@ -18,7 +18,7 @@
 	            <div id="user">
 	                <div id="userNick">${nickname}</div>
 	                <div id="userInfo">
-	                    <div>내 정보</div>
+	                    <div onclick="location.href='/account/info?n=${nickname}'">내 정보</div>
 	                    <div onclick="location.href='/?n=${nickname}'">My Contents</div>
 	                    <div onclick="logOut()">로그아웃</div>
 	                </div>

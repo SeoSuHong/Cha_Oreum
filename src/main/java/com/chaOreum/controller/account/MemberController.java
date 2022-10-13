@@ -5,6 +5,7 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -50,7 +51,7 @@ public class MemberController {
 	
 	@ResponseBody
 	@PostMapping("signUp")
-	public String signUp(String id, String nickname, String password, String email_front, String email_back, String email, HttpSession session, HttpServletResponse response) {
+	public String signUp(String id, String nickname, String password, String email_front, String email_back, String email) {
 		
 		email = email_front + "@" + email_back;
 		
@@ -72,7 +73,7 @@ public class MemberController {
 	
 	@ResponseBody
 	@PostMapping("findId")
-	public String findId(String email_front, String email_back, String email, HttpSession session, HttpServletResponse response) {
+	public String findId(String email_front, String email_back, String email) {
 		
 		email = email_front + "@" + email_back;
 		
@@ -94,6 +95,44 @@ public class MemberController {
 		return "account.findPw";
 	}
 	
+	@GetMapping("info")
+	public String info(Model model, HttpSession session) {
+		String nickname = (String) session.getAttribute("nickname");
+		Member getMemberInfo = memberService.getInfo(nickname);
+		
+		model.addAttribute("getMemberInfo", getMemberInfo);
+		return "account.info";
+	}
+	
+	@GetMapping("infoReg")
+	public String infoReg(Model model, HttpSession session) {
+		String id = (String) session.getAttribute("id");
+		Member getMemberInfo = memberService.getInfo(id);
+		
+		model.addAttribute("getMemberInfo", getMemberInfo);
+		return "account.infoReg";
+	}
+	
+	@ResponseBody
+	@PostMapping("infoReg")
+	public String infoReg(String id, String nickname, String password, String email_front, String email_back, String email) {
+			
+		email = email_front + "@" + email_back;
+		String message = "";
+		System.out.println(id);
+		System.out.println(nickname);
+		System.out.println(password);
+		System.out.println(email);
+		if(memberService.updateInfo(id, nickname, password, email)) {
+		
+			message = "<script>alert('회원정보 수정이 완료 되었습니다.'); location.href='/account/info';</script>";
+		} else {
+			message = "<script>alert('회원정보 수정에 실패하였습니다.\\n다시 시도해주세요.'); history.go(-1);</script>";
+		}
+		return message;
+	}
+	
+	//유효성 검사
 	@ResponseBody
 	@PostMapping("id_check")
 	public int id_check(String id) {
