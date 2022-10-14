@@ -4,6 +4,14 @@
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.chaOreum.dao.contents.ContentsDao">
 
+  <select id="getView" resultType="com.chaOreum.entity.PostView">
+  	SELECT MC.name mainCategory, SC.name subCategory, M.nickname, P.*, (SELECT count(*) FROM hot WHERE post_no = P.no) hot FROM post P 
+		JOIN subCategory SC ON SC.no = P.subCategory_no 
+		JOIN mainCategory MC ON MC.no = SC.mainCategory_no
+		JOIN member M ON M.id = P.member_id
+			WHERE P.no = #{no}
+  </select>
+
   <select id="getViewList" resultType="com.chaOreum.entity.PostView">
   	SELECT MC.name mainCategory, SC.name subCategory, M.nickname, P.*, (SELECT count(*) FROM hot WHERE post_no = P.no) hot FROM post P 
 		JOIN subCategory SC ON SC.no = P.subCategory_no 
@@ -30,6 +38,10 @@
 	        	ORDER BY P.view DESC
 	        </if> 
 	        LIMIT #{offset}, #{size};
+  </select>
+  
+  <select id="likeCount" resultType="int">
+  	SELECT COUNT(*) FROM hot WHERE post_no = #{no} AND member_id = #{id};
   </select>
   
   <select id="getEndPage" resultType="int">

@@ -22,15 +22,15 @@ CREATE TABLE subCategory(
 
 CREATE TABLE post(
     no                 INT(11)        NOT NULL    AUTO_INCREMENT,
-    member_nickname    VARCHAR(20)    NOT NULL,
+    member_id    VARCHAR(20)    NOT NULL,
     subCategory_no     INT(11)        NOT NULL,
     title              VARCHAR(50)    NOT NULL,
     contents           TEXT           NOT NULL,
     regDate            DATE           NOT NULL    DEFAULT (CURRENT_DATE),
-    fileName           VARCHAR(30),
-    fileSize           INT(11),
+    fileName           VARCHAR(100),
+    fileSize           VARCHAR(100),
     view               INT(11)        NOT NULL    DEFAULT 0,
-    FOREIGN KEY(member_nickname) REFERENCES member(nickname),
+    FOREIGN KEY(member_id) REFERENCES member(id),
     FOREIGN KEY(subCategory_no) REFERENCES subCategory(no),
     PRIMARY KEY(no)
 );

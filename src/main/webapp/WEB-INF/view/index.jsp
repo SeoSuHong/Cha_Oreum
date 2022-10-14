@@ -84,19 +84,21 @@
                     
                 </div>
                 <!-- 맨 위로 -->
-                <div id="screenUp_wrap">
-                    <div id="screenUp" onclick="scrollToTop(); return false;">맨 위로</div>
-                </div>
+                <c:if test="${not empty list}">
+	                <div id="screenUp_wrap">
+	                    <div id="screenUp" onclick="scrollToTop(); return false;">맨 위로</div>
+	                </div>
+	            </c:if>
 
                 <!-- 페이징 -->
                 <div id="pages">
-                	<c:if test="${p > block_per_page}">
+                	<c:if test="${p > page.block_per_page}">
 	                	<span id="firstPage" class="movePage">First</span>
-	                	<span id="prevPage" class="movePage" onclick="movePrevPage(${block_firstPage})">Prev</span>
+	                	<span id="prevPage" class="movePage" onclick="movePrevPage(${page.block_firstPage})">Prev</span>
                 	</c:if>
                 	
-                	<c:forEach var="pageNo" begin="${block_firstPage}" end="${block_endPage}">
-                		<c:if test="${pageNo <= endPage}">
+                	<c:forEach var="pageNo" begin="${page.block_firstPage}" end="${page.block_endPage}">
+                		<c:if test="${pageNo <= page.endPage}">
 	                		<c:if test="${p eq pageNo}">
 	                			<span class="myPage">${pageNo}</span>
 	                		</c:if>
@@ -106,9 +108,9 @@
 	                	</c:if>
                 	</c:forEach>
                 	
-                	<c:if test="${p < endBlock_firstPage}">
-	                	<span id="nextPage" class="movePage" onclick="moveNextPage(${block_firstPage})">Next</span>
-	                	<span id="lastPage" class="movePage" onclick="moveLastPage(${endPage})">Last</span>
+                	<c:if test="${p < page.endBlock_firstPage}">
+	                	<span id="nextPage" class="movePage" onclick="moveNextPage(${page.block_firstPage})">Next</span>
+	                	<span id="lastPage" class="movePage" onclick="moveLastPage(${page.endPage})">Last</span>
 	                </c:if>
                 </div>
 

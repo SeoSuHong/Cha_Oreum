@@ -24,5 +24,13 @@ class ContentsServiceTest {
 		for(PostView post : list)
 			System.out.println(post);
 	}
+	
+	@Test
+	void 좋아요_클릭여부() {
+		// 1 : 클릭O   |   0 : 클릭X
+		int like_isChecked = contentsService.likeIsChecked(35, "suhong");
+		
+		System.out.println(like_isChecked);
+	}
 
 }

@@ -10,13 +10,13 @@ public class Post {
 	private String contents;
 	private Date regDate;
 	private String fileName;
-	private int fileSize;
+	private String fileSize;
 	private int view;
 	
 	public Post() {}
 
 	public Post(int no, String member_id, int subCategory_no, String title, String contents, Date regDate,
-			String fileName, int fileSize, int view) {
+			String fileName, String fileSize, int view) {
 		this.no = no;
 		this.member_id = member_id;
 		this.subCategory_no = subCategory_no;
@@ -84,11 +84,11 @@ public class Post {
 		this.fileName = fileName;
 	}
 
-	public int getFileSize() {
+	public String getFileSize() {
 		return fileSize;
 	}
 
-	public void setFileSize(int fileSize) {
+	public void setFileSize(String fileSize) {
 		this.fileSize = fileSize;
 	}
 

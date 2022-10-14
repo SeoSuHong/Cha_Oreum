@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.chaOreum.entity.MainCategory;
+import com.chaOreum.entity.Paging;
 import com.chaOreum.entity.PostView;
 import com.chaOreum.entity.SubCategory;
 import com.chaOreum.service.contents.ContentsService;
@@ -54,7 +55,6 @@ public class HomeController {
 		List<PostView> list = contentsService.getViewList(c, n, t, s, p);
 		
 		// 페이징
-		// 블럭 구하기
 		int currPage = p;  // 현재 페이지
 		int block_per_page = 5;  // 블럭 당 페이지 수
 		int currBlock = currPage / block_per_page;  // 현재 블럭
@@ -79,11 +79,7 @@ public class HomeController {
 		model.addAttribute("mainCategories", mainCategories);
 		model.addAttribute("subCategories", subCategories);
 		model.addAttribute("list", list);
-		model.addAttribute("block_firstPage", block_firstPage);
-		model.addAttribute("block_endPage", block_endPage);
-		model.addAttribute("block_per_page", block_per_page);
-		model.addAttribute("endPage", endPage);
-		model.addAttribute("endBlock_firstPage", endBlock_firstPage);
+		model.addAttribute("page", new Paging(endPage, block_firstPage, block_endPage, block_per_page, endBlock_firstPage));
 		model.addAttribute("c", c);
 		model.addAttribute("t", t);
 		model.addAttribute("n", n);
