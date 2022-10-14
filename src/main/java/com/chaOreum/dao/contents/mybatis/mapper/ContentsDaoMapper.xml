@@ -44,6 +44,33 @@
   	SELECT COUNT(*) FROM hot WHERE post_no = #{no} AND member_id = #{id};
   </select>
   
+  <insert id="insertHot">
+  	INSERT INTO hot VALUES(DEFAULT, #{id}, #{no});
+  </insert>
+  
+  <delete id="deleteHot">
+  	DELETE FROM hot WHERE member_id = #{id} AND post_no = #{no};
+  </delete>
+  
+  <select id="getComments" resultType="com.chaOreum.entity.Comment">
+  	SELECT * FROM comment WHERE post_no = #{no} ORDER BY regDate;
+  </select>
+  
+  <select id="getReplies" resultType="com.chaOreum.entity.Reply">
+  	SELECT * FROM reply R 
+  		JOIN comment C ON C.no = R.comment_no
+  			WHERE C.post_no = #{no}
+  			ORDER BY R.regDate;
+  </select>
+  
+  <insert id="insertComment">
+  	INSERT INTO comment VALUES(DEFAULT, #{no}, #{nickname}, #{contents}, DEFAULT);
+  </insert>
+  
+  <insert id="insertReply">
+  	INSERT INTO reply VALUES(DEFAULT, #{no}, #{nickname}, #{contents}, DEFAULT);
+  </insert>
+  
   <select id="getEndPage" resultType="int">
   	SELECT COUNT(*) FROM post P
   	JOIN member M ON M.id = P.member_id

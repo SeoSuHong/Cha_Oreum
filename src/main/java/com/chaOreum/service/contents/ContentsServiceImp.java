@@ -6,8 +6,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.chaOreum.dao.contents.ContentsDao;
+import com.chaOreum.entity.Comment;
 import com.chaOreum.entity.Post;
 import com.chaOreum.entity.PostView;
+import com.chaOreum.entity.Reply;
 
 @Service
 public class ContentsServiceImp implements ContentsService {
@@ -39,6 +41,42 @@ public class ContentsServiceImp implements ContentsService {
 		int likeIsChecked = contentsDao.likeCount(no, id);
 		
 		return likeIsChecked;
+	}
+	
+	@Override
+	public int likePost(int no, String id) {
+		return contentsDao.insertHot(no, id);
+	}
+	
+	@Override
+	public int unlikePost(int no, String id) {
+		return contentsDao.deleteHot(no, id);
+	}
+	
+	@Override
+	public List<Comment> getComments(int no) {
+		
+		List<Comment> comments = contentsDao.getComments(no);
+		
+		return comments;
+	}
+	
+	@Override
+	public List<Reply> getReplies(int no) {
+		
+		List<Reply> replies = contentsDao.getReplies(no);
+		
+		return replies;
+	}
+	
+	@Override
+	public int sendComment(int no, String nickname, String contents) {
+		return contentsDao.insertComment(no, nickname, contents);
+	}
+	
+	@Override
+	public int sendReply(int no, String nickname, String contents) {
+		return contentsDao.insertReply(no, nickname, contents);
 	}
 	
 	@Override
