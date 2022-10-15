@@ -7,8 +7,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.chaOreum.dao.contents.ContentsDao;
+import com.chaOreum.entity.Comment;
 import com.chaOreum.entity.Post;
 import com.chaOreum.entity.PostView;
+import com.chaOreum.entity.Reply;
 
 @Repository
 public class MybatisContentsDao implements ContentsDao {
@@ -33,6 +35,36 @@ public class MybatisContentsDao implements ContentsDao {
 	@Override
 	public int likeCount(int no, String id) {
 		return mapper.likeCount(no, id);
+	}
+	
+	@Override
+	public int insertHot(int no, String id) {
+		return mapper.insertHot(no, id);
+	}
+	
+	@Override
+	public int deleteHot(int no, String id) {
+		return mapper.deleteHot(no, id);
+	}
+	
+	@Override
+	public List<Comment> getComments(int no) {
+		return mapper.getComments(no);
+	}
+	
+	@Override
+	public List<Reply> getReplies(int no) {
+		return mapper.getReplies(no);
+	}
+	
+	@Override
+	public int insertComment(int no, String nickname, String contents) {
+		return mapper.insertComment(no, nickname, contents);
+	}
+	
+	@Override
+	public int insertReply(int no, String nickname, String contents) {
+		return mapper.insertReply(no, nickname, contents);
 	}
 	
 	@Override

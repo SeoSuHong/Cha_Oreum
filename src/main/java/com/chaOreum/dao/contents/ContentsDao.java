@@ -2,8 +2,10 @@ package com.chaOreum.dao.contents;
 
 import java.util.List;
 
+import com.chaOreum.entity.Comment;
 import com.chaOreum.entity.Post;
 import com.chaOreum.entity.PostView;
+import com.chaOreum.entity.Reply;
 
 public interface ContentsDao {
 
@@ -12,5 +14,11 @@ public interface ContentsDao {
 	
 	Post getView(int no);
 	int likeCount(int no, String id);
+	int insertHot(int no, String id);
+	int deleteHot(int no, String id);
+	List<Comment> getComments(int no);
+	List<Reply> getReplies(int no);
+	int insertComment(int no, String nickname, String contents);
+	int insertReply(int no, String nickname, String contents);
 
 }

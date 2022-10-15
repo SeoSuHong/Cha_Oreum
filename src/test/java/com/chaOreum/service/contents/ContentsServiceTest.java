@@ -33,4 +33,19 @@ class ContentsServiceTest {
 		System.out.println(like_isChecked);
 	}
 
+	@Test
+	void 좋아요_클릭() {
+		// 1 : 좋아요 성공   |   0 : 좋아요 실패
+		int likePost = contentsService.likePost(36, "suhong");
+		
+		System.out.println(likePost);
+	}
+	
+	@Test
+	void 좋아요_취소_클릭() {
+		// 1 : 좋아요 취소 성공   |   0 : 좋아요 취소 실패
+		int unlikePost = contentsService.unlikePost(35, "suhong");
+		
+		System.out.println(unlikePost);
+	}
 }

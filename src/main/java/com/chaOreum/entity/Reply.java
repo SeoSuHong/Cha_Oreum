@@ -1,18 +1,22 @@
 package com.chaOreum.entity;
 
+import java.util.Date;
+
 public class Reply {
 	private int no;
 	private int comment_no;
 	private String member_nickname;
 	private String contents;
+	private Date regDate;
 	
 	public Reply() {}
 
-	public Reply(int no, int comment_no, String member_nickname, String contents) {
+	public Reply(int no, int comment_no, String member_nickname, String contents, Date regDate) {
 		this.no = no;
 		this.comment_no = comment_no;
 		this.member_nickname = member_nickname;
 		this.contents = contents;
+		this.regDate = regDate;
 	}
 
 	public int getNo() {
@@ -47,9 +51,17 @@ public class Reply {
 		this.contents = contents;
 	}
 
+	public Date getRegDate() {
+		return regDate;
+	}
+
+	public void setRegDate(Date regDate) {
+		this.regDate = regDate;
+	}
+
 	@Override
 	public String toString() {
 		return "Reply [no=" + no + ", comment_no=" + comment_no + ", member_nickname=" + member_nickname + ", contents="
-				+ contents + "]";
+				+ contents + ", regDate=" + regDate + "]";
 	}
 }
