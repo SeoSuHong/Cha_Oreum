@@ -36,6 +36,11 @@ public class ContentsServiceImp implements ContentsService {
 	}
 	
 	@Override
+	public int insertPost(Post post) {
+		return contentsDao.insertPost(post);
+	}
+	
+	@Override
 	public int likeIsChecked(int no, String id) {
 
 		int likeIsChecked = contentsDao.likeCount(no, id);

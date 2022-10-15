@@ -3,11 +3,11 @@ package com.chaOreum.controller.contents;
 import java.io.File;
 import java.io.IOException;
 import java.util.List;
-import java.util.UUID;
 
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpSession;
 
+import org.apache.commons.io.FileUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -173,58 +173,75 @@ public class ContentsController {
 	
 	@PostMapping("reg")
 	@ResponseBody
-	public String reg(int subCategory, String title, String contents, @RequestParam(required = false) MultipartFile[] files, HttpSession session) throws IllegalStateException, IOException {
+	public String reg(int subCategory, String title, String contents, @RequestParam(required = false) MultipartFile[] files, @RequestParam(required = false) MultipartFile[] attachments, HttpSession session) throws IllegalStateException, IOException {
 		String nickname = (String) session.getAttribute("nickname");
-		String message = "<script>alert('게시글을 작성하였습니다.'); location.href='/?c=" + subCategory + "&n=" + nickname + "' ; </script>";
+
+		// contents image 처리
+		String id = (String) session.getAttribute("id");
+		for(MultipartFile file : files) {
+			String fileName = id + "_" + file.getOriginalFilename();
+			
+			String filePath = "/static/contents_img";
+			String realPath = ctx.getRealPath(filePath);
+			
+			File savePath = new File(realPath);
+			if(!savePath.exists()) savePath.mkdirs();
+			
+			realPath += File.separator + fileName;
+			File saveFile = new File(realPath);
+			
+			file.transferTo(saveFile);
+		}
 		
+		// contents_img_remove 파일 전부 삭제
+		String removePath = "/static/contents_img_remove";
+		String removeRealPath = ctx.getRealPath(removePath);
+		File removeFile = new File(removeRealPath);
+		FileUtils.cleanDirectory(removeFile);
+		
+		// contents 내용 img 경로 변경
+		contents = contents.replaceAll("contents_img_remove", "contents_img");
+		
+		// 첨부파일 처리
 		StringBuffer fileName = new StringBuffer();
 		StringBuffer fileSize = new StringBuffer();
 		String fileName_ = "";
-		System.out.println(files.length);
-		for(MultipartFile file : files) {
-			System.out.println(file.getOriginalFilename());
-			System.out.println(file.getSize());
+		
+		for(int i = 0; i < attachments.length; i++) {
+			MultipartFile file = attachments[i];
+			
+			fileName_ = file.getOriginalFilename();
+					
+			if(i != attachments.length-1) {
+				fileName.append(file.getOriginalFilename());
+				fileName.append("/");
+				
+				fileSize.append(file.getSize());
+				fileSize.append("/");
+			} else {
+				fileName.append(file.getOriginalFilename());
+				fileSize.append(file.getSize());
+			}
+			
+			String filePath = "/static/post_attachments";
+			String realPath = ctx.getRealPath(filePath);
+			
+			// 업로드하기 위한 경로가 없을 경우 생성
+			File savePath = new File(realPath);
+			if(!savePath.exists()) savePath.mkdirs();
+
+			realPath += File.separator + fileName_;
+			File saveFile = new File(realPath);
+			file.transferTo(saveFile);
 		}
 		
-		System.out.println(contents);
-//		for(int i = 0; i < files.length; i++) {
-//			System.out.println(i);
-//			MultipartFile file = files[i];
-//			
-//			fileName_ = file.getOriginalFilename();
-//					
-//			if(i != files.length-1) {
-//				fileName.append(file.getOriginalFilename());
-//				fileName.append("/");
-//				
-//				fileSize.append(file.getSize());
-//				fileSize.append("/");
-//			} else {
-//				fileName.append(file.getOriginalFilename());
-//				fileSize.append(file.getSize());
-//			}
-//			
-//			String filePath = "/static/post_attachments";
-//			String realPath = ctx.getRealPath(filePath);
-//			System.out.printf("realPath = %s\n", realPath);
-//			
-//			// 업로드하기 위한 경로가 없을 경우 생성
-//			File savePath = new File(realPath);
-//			if(!savePath.exists()) savePath.mkdirs();
-//
-//			realPath += File.separator + fileName_;
-//			File saveFile = new File(realPath);
-//			file.transferTo(saveFile);
-//			
-//			System.out.println(fileName_);
-//			System.out.println(i);
-//		}
-//		
-//		System.out.println("subCategory_no : " + subCategory);
-//		System.out.println("title : " + title);
-//		System.out.println("contents : " + contents);
-//		System.out.println("fileName : " + fileName.toString());
-//		System.out.println("fileSize : " + fileSize.toString());
+		String message = "";
+		Post post = new Post(0, id, subCategory, title, contents, null, fileName.toString(), fileSize.toString(), 0);
+		if(contentsService.insertPost(post) == 1) {
+			message = "<script>alert('게시글을 작성하였습니다.'); location.href='/?c=" + subCategory + "&n=" + nickname + "' ; </script>";
+		} else {
+			message = "<script>alert('게시글 작성에 실패하였습니다.\n다시 시도해 주세요.'); location.href='/?c=" + subCategory + "&n=" + nickname + "' ; </script>";
+		}
 		
 		return message;
 	}
@@ -239,30 +256,27 @@ public class ContentsController {
 		return subCategories;
 	}
 	
-	@PostMapping("editor_fileUpload")
+	@PostMapping("contents_fileUpload")
 	@ResponseBody
-	public String editor_fileUpload(MultipartFile files) throws IllegalStateException, IOException {
+	public String editor_fileUpload(MultipartFile file, String id) throws IllegalStateException, IOException {
 		
 		// 업로드할 폴더 경로
-		String realPath = ctx.getRealPath("editor_fileUpload");
-		UUID uuid = UUID.randomUUID();
+		String filePath = "/static/contents_img_remove";
+		String realPath = ctx.getRealPath(filePath);
 
 		// 업로드할 파일 이름
-		String org_fileName = files.getOriginalFilename();
-		String str_fileName = uuid.toString() + org_fileName;
+		String org_fileName = file.getOriginalFilename();
+		String str_fileName = id + "_" + org_fileName;
 
-		System.out.println("원본 파일명 : " + org_fileName);
-		System.out.println("저장할 파일명 : " + str_fileName);
-
-		String filePath = realPath + "\\" + str_fileName;
-		System.out.println("파일경로 : " + filePath);
-
-		File file = new File(filePath);
-		if (!file.exists()) {
-			file.mkdirs();
-		}
-		files.transferTo(file);
-		String result = "/editor_fileUpload/" + str_fileName;
+		// 업로드하기 위한 경로가 없을 경우 생성
+		File savePath = new File(realPath);
+		if (!savePath.exists()) savePath.mkdirs();
+		
+		realPath += File.separator + str_fileName;
+		File saveFile = new File(realPath);
+		file.transferTo(saveFile);
+		
+		String result = filePath + File.separator + str_fileName;
 
 		return result;
 	}

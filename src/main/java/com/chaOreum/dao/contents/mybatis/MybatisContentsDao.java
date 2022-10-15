@@ -33,6 +33,11 @@ public class MybatisContentsDao implements ContentsDao {
 	}
 	
 	@Override
+	public int insertPost(Post post) {
+		return mapper.insertPost(post);
+	}
+	
+	@Override
 	public int likeCount(int no, String id) {
 		return mapper.likeCount(no, id);
 	}

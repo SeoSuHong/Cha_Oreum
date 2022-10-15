@@ -39,4 +39,7 @@ public interface ContentsService {
 	// 답글 삭제
 	int deleteReply(int no);
 	
+	// 게시글 작성
+	int insertPost(Post post);
+	
 }

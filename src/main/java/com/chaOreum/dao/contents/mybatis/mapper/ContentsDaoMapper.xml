@@ -40,6 +40,10 @@
 	        LIMIT #{offset}, #{size};
   </select>
   
+  <insert id="insertPost" parameterType="com.chaOreum.entity.Post">
+  	INSERT INTO post VALUES(DEFAULT, #{member_id}, #{subCategory_no}, #{title}, #{contents}, DEFAULT, #{fileName}, #{fileSize}, DEFAULT)
+  </insert>
+  
   <select id="likeCount" resultType="int">
   	SELECT COUNT(*) FROM hot WHERE post_no = #{no} AND member_id = #{id};
   </select>

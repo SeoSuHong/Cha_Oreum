@@ -97,7 +97,7 @@ function sendComment(no, nickname) {
 
 // 답글 입력 버튼 클릭 시
 function sendReply(no, nickname) {
-	let contents = $(".reply_txt");
+	let contents = $("#reply_txt");
 	
 	if(nickname == null || nickname == '') {
 		let check = confirm("회원만 이용이 가능합니다.\n로그인 하시겠습니까?");

@@ -31,7 +31,7 @@
 
                     <div id="file_wrap">
                         <div>첨부 파일</div>
-                        <input type="file" name="filess" id="file" multiple>
+                        <input type="file" name="attachments" id="file" multiple>
                     </div>
 
                     <hr>
@@ -46,6 +46,7 @@
                     <div id="reg_btn">
                         <input type="button" id="reg" value="작성" onclick="regPost()">
                     </div>
+                    <input type="hidden" id="userId" value="${id}">
                 </form>
             </div>
             

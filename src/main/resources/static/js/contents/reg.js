@@ -18,12 +18,15 @@ $(document).ready(function() {
 });
 
 function sendFile(file, el) {
+	let userId = $("#userId").val();
 	let form_data = new FormData();
-	form_data.append('files', file);
+	
+	form_data.append('file', file);
+	form_data.append('id', userId);
 	$.ajax({
 		data : form_data,
 		type : "post",
-		url : "/contents/editor_fileUpload",
+		url : "/contents/contents_fileUpload",
 		cache : false,
 		contentType : false,
 		encType : "multipart/form-data",
