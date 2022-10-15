@@ -86,8 +86,9 @@ ul {
 #myInfo_btn {width: 104px; height: 40px; border:1px solid #2d2d2d; border-radius: 10px;
     margin-top: 30px; margin-left: 140px; background-color: #2d2d2d; cursor: pointer;}
 #member_secession{width: 104px; height: 40px; border:1px solid #2d2d2d; border-radius: 10px;
-    margin-top: 30px; margin-left: 40px; background-color: #2d2d2d; cursor: pointer;}
-#myInfo_sp,#member_sp {font-size: 1rem; font-weight: bold; color: white; }
+    margin-top: 30px; margin-left: 40px; background-color: #2d2d2d; cursor: pointer;
+    font-size: 1rem; font-weight: bold; color: white;}
+#myInfo_sp {font-size: 1rem; font-weight: bold; color: white; }
 
 /* footer */
 #footer {

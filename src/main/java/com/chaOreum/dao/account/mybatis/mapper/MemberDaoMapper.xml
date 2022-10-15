@@ -31,7 +31,7 @@
   <!-- 아이디 찾기 -->
   <select id="findId" parameterType="string" resultType="com.chaOreum.entity.Member">
   	SELECT id FROM member
-	WHERE email = #{email};
+	WHERE email = #{email}
   </select>
   
   <!-- 이메일 중복확인 -->
@@ -43,8 +43,8 @@
   
   <!-- 회원정보 가져오기 -->
   <select id="getInfo" parameterType="string" resultType="com.chaOreum.entity.Member">
-  	SELECT * FROM member
-	WHERE id = #{id} ;
+  	SELECT * FROM member 
+	WHERE id = #{id}
   </select>
   
   <!-- 회원정보 수정 -->
@@ -53,7 +53,26 @@
 	nickname = #{nickname}, 
 	password = #{password}, 
 	email = #{email} 
-	WHERE id = #{id};
+	WHERE id = #{id}
   </update>
+  
+  <delete id="secession" parameterType="string">
+  	
+  	<!-- DELETE FROM post WHERE member_id = #{id} --> 
+  	
+  	DELETE FROM member WHERE id = #{id} 
+  </delete>
+  
+  <!-- 비밀번호 찾기_수정 -->
+  <update id="findPw" parameterType="com.chaOreum.entity.Member">
+  	UPDATE member SET 
+	password = #{password} 
+	WHERE id = #{id}
+  </update>
+  
+  <select id="id_email" parameterType="string" resultType="string">
+  	SELECT email FROM member 
+	WHERE id = #{id}
+  </select>
   
 </mapper>

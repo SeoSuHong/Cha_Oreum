@@ -14,6 +14,9 @@ import com.chaOreum.entity.Member;
 class MemberServiceTest {
 
 	@Autowired
+	MemberService memberService;
+	
+	@Autowired
 	MemberDao memberDao;
 	
 	@Test
@@ -26,4 +29,10 @@ class MemberServiceTest {
 		System.out.println(member);
 	}
 
+	@Test
+	void 메일_인증코드() throws Exception {
+		String code = memberService.sendEmail("eksrnsdhkdwk@naver.com");
+		
+		System.out.println(code);
+	}
 }

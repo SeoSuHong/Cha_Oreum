@@ -95,6 +95,21 @@ public class MemberController {
 		return "account.findPw";
 	}
 	
+	@ResponseBody
+	@PostMapping("findPw")
+	public String findPw(String id, String password) {
+		
+		String message = "";
+		
+		if(memberService.findPw(id, password)) {
+			
+			message = "<script>alert('비밀번호가 변경되었습니다.'); location.href='/account/logIn';</script>";
+			} else {
+				message = "<script>alert('비밀번호 변경에 실패하였습니다.\\n다시 시도해주세요.'); history.go(-1);</script>";
+			}
+			return message;
+	}
+	
 	@GetMapping("info")
 	public String info(Model model, HttpSession session) {
 		String id = (String) session.getAttribute("id");
@@ -149,5 +164,38 @@ public class MemberController {
 	public int email_check(String email) {
 		int result = memberService.email_check(email);
 		return result;
+	}
+	
+	@ResponseBody
+	@PostMapping("id_email")
+	public String id_email(String id) {
+		String result = memberService.id_email(id);
+		return result;
+	}
+	
+	@ResponseBody
+	@PostMapping("secession")
+	public String secession(String id, String nickname) {
+		
+		boolean result = memberService.secession(id, nickname);
+		
+		String message = "";
+		
+		if(result) {
+			
+			message = "<script>alert('회원탈퇴가 완료 되었습니다.'); location.href='/';</script>";
+		} else {
+			message = "<script>alert('회원탈퇴에 실패 하였습니다.\\n다시 시도해주세요.'); history.go(-1);</script>";
+		}
+		return message;
+	}
+	
+	@ResponseBody
+	@PostMapping("certificationNumber")
+	public String certificationNumber(String email) throws Exception {
+		
+		String data = memberService.sendEmail(email);
+		
+		return data;
 	}
 }

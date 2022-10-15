@@ -27,4 +27,16 @@ public interface MemberService {
 	
 	//infoReg page update info
 	public boolean updateInfo(String id, String nickname, String password, String email);
+	
+	//회원탈퇴
+	public boolean secession(String id, String nickname);
+	
+	//email 인증
+	public String sendEmail(String to) throws Exception;
+	
+	//비밀번호 찾기_변경
+	public boolean findPw(String id, String password);
+	
+	public String id_email(String id);
+
 }

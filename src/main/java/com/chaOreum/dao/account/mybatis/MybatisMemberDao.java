@@ -64,4 +64,22 @@ public class MybatisMemberDao implements MemberDao {
 		return result;
 	}
 
+	@Override
+	public boolean secession(String id, String nickname) {
+		boolean result = mapper.secession(id, nickname);
+		return result;
+	}
+
+	@Override
+	public boolean findPw(String id, String password) {
+		boolean result = mapper.findPw(id, password);
+		return result;
+	}
+
+	@Override
+	public String id_email(String id) {
+		String result = mapper.id_email(id);
+		return result;
+	}
+
 }

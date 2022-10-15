@@ -12,6 +12,10 @@
                     <div class="info_box">
                         ${getMemberInfo.id }
                     </div>
+                    <form action="/account/secession" name="secession" method="POST">
+                    	<input type="hidden" id="id" name="id" value="${getMemberInfo.id }">
+                    	<input type="hidden" id="nickname" name="nickname" value="${getMemberInfo.nickname }">
+                    </form>
                 </div>
             </div>
             <div id="myInfo_nickname" class="myInfo_inputbox">
@@ -37,8 +41,6 @@
             <button id="myInfo_btn" onclick="location.href='infoReg'">
                 <span id="myInfo_sp">정보 수정</span>
             </button>
-            <button id="member_secession" onclick="">
-                <span id="member_sp">회원 탈퇴</span>
-            </button>
+            <input type="button" id="member_secession" value="회원 탈퇴" onclick="secession_fn();">
         </div>
     </main>

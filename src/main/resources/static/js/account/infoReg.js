@@ -116,38 +116,38 @@ function infoReg_check() {
 }
 
 
-	function nickname_check_f() {
-		
-		var nickname = document.getElementById("input_nickname");
-		var hidden_nickname = document.getElementById("hidden_nickname");
-		
-		if (nickname.value == "") {
-			alert("닉네임를 입력하세요.");
-			nickname.focus();
-			return false;
-		}
-		$.ajax({
-			url: "/account/nickname_check",
-			type: "POST",
-			dataType: "JSON",
-			data: { "nickname": $("#input_nickname").val() },
-			success: function(data) {
-				if (data == 1) {
-					
-					if(nickname.value == hidden_nickname.value){
-						nickname_ch = true;
-						alert("고객님께서 사용하고 있는 닉네임입니다.");
-					}else{
-						alert("중복된 닉네임입니다.");
-						nickname.focus();
-						nickname_ch = false;
-					}
-						
-				} else if (data == 0) {
-					alert("사용가능한 닉네임입니다.");
-					defualt_nickname = document.getElementById("input_nickname").value;
-					nickname_ch = true;
-				}
-			}
-		})
+function nickname_check_f() {
+	
+	var nickname = document.getElementById("input_nickname");
+	var hidden_nickname = document.getElementById("hidden_nickname");
+	
+	if (nickname.value == "") {
+		alert("닉네임를 입력하세요.");
+		nickname.focus();
+		return false;
 	}
+	$.ajax({
+		url: "/account/nickname_check",
+		type: "POST",
+		dataType: "JSON",
+		data: { "nickname": $("#input_nickname").val() },
+		success: function(data) {
+			if (data == 1) {
+				
+				if(nickname.value == hidden_nickname.value){
+					nickname_ch = true;
+					alert("고객님께서 사용하고 있는 닉네임입니다.");
+				}else{
+					alert("중복된 닉네임입니다.");
+					nickname.focus();
+					nickname_ch = false;
+				}
+					
+			} else if (data == 0) {
+				alert("사용가능한 닉네임입니다.");
+				defualt_nickname = document.getElementById("input_nickname").value;
+				nickname_ch = true;
+			}
+		}
+	})
+}
