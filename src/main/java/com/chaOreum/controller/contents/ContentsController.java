@@ -1,7 +1,11 @@
 package com.chaOreum.controller.contents;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.List;
+import java.util.UUID;
 
+import javax.servlet.ServletContext;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,7 +14,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.chaOreum.entity.Comment;
 import com.chaOreum.entity.MainCategory;
@@ -25,10 +31,13 @@ import com.chaOreum.service.include.IncludeService;
 public class ContentsController {
 	
 	@Autowired
-	IncludeService includeService;
+	private IncludeService includeService;
 	
 	@Autowired
-	ContentsService contentsService;
+	private ContentsService contentsService;
+	
+	@Autowired
+	private ServletContext ctx;
 
 	@GetMapping("detail")
 	public String detail(Model model, HttpSession session, int no) {
@@ -162,6 +171,64 @@ public class ContentsController {
 		return "contents.reg";
 	}
 	
+	@PostMapping("reg")
+	@ResponseBody
+	public String reg(int subCategory, String title, String contents, @RequestParam(required = false) MultipartFile[] files, HttpSession session) throws IllegalStateException, IOException {
+		String nickname = (String) session.getAttribute("nickname");
+		String message = "<script>alert('게시글을 작성하였습니다.'); location.href='/?c=" + subCategory + "&n=" + nickname + "' ; </script>";
+		
+		StringBuffer fileName = new StringBuffer();
+		StringBuffer fileSize = new StringBuffer();
+		String fileName_ = "";
+		System.out.println(files.length);
+		for(MultipartFile file : files) {
+			System.out.println(file.getOriginalFilename());
+			System.out.println(file.getSize());
+		}
+		
+		System.out.println(contents);
+//		for(int i = 0; i < files.length; i++) {
+//			System.out.println(i);
+//			MultipartFile file = files[i];
+//			
+//			fileName_ = file.getOriginalFilename();
+//					
+//			if(i != files.length-1) {
+//				fileName.append(file.getOriginalFilename());
+//				fileName.append("/");
+//				
+//				fileSize.append(file.getSize());
+//				fileSize.append("/");
+//			} else {
+//				fileName.append(file.getOriginalFilename());
+//				fileSize.append(file.getSize());
+//			}
+//			
+//			String filePath = "/static/post_attachments";
+//			String realPath = ctx.getRealPath(filePath);
+//			System.out.printf("realPath = %s\n", realPath);
+//			
+//			// 업로드하기 위한 경로가 없을 경우 생성
+//			File savePath = new File(realPath);
+//			if(!savePath.exists()) savePath.mkdirs();
+//
+//			realPath += File.separator + fileName_;
+//			File saveFile = new File(realPath);
+//			file.transferTo(saveFile);
+//			
+//			System.out.println(fileName_);
+//			System.out.println(i);
+//		}
+//		
+//		System.out.println("subCategory_no : " + subCategory);
+//		System.out.println("title : " + title);
+//		System.out.println("contents : " + contents);
+//		System.out.println("fileName : " + fileName.toString());
+//		System.out.println("fileSize : " + fileSize.toString());
+		
+		return message;
+	}
+	
 	// 메인 카테고리 선택 시 서브 카테고리 가져오기
 	@PostMapping("getScByMc")
 	@ResponseBody
@@ -170,6 +237,34 @@ public class ContentsController {
 		List<SubCategory> subCategories = includeService.getScByMc(no);
 		
 		return subCategories;
+	}
+	
+	@PostMapping("editor_fileUpload")
+	@ResponseBody
+	public String editor_fileUpload(MultipartFile files) throws IllegalStateException, IOException {
+		
+		// 업로드할 폴더 경로
+		String realPath = ctx.getRealPath("editor_fileUpload");
+		UUID uuid = UUID.randomUUID();
+
+		// 업로드할 파일 이름
+		String org_fileName = files.getOriginalFilename();
+		String str_fileName = uuid.toString() + org_fileName;
+
+		System.out.println("원본 파일명 : " + org_fileName);
+		System.out.println("저장할 파일명 : " + str_fileName);
+
+		String filePath = realPath + "\\" + str_fileName;
+		System.out.println("파일경로 : " + filePath);
+
+		File file = new File(filePath);
+		if (!file.exists()) {
+			file.mkdirs();
+		}
+		files.transferTo(file);
+		String result = "/editor_fileUpload/" + str_fileName;
+
+		return result;
 	}
 	
 	@GetMapping("edit")

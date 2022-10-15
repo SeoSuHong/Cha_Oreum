@@ -3,7 +3,7 @@
 		<main>
         
             <div>
-                <form action="" method="post">
+                <form action="" method="post" enctype="multipart/form-data">
                     <div id="regCategory">
                         <div>* Main Category</div>
                         <select name="mainCategory" id="mainCategory">

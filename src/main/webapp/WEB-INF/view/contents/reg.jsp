@@ -4,7 +4,7 @@
 		<main>
         
             <div>
-                <form action="/" method="post">
+                <form name="regForm" action="/contents/reg" method="post" enctype="multipart/form-data">
                     <div id="regCategory">
                         <div>* Main Category</div>
                         <select name="mainCategory" id="mainCategory" onchange="changeMainCategory()">
@@ -17,9 +17,6 @@
                         <div>* Sub Category</div>
                         <select name="subCategory" id="subCategory">
                             <option value=""> -- 선택해 주세요 -- </option>
-                            <option value="1">JAVA</option>
-                            <option value="2">Python</option>
-                            <option value="3">C</option>
                         </select>
                     </div>
 
@@ -34,7 +31,7 @@
 
                     <div id="file_wrap">
                         <div>첨부 파일</div>
-                        <input type="file" name="files" id="file" multiple>
+                        <input type="file" name="filess" id="file" multiple>
                     </div>
 
                     <hr>
@@ -47,7 +44,7 @@
                     <hr>
 
                     <div id="reg_btn">
-                        <input type="button" id="reg" value="작성">
+                        <input type="button" id="reg" value="작성" onclick="regPost()">
                     </div>
                 </form>
             </div>
