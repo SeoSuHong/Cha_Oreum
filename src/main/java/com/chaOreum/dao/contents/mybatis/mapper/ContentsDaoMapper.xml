@@ -53,14 +53,14 @@
   </delete>
   
   <select id="getComments" resultType="com.chaOreum.entity.Comment">
-  	SELECT * FROM comment WHERE post_no = #{no} ORDER BY regDate;
+  	SELECT * FROM comment WHERE post_no = #{no} ORDER BY regDate DESC;
   </select>
   
   <select id="getReplies" resultType="com.chaOreum.entity.Reply">
   	SELECT * FROM reply R 
   		JOIN comment C ON C.no = R.comment_no
   			WHERE C.post_no = #{no}
-  			ORDER BY R.regDate;
+  			ORDER BY R.regDate DESC;
   </select>
   
   <insert id="insertComment">
@@ -70,6 +70,18 @@
   <insert id="insertReply">
   	INSERT INTO reply VALUES(DEFAULT, #{no}, #{nickname}, #{contents}, DEFAULT);
   </insert>
+  
+  <delete id="deleteComment">
+  	DELETE FROM comment WHERE no = #{no};
+  </delete>
+  
+  <delete id="deleteReplies">
+  	DELETE FROM reply WHERE comment_no = #{no};
+  </delete>
+  
+  <delete id="deleteReply">
+  	DELETE FROM reply WHERE no = #{no};
+  </delete>
   
   <select id="getEndPage" resultType="int">
   	SELECT COUNT(*) FROM post P

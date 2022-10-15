@@ -80,6 +80,21 @@ public class ContentsServiceImp implements ContentsService {
 	}
 	
 	@Override
+	public int deleteComment(int no) {
+		return contentsDao.deleteComment(no);
+	}
+	
+	@Override
+	public int deleteReplies(int no) {
+		return contentsDao.deleteReplies(no);
+	}
+	
+	@Override
+	public int deleteReply(int no) {
+		return contentsDao.deleteReply(no);
+	}
+	
+	@Override
 	public int getEndPage(int category_no, String nickname, String title) {
 		return contentsDao.getEndPage(category_no, nickname, title);
 	}

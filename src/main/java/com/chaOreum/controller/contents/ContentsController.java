@@ -87,9 +87,13 @@ public class ContentsController {
 	public boolean comment(int no, String nickname, String contents) {
 		boolean result = false;
 		
-		int sendComment = contentsService.sendComment(no, nickname, contents);
-		if(sendComment == 1)
-			result = true;
+		try {
+			int sendComment = contentsService.sendComment(no, nickname, contents);
+			if(sendComment == 1)
+				result = true;
+		} catch(Exception e) {
+			System.out.println("sendComment Error : " + e.getMessage());
+		}
 		
 		return result;
 	}
@@ -100,10 +104,50 @@ public class ContentsController {
 	public boolean reply(int no, String nickname, String contents) {
 		boolean result = false;
 		
-		int sendReply = contentsService.sendReply(no, nickname, contents);
-		if(sendReply == 1)
-			result = true;
+		try {
+			int sendReply = contentsService.sendReply(no, nickname, contents);
+			if(sendReply == 1)
+				result = true;
+		} catch(Exception e) {
+			System.out.println("sendReply Error : " + e.getMessage());
+		}
 		
+		return result;
+	}
+	
+	// 댓글 삭제
+	@PostMapping("delete_comment")
+	@ResponseBody
+	public boolean delete_comment(int no) {
+		boolean result = false;
+		
+		try {
+			int deleteReplies = contentsService.deleteReplies(no);
+			int deleteComment = contentsService.deleteComment(no);
+			
+			if(deleteComment == 1)
+				result = true;
+		} catch(Exception e) {
+			System.out.println("deleteComment Error : " + e.getMessage());
+		}
+		
+		return result;
+	}
+	
+	// 답글 삭제
+	@PostMapping("delete_reply")
+	@ResponseBody
+	public boolean delete_reply(int no) {
+		boolean result = false;
+		
+		try {
+			int delete_reply = contentsService.deleteReply(no);
+			if(delete_reply == 1)
+				result = true;
+		} catch(Exception e) {
+			System.out.println("deleteReply Error : " + e.getMessage());
+		}
+			
 		return result;
 	}
 	
@@ -116,6 +160,16 @@ public class ContentsController {
 		model.addAttribute("subCategories", subCategories);
 		
 		return "contents.reg";
+	}
+	
+	// 메인 카테고리 선택 시 서브 카테고리 가져오기
+	@PostMapping("getScByMc")
+	@ResponseBody
+	public List<SubCategory> getScByMc(int no) {
+		
+		List<SubCategory> subCategories = includeService.getScByMc(no);
+		
+		return subCategories;
 	}
 	
 	@GetMapping("edit")

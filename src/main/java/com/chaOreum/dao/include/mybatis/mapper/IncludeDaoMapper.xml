@@ -27,4 +27,8 @@
   	ORDER BY SC.no
   </select>
   
+  <select id="getScByMc" resultType="com.chaOreum.entity.SubCategory">
+  	SELECT * FROM subCategory WHERE mainCategory_no = #{no};
+  </select>
+  
 </mapper>

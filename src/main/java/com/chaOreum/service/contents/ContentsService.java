@@ -6,6 +6,7 @@ import com.chaOreum.entity.Comment;
 import com.chaOreum.entity.Post;
 import com.chaOreum.entity.PostView;
 import com.chaOreum.entity.Reply;
+import com.chaOreum.entity.SubCategory;
 
 public interface ContentsService {
 
@@ -31,5 +32,11 @@ public interface ContentsService {
 	int sendComment(int no, String nickname, String contents);
 	// 답글 작성
 	int sendReply(int no, String nickname, String contents);
+	// 댓글 삭제
+	int deleteComment(int no);
+	// 삭제하려는 댓글의 답글 전부 삭제
+	int deleteReplies(int no);
+	// 답글 삭제
+	int deleteReply(int no);
 	
 }

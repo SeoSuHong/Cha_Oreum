@@ -68,6 +68,21 @@ public class MybatisContentsDao implements ContentsDao {
 	}
 	
 	@Override
+	public int deleteComment(int no) {
+		return mapper.deleteComment(no);
+	}
+	
+	@Override
+	public int deleteReplies(int no) {
+		return mapper.deleteReplies(no);
+	}
+	
+	@Override
+	public int deleteReply(int no) {
+		return mapper.deleteReply(no);
+	}
+	
+	@Override
 	public int getEndPage(int category_no, String nickname, String title) {
 		return mapper.getEndPage(category_no, nickname, title);
 	}
