@@ -63,7 +63,7 @@
 	                            <div>
 	                                <textarea name="reply" id="reply_txt" cols="30" rows="10" placeholder="답글을 입력해 주세요."></textarea><hr>
 	                                <div class="reply_btn_wrap">
-	                                    <input type="button" class="reply_send" value="입력" onclick="sendReply(${comment.no}, '${nickname}')">
+	                                    <input type="button" class="reply_send" value="입력" onclick="sendReply(this, ${comment.no}, '${nickname}')">
 	                                </div>
 	                            </div>
 		                    </div>
