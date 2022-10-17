@@ -115,6 +115,8 @@ public class MemberController {
 		String id = (String) session.getAttribute("id");
 		Member getMemberInfo = memberService.getInfo(id);
 		
+		session.setAttribute("nickname", getMemberInfo.getNickname());
+		
 		model.addAttribute("getMemberInfo", getMemberInfo);
 		return "account.info";
 	}
