@@ -26,7 +26,7 @@
   <definition name="account.*" template="/WEB-INF/view/account/inc/layout.jsp" extends="layout.common">
     <put-attribute name="css" value="/css/account/{1}.css" />
     <put-attribute name="js" value="/js/account/{1}.js" />
-    <put-attribute name="title" value="" />
+    <put-attribute name="title" value="{1}" />
     <put-attribute name="main" value="/WEB-INF/view/account/{1}.jsp" />
   </definition>
 </tiles-definitions>

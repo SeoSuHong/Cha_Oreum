@@ -8,7 +8,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="../image/headLogo.png" rel="shortcut icon" type="image/x-icon">
-    <title>Signup</title>
+    <title><tiles:getAsString name="title" /></title>
     <link rel="stylesheet" href="/css/inc/layout.css">
     <link rel="stylesheet" href="<tiles:getAsString name="css" />">
     <script src="https://code.jquery.com/jquery-1.12.4.js"></script>

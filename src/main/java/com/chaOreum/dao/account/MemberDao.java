@@ -33,7 +33,8 @@ public interface MemberDao {
 	
 	//비밀번호 찾기_변경
 	public boolean findPw(String id, String password);
-
+	
+	//비밀번호 찾기 이메일 일치여부 확인
 	public String id_email(String id);
 
 
