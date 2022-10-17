@@ -20,5 +20,10 @@ public interface ContentsDao {
 	List<Reply> getReplies(int no);
 	int insertComment(int no, String nickname, String contents);
 	int insertReply(int no, String nickname, String contents);
+	int deleteComment(int no);
+	int deleteReplies(int no);
+	int deleteReply(int no);
+	
+	int insertPost(Post post);
 
 }

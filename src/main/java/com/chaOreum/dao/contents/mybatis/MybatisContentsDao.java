@@ -33,6 +33,11 @@ public class MybatisContentsDao implements ContentsDao {
 	}
 	
 	@Override
+	public int insertPost(Post post) {
+		return mapper.insertPost(post);
+	}
+	
+	@Override
 	public int likeCount(int no, String id) {
 		return mapper.likeCount(no, id);
 	}
@@ -65,6 +70,21 @@ public class MybatisContentsDao implements ContentsDao {
 	@Override
 	public int insertReply(int no, String nickname, String contents) {
 		return mapper.insertReply(no, nickname, contents);
+	}
+	
+	@Override
+	public int deleteComment(int no) {
+		return mapper.deleteComment(no);
+	}
+	
+	@Override
+	public int deleteReplies(int no) {
+		return mapper.deleteReplies(no);
+	}
+	
+	@Override
+	public int deleteReply(int no) {
+		return mapper.deleteReply(no);
 	}
 	
 	@Override

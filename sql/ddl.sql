@@ -40,7 +40,7 @@ CREATE TABLE comment(
     post_no            INT(11)          NOT NULL,
     member_nickname    VARCHAR(20)      NOT NULL,
     contents           VARCHAR(1000)    NOT NULL,
-    regDate            DATETIME         NOT NULL    DEFAULT (CURRENT_DATE),
+    regDate            DATETIME         NOT NULL    DEFAULT NOW(),
     FOREIGN KEY(post_no) REFERENCES post(no),
     FOREIGN KEY(member_nickname) REFERENCES member(nickname),
     PRIMARY KEY(no)
@@ -51,7 +51,7 @@ CREATE TABLE reply(
     comment_no         INT(11)          NOT NULL,
     member_nickname    VARCHAR(20)      NOT NULL,
     contents           VARCHAR(1000)    NOT NULL,
-    regDate            DATETIME         NOT NULL    DEFAULT (CURRENT_DATE),
+    regDate            DATETIME         NOT NULL    DEFAULT NOW(),
     FOREIGN KEY(comment_no) REFERENCES comment(no),
     FOREIGN KEY(member_nickname) REFERENCES member(nickname),
     PRIMARY KEY(no)

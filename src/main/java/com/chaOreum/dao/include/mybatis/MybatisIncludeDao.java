@@ -39,4 +39,9 @@ public class MybatisIncludeDao implements IncludeDao {
 	public List<SubCategory> getSubCategories(String nickname) {
 		return mapper.getSubCategories(nickname);
 	}
+	
+	@Override
+	public List<SubCategory> getScByMc(int no) {
+		return mapper.getScByMc(no);
+	}
 }

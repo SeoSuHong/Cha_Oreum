@@ -11,5 +11,6 @@ public interface IncludeDao {
 	List<SubCategory> getSubCategories();
 	List<MainCategory> getMainCategories(String nickname);
 	List<SubCategory> getSubCategories(String nickname);
+	List<SubCategory> getScByMc(int no);
 
 }

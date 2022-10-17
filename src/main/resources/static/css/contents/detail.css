@@ -319,12 +319,17 @@ main {
     padding-bottom: 10px;
 }
 
-.reply_btn {
+.reply_btn, .comment_delete {
     margin-left: 20px;
     cursor: pointer;
 }
 
-.reply_btn:hover {
+.reply_delete {
+	margin-left: 10px;
+    cursor: pointer;
+}
+
+.reply_btn:hover, .comment_delete:hover, .reply_delete:hover {
     text-decoration: underline;
 }
 
@@ -337,7 +342,7 @@ main {
     display: none;
 }
 
-.reply_txt {
+#reply_txt {
     width: 100%;
     height: 120px;
     font-size: 16px;
