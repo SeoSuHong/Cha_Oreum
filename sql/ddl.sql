@@ -1,8 +1,8 @@
 CREATE TABLE member(
-    id          VARCHAR(20)    NOT NULL,
-    nickname    VARCHAR(20)    NOT NULL    UNIQUE,
-    password    VARCHAR(20)    NOT NULL,
-    email       VARCHAR(45)    NOT NULL,
+    id          VARCHAR(20)     NOT NULL,
+    nickname    VARCHAR(20)     NOT NULL    UNIQUE,
+    password    VARCHAR(100)    NOT NULL,
+    email       VARCHAR(45)     NOT NULL,
     PRIMARY KEY(id)
 );
 
@@ -60,7 +60,7 @@ CREATE TABLE view(
 	ip         VARCHAR(20)    NOT NULL,
 	post_no    INT(11)        NOT NULL,
 	FOREIGN KEY(post_no) REFERENCES post(no),
-	PRIMARY KEY(ip)
+	PRIMARY KEY(ip, post_no)
 );
 
 CREATE TABLE hot(

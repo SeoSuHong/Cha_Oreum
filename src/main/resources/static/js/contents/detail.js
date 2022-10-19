@@ -15,6 +15,8 @@ function like(no, id) {
 		if(guest) {
 			location.href="/account/logIn";
 			return;
+		} else {
+			return;
 		}
 	}
 	

@@ -1,4 +1,4 @@
-package com.chaOreum.service.contents;
+package com.chaOreum.service.util;
 
 import java.net.InetAddress;
 import java.net.UnknownHostException;

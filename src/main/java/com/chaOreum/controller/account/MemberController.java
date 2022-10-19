@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.chaOreum.entity.Member;
 import com.chaOreum.service.account.MemberService;
+import com.chaOreum.service.util.HashService;
 
 @Controller
 @RequestMapping("/account/")
@@ -20,6 +21,9 @@ public class MemberController {
 	
 	@Autowired
 	MemberService memberService; // -> serviceImp -> dao -> daoImp(mybatis)
+	
+	@Autowired
+	HashService hashService;
 
 	@GetMapping("logIn")
 	public String logIn() {
@@ -30,6 +34,8 @@ public class MemberController {
 	@ResponseBody
 	public String logIn(String id, String password, HttpSession session, HttpServletResponse response) {
 		String message = "";
+		
+		password = hashService.getHash(password);
 		Member member = memberService.get(id, password);
 		
 		if(member != null) {
@@ -56,6 +62,8 @@ public class MemberController {
 		email = email_front + "@" + email_back;
 		
 		String message = "";
+		
+		password = hashService.getHash(password);
 		
 		if(memberService.signup(id, nickname, password, email)) {
 		
@@ -98,9 +106,9 @@ public class MemberController {
 	@ResponseBody
 	@PostMapping("findPw")
 	public String findPw(String id, String password) {
-		
 		String message = "";
 		
+		password = hashService.getHash(password);
 		if(memberService.findPw(id, password)) {
 			
 			message = "<script>alert('비밀번호가 변경되었습니다.'); location.href='/account/logIn';</script>";
@@ -133,12 +141,12 @@ public class MemberController {
 	@ResponseBody
 	@PostMapping("infoReg")
 	public String infoReg(String id, String nickname, String password, String email_front, String email_back, String email) {
-			
-		email = email_front + "@" + email_back;
 		String message = "";
+
+		password = hashService.getHash(password);
+		email = email_front + "@" + email_back;
 		
 		if(memberService.updateInfo(id, nickname, password, email)) {
-		
 			message = "<script>alert('회원정보 수정이 완료 되었습니다.'); location.href='/account/info';</script>";
 		} else {
 			message = "<script>alert('회원정보 수정에 실패하였습니다.\\n다시 시도해주세요.'); history.go(-1);</script>";

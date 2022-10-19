@@ -1,4 +1,4 @@
-package com.chaOreum.service.contents;
+package com.chaOreum.service.util;
 
 import javax.servlet.http.HttpServletRequest;
 
