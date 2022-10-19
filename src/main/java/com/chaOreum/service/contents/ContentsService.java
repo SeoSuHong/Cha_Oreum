@@ -16,7 +16,9 @@ public interface ContentsService {
 	int getEndPage(int category_no, String nickname, String title);
 	
 	// detail 게시글
-	Post getView(int no);
+	PostView getView(int no);
+	// 게시글 삭제
+	int deletePost(int no);
 	
 	// 좋아요 유무 체크
 	int likeIsChecked(int no, String id);
@@ -41,5 +43,8 @@ public interface ContentsService {
 	
 	// 게시글 작성
 	int insertPost(Post post);
+	
+	// 게시글 수정
+	int editPost(Post post);
 	
 }

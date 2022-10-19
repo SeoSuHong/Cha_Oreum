@@ -2,6 +2,7 @@ package com.chaOreum.controller.contents;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.Iterator;
 import java.util.List;
 
 import javax.servlet.ServletContext;
@@ -21,6 +22,7 @@ import org.springframework.web.multipart.MultipartFile;
 import com.chaOreum.entity.Comment;
 import com.chaOreum.entity.MainCategory;
 import com.chaOreum.entity.Post;
+import com.chaOreum.entity.PostView;
 import com.chaOreum.entity.Reply;
 import com.chaOreum.entity.SubCategory;
 import com.chaOreum.service.contents.ContentsService;
@@ -48,7 +50,7 @@ public class ContentsController {
 		List<SubCategory> subCategories = includeService.getSubCategories();
 		
 		// main
-		Post post = contentsService.getView(no);  // 현재 게시글의 정보
+		PostView post = contentsService.getView(no);  // 현재 게시글의 정보
 		
 		int like_isChecked = contentsService.likeIsChecked(no, id);  // 좋아요 클릭 여부
 		
@@ -160,6 +162,21 @@ public class ContentsController {
 		return result;
 	}
 	
+	// 게시글 삭제
+	@GetMapping("delete_post")
+	@ResponseBody
+	public String delete_post(int no, HttpSession session) {
+		String nickname = (String) session.getAttribute("nickname");
+		String message = "<script>alert('게시글 삭제에 실패하였습니다.\\n다시 시도해 주세요.'); history.go(-1);</script>";
+		
+		int delete = contentsService.deletePost(no);
+		if(delete == 1) {
+			message = "<script>alert('게시글을 삭제하였습니다.'); location.href='/?n=" + nickname + "'</script>";
+		}
+		
+		return message;
+	}
+	
 	@GetMapping("reg")
 	public String reg(Model model) {
 		// aside
@@ -179,6 +196,7 @@ public class ContentsController {
 		// contents image 처리
 		String id = (String) session.getAttribute("id");
 		for(MultipartFile file : files) {
+			if(file.getOriginalFilename() == null || file.getOriginalFilename().equals("")) continue;
 			String fileName = id + "_" + file.getOriginalFilename();
 			
 			String filePath = "/static/contents_img";
@@ -207,21 +225,15 @@ public class ContentsController {
 		StringBuffer fileSize = new StringBuffer();
 		String fileName_ = "";
 		
-		for(int i = 0; i < attachments.length; i++) {
-			MultipartFile file = attachments[i];
-			
+		for(MultipartFile file : attachments) {
+			if(file.getOriginalFilename() == null || file.getOriginalFilename().equals("")) continue;
 			fileName_ = file.getOriginalFilename();
-					
-			if(i != attachments.length-1) {
-				fileName.append(file.getOriginalFilename());
-				fileName.append("/");
-				
-				fileSize.append(file.getSize());
-				fileSize.append("/");
-			} else {
-				fileName.append(file.getOriginalFilename());
-				fileSize.append(file.getSize());
-			}
+			
+			// DB에 입력될 fileName, fileSize
+			fileName.append(file.getOriginalFilename());
+			fileName.append("/");
+			fileSize.append(file.getSize());
+			fileSize.append("/");
 			
 			String filePath = "/static/post_attachments";
 			String realPath = ctx.getRealPath(filePath);
@@ -258,7 +270,7 @@ public class ContentsController {
 	
 	@PostMapping("contents_fileUpload")
 	@ResponseBody
-	public String editor_fileUpload(MultipartFile file, String id) throws IllegalStateException, IOException {
+	public String contents_fileUpload(MultipartFile file, String id) throws IllegalStateException, IOException {
 		
 		// 업로드할 폴더 경로
 		String filePath = "/static/contents_img_remove";
@@ -282,13 +294,117 @@ public class ContentsController {
 	}
 	
 	@GetMapping("edit")
-	public String edit(Model model) {
+	public String edit(int no, Model model) {
 		// aside
 		List<MainCategory> mainCategories = includeService.getMainCategories();
 		List<SubCategory> subCategories = includeService.getSubCategories();
 		model.addAttribute("mainCategories", mainCategories);
 		model.addAttribute("subCategories", subCategories);
 		
+		// main
+		PostView post = contentsService.getView(no);
+		model.addAttribute("post", post);
+		
 		return "contents.edit";
 	}
+	
+	@PostMapping("edit")
+	@ResponseBody
+	public String edit(int no, int subCategory, String title, String contents, HttpSession session,
+						@RequestParam(required = false) String[] fileName,
+						@RequestParam(required = false) String[] fileSize,
+						@RequestParam(required = false) String[] remove_fileName,
+						@RequestParam(required = false) MultipartFile[] attachments,
+						@RequestParam(required = false) MultipartFile[] files) throws IllegalStateException, IOException {
+		
+		String message = "";
+		String saveFileName = "";  // DB에 저장될 fileName
+		String saveFileSize = "";  // DB에 저장될 fileSize
+		
+		String savePath = "/static/post_attachments";  // 저장 폴더
+		String realPath = ctx.getRealPath(savePath);   // 저장 폴더 경로
+
+		// 삭제하지 않은 파일들 saveFileName에 추가
+		if(fileName != null) {
+			for(int i = 0; i < fileName.length; i++) {
+				saveFileName += fileName[i] + "/";  // a.txt/b.txt/c.txt/
+				saveFileSize += fileSize[i] + "/";  // 1000/2000/3000/
+			}
+		}
+		
+		// 삭제한 파일들 저장 폴더에서 삭제
+		if(remove_fileName != null) {
+			for(int i = 0; i < remove_fileName.length; i++) {
+				String removePath = realPath + File.separator + remove_fileName[i];  // 삭제 파일 경로
+				
+				File removeFile = new File(removePath);
+				if(removeFile.exists()) removeFile.delete();  // 삭제 파일 존재할 경우 삭제
+			}
+		}
+		
+		// 추가한 파일들 저장 및 saveFileName에 추가
+		for(MultipartFile file : attachments) {
+			if(file.getOriginalFilename() == null || file.getOriginalFilename().equals("")) continue;
+			
+			String add_fileName = file.getOriginalFilename();
+			long add_fileSize = file.getSize();
+			
+			saveFileName += add_fileName + "/";  // DB 저장 fileName에 추가
+			saveFileSize += add_fileSize + "/";  // DB 저장 fileSize에 추가
+			
+			// 저장 폴더가 없을 시 생성
+			File saveFile = new File(realPath);
+			if(!saveFile.exists()) saveFile.mkdirs();
+			
+			String attachmentPath = realPath + File.separator + add_fileName;
+			File attachment = new File(attachmentPath);
+			file.transferTo(attachment);
+		}
+		
+		// contents image 처리
+		String id = (String) session.getAttribute("id");
+		for(MultipartFile file : files) {
+			if(file.getOriginalFilename() == null || file.getOriginalFilename().equals("")) continue;
+			
+			String fileName_ = id + "_" + file.getOriginalFilename();
+			
+			String filePath = "/static/contents_img";
+			String realPath_ = ctx.getRealPath(filePath);
+			
+			File savePath_ = new File(realPath_);
+			if(!savePath_.exists()) savePath_.mkdirs();
+			
+			realPath_ += File.separator + fileName_;
+			File saveFile = new File(realPath_);
+
+			file.transferTo(saveFile);
+		}
+		
+		// contents_img_remove 파일 전부 삭제
+		String removePath = "/static/contents_img_remove";
+		String removeRealPath = ctx.getRealPath(removePath);
+		File removeFile = new File(removeRealPath);
+		FileUtils.cleanDirectory(removeFile);
+		
+		// contents 내용 img 경로 변경
+		contents = contents.replaceAll("contents_img_remove", "contents_img");
+		
+		Post post = new Post(no, id, subCategory, title, contents, null, saveFileName, saveFileSize, 0);
+		int result = contentsService.editPost(post);
+		
+		if(result == 1) message = "<script>alert('게시글을 수정하였습니다.'); location.href='/contents/detail?no=" + no + "';</script>";
+		else message = "<script>alert('게시글 수정에 실패하였습니다.\n다시 시도해 주세요.'); location.href='/contents/detail?no=" + no + "';</script>";
+		
+		System.out.println("no : " + no);
+		System.out.println("subCategory : " + subCategory);
+		System.out.println("title : " + title);
+		System.out.println("contents : " + contents);
+		System.out.println("fileName : " + saveFileName);
+		System.out.println("fileSize : " + saveFileSize);
+		
+		return message;
+	}
 }
+
+
+

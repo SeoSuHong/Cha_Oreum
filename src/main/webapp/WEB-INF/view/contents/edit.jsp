@@ -1,61 +1,68 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 		<main>
         
             <div>
-                <form action="" method="post" enctype="multipart/form-data">
+                <form name="editForm" action="/contents/edit" method="post" enctype="multipart/form-data">
                     <div id="regCategory">
                         <div>* Main Category</div>
-                        <select name="mainCategory" id="mainCategory">
+                        <select name="mainCategory" id="mainCategory" onchange="changeMainCategory()">
                             <option value=""> -- 선택해 주세요 -- </option>
-                            <option value="1" selected>Language</option>
-                            <option value="2">Front-End</option>
-                            <option value="3">Back-End</option>
-                            <option value="4">Database</option>
-                            <option value="5">Project Management</option>
-                            <option value="6">ETC</option>
+                            <c:forEach var="mc" items="${mainCategories}">
+                            	<option value="${mc.no}" <c:if test="${post.mainCategory eq mc.name}">selected</c:if>>${mc.name}</option>
+                            </c:forEach>
                         </select>
 
                         <div>* Sub Category</div>
                         <select name="subCategory" id="subCategory">
                             <option value=""> -- 선택해 주세요 -- </option>
-                            <option value="1" selected>JAVA</option>
-                            <option value="2">Python</option>
-                            <option value="3">C</option>
                         </select>
+                        <input type="hidden" id="prevSubCategory" value="${post.subCategory}">
                     </div>
 
                     <hr>
 
                     <div id="title_wrap">
                         <div>* 제목</div>
-                        <input name="title" id="title" value="자바 데이터 타입, 변수 그리고 배열">
+                        <input name="title" id="title" value="${post.title}">
                     </div>
 
                     <hr>
 
+                    <c:set var="fileSize" value="${fn:split(post.fileSize, '/')}" />
                     <div id="file_wrap">
-                        <div class="txt">첨부 파일</div>
-                        <div id="f">
-                            <div class="file">·<a download href="">test.txt</a><div class="file_delete" onclick="file_delete(this)">삭제</div></div>
-                            <div class="file">·<a download href="">readme.txt</a><div class="file_delete" onclick="file_delete(this)">삭제</div></div>
-                        </div>
+                    	<c:if test="${not empty post.fileName}">
+	                        <div class="txt">첨부 파일</div>
+	                        <div id="f">
+	                    		<c:forTokens var="fileName" items="${post.fileName}" delims="/" varStatus="st">
+		                            <div class="file">
+		                            	·<a download href="">${fileName}</a><div class="file_delete" onclick="file_delete(this, '${fileName}')">삭제</div>
+		                            	<input type="hidden" name="fileName" value="${fileName}">
+		                            	<input type="hidden" name="fileSize" value="${fileSize[st.index]}">
+		                            </div>
+		                        </c:forTokens>
+	                        </div>
+	                    </c:if>
                         <div class="txt">파일 추가</div>
-                        <input type="file" name="files" id="file" multiple>
+                        <input type="file" name="attachments" id="file" multiple>
                     </div>
 
                     <hr>
 
                     <div id="contents_wrap">
                         <div>* 내용</div>
-                        <textarea name="contents" id="contents" cols="30" rows="10">자바 데이터 타입, 변수 그리고 배열</textarea>
+                        <textarea name="contents" id="contents" cols="30" rows="10">${post.contents}</textarea>
                     </div>
 
                     <hr>
 
-                    <div id="reg_btn">
-                        <input type="button" id="reg" value="작성">
+                    <div id="edit_btn">
+                    	<input type="hidden" name="no" value="${post.no}">
+                        <input type="button" id="reg" value="수정" onclick="edit()">
                     </div>
+                    <input type="hidden" id="userId" value="${id}">
                 </form>
             </div>
             

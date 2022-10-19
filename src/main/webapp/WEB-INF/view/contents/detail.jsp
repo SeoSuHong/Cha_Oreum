@@ -19,7 +19,7 @@
 	                    	<c:set var="fileSize" value="${fn:split(post.fileSize, '/')}"/>
 	                    	<c:forTokens var="fileName" items="${post.fileName}" delims="/" varStatus="st">
 	                        	<div><a download href="" class="fileName">${fileName}</a> | 
-	                        	<span class="fileSize">${fileSize[st.index]}Byte</span></div>
+	                        	<span class="fileSize">${fileSize[st.index]} Byte</span></div>
 	                        </c:forTokens>
 	                    </div>
 	                </div>
@@ -101,10 +101,8 @@
             <!-- 수정, 삭제 -->
 			<c:if test="${nickname eq post.nickname}">
 	            <div id="update_wrap">
-	                <form name="updateForm" method="post">
-	                    <input type="button" id="update" value="수 정" onclick="location.href='/contents/edit?no=${post.no}'">
-	                    <input type="button" id="delete" value="삭 제" onclick="">
-	                </form>
+                    <input type="button" id="update" value="수 정" onclick="location.href='/contents/edit?no=${post.no}'">
+                    <input type="button" id="delete" value="삭 제" onclick="delete_post(${post.no})">
 	            </div>
 	        </c:if>
 
