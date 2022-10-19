@@ -2,10 +2,10 @@ package com.chaOreum.controller.contents;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.Iterator;
 import java.util.List;
 
 import javax.servlet.ServletContext;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.apache.commons.io.FileUtils;
@@ -26,6 +26,7 @@ import com.chaOreum.entity.PostView;
 import com.chaOreum.entity.Reply;
 import com.chaOreum.entity.SubCategory;
 import com.chaOreum.service.contents.ContentsService;
+import com.chaOreum.service.contents.RequestService;
 import com.chaOreum.service.include.IncludeService;
 
 @Controller
@@ -40,9 +41,12 @@ public class ContentsController {
 	
 	@Autowired
 	private ServletContext ctx;
+	
+	@Autowired
+	private RequestService requestService;
 
 	@GetMapping("detail")
-	public String detail(Model model, HttpSession session, int no) {
+	public String detail(int no, Model model, HttpSession session, HttpServletRequest request) {
 		String id = (String) session.getAttribute("id");
 		
 		// aside
@@ -50,6 +54,9 @@ public class ContentsController {
 		List<SubCategory> subCategories = includeService.getSubCategories();
 		
 		// main
+		String ip = requestService.getClientIpAddress(request);
+		System.out.println(ip);
+		
 		PostView post = contentsService.getView(no);  // 현재 게시글의 정보
 		
 		int like_isChecked = contentsService.likeIsChecked(no, id);  // 좋아요 클릭 여부
@@ -248,7 +255,7 @@ public class ContentsController {
 		}
 		
 		String message = "";
-		Post post = new Post(0, id, subCategory, title, contents, null, fileName.toString(), fileSize.toString(), 0);
+		Post post = new Post(0, id, subCategory, title, contents, null, fileName.toString(), fileSize.toString());
 		if(contentsService.insertPost(post) == 1) {
 			message = "<script>alert('게시글을 작성하였습니다.'); location.href='/?c=" + subCategory + "&n=" + nickname + "' ; </script>";
 		} else {
@@ -389,7 +396,7 @@ public class ContentsController {
 		// contents 내용 img 경로 변경
 		contents = contents.replaceAll("contents_img_remove", "contents_img");
 		
-		Post post = new Post(no, id, subCategory, title, contents, null, saveFileName, saveFileSize, 0);
+		Post post = new Post(no, id, subCategory, title, contents, null, saveFileName, saveFileSize);
 		int result = contentsService.editPost(post);
 		
 		if(result == 1) message = "<script>alert('게시글을 수정하였습니다.'); location.href='/contents/detail?no=" + no + "';</script>";

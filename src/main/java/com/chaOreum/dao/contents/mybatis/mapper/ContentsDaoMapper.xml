@@ -5,7 +5,7 @@
 <mapper namespace="com.chaOreum.dao.contents.ContentsDao">
 
   <select id="getView" resultType="com.chaOreum.entity.PostView">
-  	SELECT MC.name mainCategory, SC.name subCategory, M.nickname, P.*, (SELECT count(*) FROM hot WHERE post_no = P.no) hot FROM post P 
+  	SELECT MC.name mainCategory, SC.name subCategory, M.nickname, P.*, (SELECT COUNT(*) FROM view WHERE post_no = P.no) view, (SELECT count(*) FROM hot WHERE post_no = P.no) hot FROM post P 
 		JOIN subCategory SC ON SC.no = P.subCategory_no 
 		JOIN mainCategory MC ON MC.no = SC.mainCategory_no
 		JOIN member M ON M.id = P.member_id
@@ -13,7 +13,7 @@
   </select>
 
   <select id="getViewList" resultType="com.chaOreum.entity.PostView">
-  	SELECT MC.name mainCategory, SC.name subCategory, M.nickname, P.*, (SELECT count(*) FROM hot WHERE post_no = P.no) hot FROM post P 
+  	SELECT MC.name mainCategory, SC.name subCategory, M.nickname, P.*, (SELECT COUNT(*) FROM view WHERE post_no = P.no) view, (SELECT count(*) FROM hot WHERE post_no = P.no) hot FROM post P 
 		JOIN subCategory SC ON SC.no = P.subCategory_no 
 		JOIN mainCategory MC ON MC.no = SC.mainCategory_no
 		JOIN member M ON M.id = P.member_id
@@ -35,13 +35,13 @@
 	        	ORDER BY hot DESC
 	        </if>
 	        <if test="sort == 'look'">
-	        	ORDER BY P.view DESC
+	        	ORDER BY view DESC
 	        </if> 
 	        LIMIT #{offset}, #{size};
   </select>
   
   <insert id="insertPost" parameterType="com.chaOreum.entity.Post">
-  	INSERT INTO post VALUES(DEFAULT, #{member_id}, #{subCategory_no}, #{title}, #{contents}, DEFAULT, #{fileName}, #{fileSize}, DEFAULT)
+  	INSERT INTO post VALUES(DEFAULT, #{member_id}, #{subCategory_no}, #{title}, #{contents}, DEFAULT, #{fileName}, #{fileSize})
   </insert>
   
   <update id="updatePost" parameterType="com.chaOreum.entity.Post">

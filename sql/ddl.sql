@@ -29,7 +29,6 @@ CREATE TABLE post(
     regDate            DATE           NOT NULL    DEFAULT (CURRENT_DATE),
     fileName           VARCHAR(100),
     fileSize           VARCHAR(100),
-    view               INT(11)        NOT NULL    DEFAULT 0,
     FOREIGN KEY(member_id) REFERENCES member(id),
     FOREIGN KEY(subCategory_no) REFERENCES subCategory(no),
     PRIMARY KEY(no)
@@ -55,6 +54,13 @@ CREATE TABLE reply(
     FOREIGN KEY(comment_no) REFERENCES comment(no),
     FOREIGN KEY(member_nickname) REFERENCES member(nickname),
     PRIMARY KEY(no)
+);
+
+CREATE TABLE view(
+	ip         VARCHAR(20)    NOT NULL,
+	post_no    INT(11)        NOT NULL,
+	FOREIGN KEY(post_no) REFERENCES post(no),
+	PRIMARY KEY(ip)
 );
 
 CREATE TABLE hot(

@@ -11,12 +11,11 @@ public class Post {
 	private Date regDate;
 	private String fileName;
 	private String fileSize;
-	private int view;
 	
 	public Post() {}
 
 	public Post(int no, String member_id, int subCategory_no, String title, String contents, Date regDate,
-			String fileName, String fileSize, int view) {
+			String fileName, String fileSize) {
 		this.no = no;
 		this.member_id = member_id;
 		this.subCategory_no = subCategory_no;
@@ -25,7 +24,6 @@ public class Post {
 		this.regDate = regDate;
 		this.fileName = fileName;
 		this.fileSize = fileSize;
-		this.view = view;
 	}
 
 	public int getNo() {
@@ -92,18 +90,10 @@ public class Post {
 		this.fileSize = fileSize;
 	}
 
-	public int getView() {
-		return view;
-	}
-
-	public void setView(int view) {
-		this.view = view;
-	}
-
 	@Override
 	public String toString() {
 		return "Post [no=" + no + ", member_id=" + member_id + ", subCategory_no=" + subCategory_no
 				+ ", title=" + title + ", contents=" + contents + ", regDate=" + regDate + ", fileName=" + fileName
-				+ ", fileSize=" + fileSize + ", view=" + view + "]";
+				+ ", fileSize=" + fileSize + "]";
 	}
 }
