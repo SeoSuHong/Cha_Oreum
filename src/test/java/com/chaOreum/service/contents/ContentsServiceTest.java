@@ -7,11 +7,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase.Replace;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.chaOreum.entity.PostView;
 
 @SpringBootTest
 @AutoConfigureTestDatabase(replace = Replace.NONE)
+@Transactional
 class ContentsServiceTest {
 
 	@Autowired
@@ -47,5 +49,12 @@ class ContentsServiceTest {
 		int unlikePost = contentsService.unlikePost(35, "suhong");
 		
 		System.out.println(unlikePost);
+	}
+	
+	@Test
+	void 답글_입력() {
+		int result = contentsService.sendReply(1, "Dev_Hong", "답글 테스트 입니다.");
+		
+		System.out.println(result);
 	}
 }

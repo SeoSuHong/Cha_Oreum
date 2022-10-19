@@ -40,4 +40,12 @@ public class IncludeServiceImp implements IncludeService {
 		
 		return subCategories;
 	}
+	
+	@Override
+	public List<SubCategory> getScByMc(int no) {
+
+		List<SubCategory> subCategories = includeDao.getScByMc(no);
+		
+		return subCategories;
+	}
 }

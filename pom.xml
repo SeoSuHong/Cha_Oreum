@@ -59,19 +59,20 @@
 			<version>2.2.2</version>
 			<scope>test</scope>
 		</dependency>
-
-		<!-- 메일 관련 SMTP -->
 		<dependency>
 			<groupId>javax.mail</groupId>
 			<artifactId>mail</artifactId>
 			<version>1.4.7</version>
 		</dependency>
-
 		<dependency>
 			<groupId>com.sun.mail</groupId>
 			<artifactId>jakarta.mail</artifactId>
 		</dependency>
-
+		<dependency>
+		<groupId>commons-fileupload</groupId>
+		<artifactId>commons-fileupload</artifactId>
+		<version>1.4</version>
+		</dependency>
 	</dependencies>
 
 	<build>

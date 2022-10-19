@@ -23,13 +23,28 @@ public class MybatisContentsDao implements ContentsDao {
 	}
 	
 	@Override
-	public Post getView(int no) {
+	public PostView getView(int no) {
 		return mapper.getView(no);
 	}
 
 	@Override
 	public List<PostView> getViewList(int category_no, String nickname, String title, String sort, int offset, int size) {
 		return mapper.getViewList(category_no, nickname, title, sort, offset, size);
+	}
+	
+	@Override
+	public int insertPost(Post post) {
+		return mapper.insertPost(post);
+	}
+	
+	@Override
+	public int updatePost(Post post) {
+		return mapper.updatePost(post);
+	}
+	
+	@Override
+	public int deletePost(int no) {
+		return mapper.deletePost(no);
 	}
 	
 	@Override
@@ -65,6 +80,21 @@ public class MybatisContentsDao implements ContentsDao {
 	@Override
 	public int insertReply(int no, String nickname, String contents) {
 		return mapper.insertReply(no, nickname, contents);
+	}
+	
+	@Override
+	public int deleteComment(int no) {
+		return mapper.deleteComment(no);
+	}
+	
+	@Override
+	public int deleteReplies(int no) {
+		return mapper.deleteReplies(no);
+	}
+	
+	@Override
+	public int deleteReply(int no) {
+		return mapper.deleteReply(no);
 	}
 	
 	@Override

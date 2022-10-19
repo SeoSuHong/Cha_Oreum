@@ -6,6 +6,7 @@ import com.chaOreum.entity.Comment;
 import com.chaOreum.entity.Post;
 import com.chaOreum.entity.PostView;
 import com.chaOreum.entity.Reply;
+import com.chaOreum.entity.SubCategory;
 
 public interface ContentsService {
 
@@ -15,7 +16,9 @@ public interface ContentsService {
 	int getEndPage(int category_no, String nickname, String title);
 	
 	// detail 게시글
-	Post getView(int no);
+	PostView getView(int no);
+	// 게시글 삭제
+	int deletePost(int no);
 	
 	// 좋아요 유무 체크
 	int likeIsChecked(int no, String id);
@@ -31,5 +34,17 @@ public interface ContentsService {
 	int sendComment(int no, String nickname, String contents);
 	// 답글 작성
 	int sendReply(int no, String nickname, String contents);
+	// 댓글 삭제
+	int deleteComment(int no);
+	// 삭제하려는 댓글의 답글 전부 삭제
+	int deleteReplies(int no);
+	// 답글 삭제
+	int deleteReply(int no);
+	
+	// 게시글 작성
+	int insertPost(Post post);
+	
+	// 게시글 수정
+	int editPost(Post post);
 	
 }

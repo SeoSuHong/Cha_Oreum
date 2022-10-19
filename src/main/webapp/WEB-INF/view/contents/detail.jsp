@@ -19,7 +19,7 @@
 	                    	<c:set var="fileSize" value="${fn:split(post.fileSize, '/')}"/>
 	                    	<c:forTokens var="fileName" items="${post.fileName}" delims="/" varStatus="st">
 	                        	<div><a download href="" class="fileName">${fileName}</a> | 
-	                        	<span class="fileSize">${fileSize[st.index]}Byte</span></div>
+	                        	<span class="fileSize">${fileSize[st.index]} Byte</span></div>
 	                        </c:forTokens>
 	                    </div>
 	                </div>
@@ -57,13 +57,13 @@
 		                    <div class="mainComment">
 		                        <div class="nickname">${comment.member_nickname}</div>
 		                        <div class="comment">${comment.contents}</div>
-		                        <div class="commRegDate"><span><fmt:formatDate value="${comment.regDate}" pattern="yyyy-MM-dd hh:mm" /></span><span class="reply_btn">답글 쓰기</span></div>
+		                        <div class="commRegDate"><span><fmt:formatDate value="${comment.regDate}" pattern="yyyy-MM-dd hh:mm" /></span><span class="reply_btn">답글 쓰기</span><c:if test="${nickname eq comment.member_nickname}"><span class="comment_delete" onclick="deleteComment(${comment.no})">삭제</span></c:if></div>
 		                    </div>
 		                    <div class="reply">
 	                            <div>
-	                                <textarea name="reply" class="reply_txt" cols="30" rows="10" placeholder="답글을 입력해 주세요."></textarea><hr>
+	                                <textarea name="reply" id="reply_txt" cols="30" rows="10" placeholder="답글을 입력해 주세요."></textarea><hr>
 	                                <div class="reply_btn_wrap">
-	                                    <input type="button" class="reply_send" value="입력" onclick="sendReply(${comment.no}, '${nickname}')">
+	                                    <input type="button" class="reply_send" value="입력" onclick="sendReply(this, ${comment.no}, '${nickname}')">
 	                                </div>
 	                            </div>
 		                    </div>
@@ -73,7 +73,7 @@
 				                        <div class="subComment">
 				                            <div class="nickname">${reply.member_nickname}</div>
 				                            <div class="comment">${reply.contents}</div>
-				                            <div class="commRegDate"><fmt:formatDate value="${reply.regDate}" pattern="yyyy-MM-dd hh:mm" /></div>
+				                            <div class="commRegDate"><fmt:formatDate value="${reply.regDate}" pattern="yyyy-MM-dd hh:mm" /><span class="reply_delete" onclick="deleteReply(${reply.no})">삭제</span></div>
 				                        </div>
 				                    </div>
 					            </c:if>
@@ -83,11 +83,16 @@
 		        </c:if>
 
                 <div id="writeComment">
-                    <div id="comment_nick">Dev_Hong</div>
+                	<c:if test="${not empty nickname}">
+                    	<div id="comment_nick">${nickname}</div>
+                    </c:if>
+                    <c:if test="${empty nickname}">
+                    	<div id="comment_nick">Guest</div>
+                    </c:if>
                     <div id="comment_wrap">
                         <textarea name="comment" id="comment_txt" cols="30" rows="10" placeholder="댓글을 입력해 주세요."></textarea><hr>
                         <div id="comment_btn_wrap">
-                            <input type="button" id="comment_send" value="입력">
+                            <input type="button" id="comment_send" value="입력" onclick="sendComment(${post.no}, '${nickname}')">
                         </div>
                     </div>
                 </div>
@@ -96,10 +101,8 @@
             <!-- 수정, 삭제 -->
 			<c:if test="${nickname eq post.nickname}">
 	            <div id="update_wrap">
-	                <form name="updateForm" method="post">
-	                    <input type="button" id="update" value="수 정" onclick="location.href='/contents/edit?no=${post.no}'">
-	                    <input type="button" id="delete" value="삭 제" onclick="">
-	                </form>
+                    <input type="button" id="update" value="수 정" onclick="location.href='/contents/edit?no=${post.no}'">
+                    <input type="button" id="delete" value="삭 제" onclick="delete_post(${post.no})">
 	            </div>
 	        </c:if>
 
