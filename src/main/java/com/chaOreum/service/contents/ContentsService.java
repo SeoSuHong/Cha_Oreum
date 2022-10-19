@@ -20,6 +20,8 @@ public interface ContentsService {
 	// 게시글 삭제
 	int deletePost(int no);
 	
+	// 조회수 증가 (no, ip가 없을 시)
+	int setViewCount(int no, String clientIPAddress);
 	// 좋아요 유무 체크
 	int likeIsChecked(int no, String id);
 	// 좋아요 클릭

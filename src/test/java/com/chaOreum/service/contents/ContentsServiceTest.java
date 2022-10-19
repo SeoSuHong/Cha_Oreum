@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase.Replace;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.mock.web.MockHttpServletRequest;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.chaOreum.entity.PostView;
@@ -17,7 +18,12 @@ import com.chaOreum.entity.PostView;
 class ContentsServiceTest {
 
 	@Autowired
-	ContentsService contentsService;
+	private ContentsService contentsService;
+	
+	@Autowired
+	private RequestService requestService;
+	
+	private MockHttpServletRequest request;
 	
 	@Test
 	void 게시글_리스트() {
@@ -25,6 +31,20 @@ class ContentsServiceTest {
 		
 		for(PostView post : list)
 			System.out.println(post);
+	}
+	
+	@Test
+	void 조회수_증가() {
+		request = new MockHttpServletRequest();
+		String clientIPAddress = requestService.getClientIpAddress(request);
+		System.out.printf("Client Ip Address is : %s\n", clientIPAddress);
+		
+		int viewCount = contentsService.setViewCount(1, clientIPAddress);
+		if(viewCount == 1) {
+			System.out.println("Increase View Count!");
+		} else {
+			System.out.println("View Count did not change!");
+		}
 	}
 	
 	@Test

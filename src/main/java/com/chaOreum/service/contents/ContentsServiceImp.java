@@ -51,6 +51,11 @@ public class ContentsServiceImp implements ContentsService {
 	}
 	
 	@Override
+	public int setViewCount(int no, String clientIPAddress) {
+		return contentsDao.setViewCount(no, clientIPAddress);
+	}
+	
+	@Override
 	public int likeIsChecked(int no, String id) {
 
 		int likeIsChecked = contentsDao.likeCount(no, id);

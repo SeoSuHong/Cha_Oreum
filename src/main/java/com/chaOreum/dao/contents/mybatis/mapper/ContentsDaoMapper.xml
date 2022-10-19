@@ -54,6 +54,12 @@
   	DELETE FROM post WHERE no = #{no}
   </delete>
   
+  <insert id="setViewCount">
+  	INSERT INTO view 
+  		SELECT #{clientIPAddress}, #{no} FROM DUAL 
+  		WHERE NOT EXISTS(SELECT * FROM view WHERE ip = #{clientIPAddress} AND post_no = #{no})
+  </insert>
+  
   <select id="likeCount" resultType="int">
   	SELECT COUNT(*) FROM hot WHERE post_no = #{no} AND member_id = #{id};
   </select>

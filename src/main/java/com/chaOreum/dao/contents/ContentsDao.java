@@ -13,6 +13,7 @@ public interface ContentsDao {
 	int getEndPage(int category_no, String nickname, String title);
 	
 	PostView getView(int no);
+	int setViewCount(int no, String clientIPAddress);
 	int likeCount(int no, String id);
 	int insertHot(int no, String id);
 	int deleteHot(int no, String id);
