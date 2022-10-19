@@ -161,6 +161,13 @@ function deleteReply(no) {
 	}
 }
 
-
+// 게시물 삭제 시
+function delete_post(no) {
+	let check = confirm("게시글을 삭제 하시겠습니까?\n삭제된 게시글은 복구할 수 없습니다.");
+	
+	if(check) {
+		location.href="/contents/delete_post?no=" + no;
+	}
+}
 
 

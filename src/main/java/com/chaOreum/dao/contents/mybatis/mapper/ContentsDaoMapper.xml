@@ -44,6 +44,16 @@
   	INSERT INTO post VALUES(DEFAULT, #{member_id}, #{subCategory_no}, #{title}, #{contents}, DEFAULT, #{fileName}, #{fileSize}, DEFAULT)
   </insert>
   
+  <update id="updatePost" parameterType="com.chaOreum.entity.Post">
+  	UPDATE post 
+  	SET subCategory_no = #{subCategory_no}, title = #{title}, contents = #{contents}, fileName = #{fileName}, fileSize = #{fileSize}
+  		WHERE no = #{no}
+  </update>
+  
+  <delete id="deletePost">
+  	DELETE FROM post WHERE no = #{no}
+  </delete>
+  
   <select id="likeCount" resultType="int">
   	SELECT COUNT(*) FROM hot WHERE post_no = #{no} AND member_id = #{id};
   </select>

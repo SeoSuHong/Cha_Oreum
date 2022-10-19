@@ -18,9 +18,9 @@ public class ContentsServiceImp implements ContentsService {
 	ContentsDao contentsDao;
 	
 	@Override
-	public Post getView(int no) {
+	public PostView getView(int no) {
 		
-		Post post = contentsDao.getView(no);
+		PostView post = contentsDao.getView(no);
 		
 		return post;
 	}
@@ -38,6 +38,16 @@ public class ContentsServiceImp implements ContentsService {
 	@Override
 	public int insertPost(Post post) {
 		return contentsDao.insertPost(post);
+	}
+	
+	@Override
+	public int editPost(Post post) {
+		return contentsDao.updatePost(post);
+	}
+	
+	@Override
+	public int deletePost(int no) {
+		return contentsDao.deletePost(no);
 	}
 	
 	@Override
