@@ -38,7 +38,7 @@
 	                        <div id="f">
 	                    		<c:forTokens var="fileName" items="${post.fileName}" delims="/" varStatus="st">
 		                            <div class="file">
-		                            	·<a download href="">${fileName}</a><div class="file_delete" onclick="file_delete(this, '${fileName}')">삭제</div>
+		                            	·<a download href="/static/post_attachments/${fileName}">${fileName}</a><div class="file_delete" onclick="file_delete(this, '${fileName}')">삭제</div>
 		                            	<input type="hidden" name="fileName" value="${fileName}">
 		                            	<input type="hidden" name="fileSize" value="${fileSize[st.index]}">
 		                            </div>

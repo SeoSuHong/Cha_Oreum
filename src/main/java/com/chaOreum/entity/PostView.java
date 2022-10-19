@@ -6,6 +6,7 @@ public class PostView extends Post {
 	private String mainCategory;
 	private String subCategory;
 	private String nickname;
+	private int view;
 	private int hot;
 
 	public PostView() {}
@@ -13,10 +14,11 @@ public class PostView extends Post {
 	public PostView(String mainCategory, String subCategory, String nickname, int no, String member_id, int subCategory_no, String title, String contents, Date regDate,
 			String fileName, String fileSize, int view, int hot) {
 		
-		super(no, member_id, subCategory_no, title, contents, regDate, fileName, fileSize, view);
+		super(no, member_id, subCategory_no, title, contents, regDate, fileName, fileSize);
 		this.mainCategory = mainCategory;
 		this.subCategory = subCategory;
 		this.nickname = nickname;
+		this.view = view;
 		this.hot = hot;
 	}
 
@@ -44,6 +46,14 @@ public class PostView extends Post {
 		this.nickname = nickname;
 	}
 
+	public int getView() {
+		return view;
+	}
+
+	public void setView(int view) {
+		this.view = view;
+	}
+
 	public int getHot() {
 		return hot;
 	}
@@ -54,6 +64,6 @@ public class PostView extends Post {
 
 	@Override
 	public String toString() {
-		return "PostView [mainCategory=" + mainCategory + ", subCategory=" + subCategory + ", nickname=" + nickname + ", " + super.toString() + ", hot=" + hot + "]";
+		return "PostView [mainCategory=" + mainCategory + ", subCategory=" + subCategory + ", nickname=" + nickname + ", " + super.toString() + ", view=" + view + ", hot=" + hot + "]";
 	}
 }

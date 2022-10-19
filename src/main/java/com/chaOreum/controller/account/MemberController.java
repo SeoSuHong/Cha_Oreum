@@ -177,14 +177,14 @@ public class MemberController {
 	
 	@ResponseBody
 	@PostMapping("secession")
-	public String secession(String id, String nickname) {
+	public String secession(String id, String nickname, HttpSession session) {
 		
 		boolean result = memberService.secession(id, nickname);
 		
 		String message = "";
 		
 		if(result) {
-			
+			session.invalidate();
 			message = "<script>alert('회원탈퇴가 완료 되었습니다.'); location.href='/';</script>";
 		} else {
 			message = "<script>alert('회원탈퇴에 실패 하였습니다.\\n다시 시도해주세요.'); history.go(-1);</script>";
