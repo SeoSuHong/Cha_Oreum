@@ -48,6 +48,11 @@ public class MybatisContentsDao implements ContentsDao {
 	}
 	
 	@Override
+	public int setViewCount(int no, String clientIPAddress) {
+		return mapper.setViewCount(no, clientIPAddress);
+	}
+	
+	@Override
 	public int likeCount(int no, String id) {
 		return mapper.likeCount(no, id);
 	}

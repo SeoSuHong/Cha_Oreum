@@ -54,8 +54,11 @@ public class ContentsController {
 		List<SubCategory> subCategories = includeService.getSubCategories();
 		
 		// main
-		String ip = requestService.getClientIpAddress(request);
-		System.out.println(ip);
+		String clientIPAddress = requestService.getClientIpAddress(request);  // 사용자 IP주소
+		int viewCount = contentsService.setViewCount(no, clientIPAddress);
+		if(viewCount == 1) {
+			System.out.println("Increase ViewCount");
+		}
 		
 		PostView post = contentsService.getView(no);  // 현재 게시글의 정보
 		
