@@ -122,6 +122,46 @@ main {
     border: 2px solid #393939;
 }
 
+/* 공지사항 */
+#notice {
+	width: 90%;
+	margin: 20px auto;
+}
+
+#notice_txt {
+	font-size: 20px;
+	font-weight: bold;
+	padding: 0 20px 5px;
+}
+
+#noticeList, tr th, td {
+	border: 2px solid black;
+	border-collapse: collapse;
+}
+
+#noticeList {
+	width: 100%;
+}
+
+#noticeNo {width: 50px;}
+#noticeWriter {width: 150px;}
+#noticeRegDate {width: 150px;}
+
+#noticeList td {
+	height: 30px;
+}
+
+#noticeList tr td:nth-child(2)>a:hover {
+	text-decoration: underline;
+}
+
+#notice_btn {
+	position: absolute;
+	top: 295px;
+	margin-left: 220px;
+	padding: 5px;
+}
+
 /* 컨텐츠 */
 #contents {
     position: relative;

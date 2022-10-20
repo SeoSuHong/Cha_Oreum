@@ -3,6 +3,7 @@ CREATE TABLE member(
     nickname    VARCHAR(20)     NOT NULL    UNIQUE,
     password    VARCHAR(100)    NOT NULL,
     email       VARCHAR(45)     NOT NULL,
+    role        VARCHAR(10)     NOT NULL,
     PRIMARY KEY(id)
 );
 

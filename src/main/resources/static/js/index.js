@@ -24,6 +24,19 @@ function sort(s) {
     indexForm.submit();
 }
 
+// 공지사항 show and hide
+$(function() {
+	$("#notice_btn").click(function() {
+		if($("#notice").is(':visible')) {
+			$('#notice').stop().slideUp();
+			$("#notice_btn").val("공지사항 펼치기");
+		} else {
+			$('#notice').stop().slideDown();
+			$("#notice_btn").val("공지사항 숨기기");
+		}
+	})
+});
+
 // 페이지 클릭 시
 $(function() {
 	// 첫 페이지로 이동

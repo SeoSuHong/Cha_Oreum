@@ -40,8 +40,8 @@ public class MemberServiceImp implements MemberService {
 	}
 
 	@Override
-	public boolean signup(String id, String password, String nickname, String email) {
-		boolean result = memberDao.signup(id, nickname, password, email);
+	public boolean signup(String id, String password, String nickname, String email, String role) {
+		boolean result = memberDao.signup(id, nickname, password, email, role);
 		return result;
 	}
 
