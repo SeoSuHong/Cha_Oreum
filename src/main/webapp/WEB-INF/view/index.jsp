@@ -51,6 +51,7 @@
 	                        <span style="color: #AEAEAE;">조회</span>
 	                    </c:if>
                     </div>
+	            	<input type="button" id="notice_btn" value="공지사항 숨기기">
                 </div>
 
                 <!-- 글 쓰기 -->
@@ -59,7 +60,52 @@
 	                    <a href="/contents/reg" id="reg">글 쓰기</a>
 	                </div>
 	            </c:if>
-
+	            
+	            <!-- 공지사항 -->
+	            <c:if test="${empty p || p eq 1}">
+		            <div id="notice">
+		            	<div id="notice_txt">※ 공지사항 ※</div>
+		            	<table id="noticeList">
+		            		<tr>
+		            			<th id="noticeNo">No.</th>
+		            			<th id="noticeTitle">제목</th>
+		            			<th id="noticeWriter">작성자</th>
+		            			<th id="noticeRegDate">작성일</th>
+		            		</tr>
+		            		<tr>
+		            			<td style="text-align: center;">1</td>
+		            			<td style="padding-left: 5px;"><a href="">비밀 댓글(추후 업데이트 예정)</a></td>
+		            			<td style="text-align: center;">관리자</td>
+		            			<td style="text-align: center;">2022-10-20</td>
+		            		</tr>
+		            		<tr>
+		            			<td style="text-align: center;">2</td>
+		            			<td style="padding-left: 5px;"><a href="">태희는 바보인 듯 하다.</a></td>
+		            			<td style="text-align: center;">관리자</td>
+		            			<td style="text-align: center;">2022-10-20</td>
+		            		</tr>
+		            		<tr>
+		            			<td style="text-align: center;">3</td>
+		            			<td style="padding-left: 5px;"><a href="">그런 듯 한게 아니라 바보이다.</a></td>
+		            			<td style="text-align: center;">관리자</td>
+		            			<td style="text-align: center;">2022-10-20</td>
+		            		</tr>
+		            		<tr>
+		            			<td style="text-align: center;">4</td>
+		            			<td style="padding-left: 5px;"><a href="">Cha Oreum 상반기 이벤트</a></td>
+		            			<td style="text-align: center;">관리자</td>
+		            			<td style="text-align: center;">2022-10-20</td>
+		            		</tr>
+		            		<tr>
+		            			<td style="text-align: center;">5</td>
+		            			<td style="padding-left: 5px;"><a href="">Develop Study 모집 카테고리 (추후 업데이트 예정)</a></td>
+		            			<td style="text-align: center;">관리자</td>
+		            			<td style="text-align: center;">2022-10-20</td>
+		            		</tr>
+		            	</table>
+		            </div>
+				</c:if>
+				
                 <!-- 컨텐츠 -->
                 <div id="contents">
                 	

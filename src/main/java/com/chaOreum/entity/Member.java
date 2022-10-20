@@ -5,14 +5,16 @@ public class Member {
 	private String nickname;
 	private String password;
 	private String email;
+	private String role;
 	
 	public Member() {}
 
-	public Member(String id, String nickname, String password, String email) {
+	public Member(String id, String nickname, String password, String email, String role) {
 		this.id = id;
 		this.nickname = nickname;
 		this.password = password;
 		this.email = email;
+		this.role = role;
 	}
 
 	public String getId() {
@@ -45,6 +47,14 @@ public class Member {
 
 	public void setEmail(String email) {
 		this.email = email;
+	}
+	
+	public String getRole() {
+		return role;
+	}
+	
+	public void setRole(String role) {
+		this.role = role;
 	}
 
 	@Override

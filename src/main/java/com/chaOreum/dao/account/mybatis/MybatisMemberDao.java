@@ -35,8 +35,8 @@ public class MybatisMemberDao implements MemberDao {
 	}
 
 	@Override
-	public boolean signup(String id, String password, String nickname, String email) {
-		boolean result = mapper.signup(id, nickname, password, email);
+	public boolean signup(String id, String password, String nickname, String email, String role) {
+		boolean result = mapper.signup(id, nickname, password, email, role);
 		return result;
 		
 	}

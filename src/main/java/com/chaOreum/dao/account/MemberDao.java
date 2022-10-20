@@ -14,7 +14,7 @@ public interface MemberDao {
 	public int nickname_check(String nickname);
 	
 	//회원가입
-	public boolean signup(String id, String nickname, String password, String email);
+	public boolean signup(String id, String nickname, String password, String email, String role);
 	
 	//아이디 찾기
 	public Member findId(String email);

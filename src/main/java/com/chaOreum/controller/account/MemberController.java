@@ -20,10 +20,13 @@ import com.chaOreum.service.util.HashService;
 public class MemberController {
 	
 	@Autowired
-	MemberService memberService; // -> serviceImp -> dao -> daoImp(mybatis)
+	private MemberService memberService; // -> serviceImp -> dao -> daoImp(mybatis)
 	
 	@Autowired
-	HashService hashService;
+	private HashService hashService;
+	
+	private static final String ROLE_USER = "user";
+	private static final String ROLE_ADMIN = "admin";
 
 	@GetMapping("logIn")
 	public String logIn() {
@@ -42,6 +45,10 @@ public class MemberController {
 			session.setAttribute("id", member.getId());
 			session.setAttribute("nickname", member.getNickname());
 			
+			if(member.getRole().equals(ROLE_ADMIN)) {
+				session.setAttribute(ROLE_ADMIN, true);
+			}
+			
 			message = "<script>alert('" + member.getNickname() + "님 어서오세요.'); location.href='/';</script>";
 		} else {
 			message = "<script>alert('회원 정보가 일치하지 않습니다.\\n아이디 혹은 비밀번호를 확인해 주세요.'); history.go(-1);</script>";
@@ -58,16 +65,14 @@ public class MemberController {
 	@ResponseBody
 	@PostMapping("signUp")
 	public String signUp(String id, String nickname, String password, String email_front, String email_back, String email) {
-		
-		email = email_front + "@" + email_back;
-		
 		String message = "";
+		
+		email = email_front + "@" + email_back;		
 		
 		password = hashService.getHash(password);
 		
-		if(memberService.signup(id, nickname, password, email)) {
-		
-		message = "<script>alert('회원가입이 완료 되었습니다.'); location.href='/account/logIn';</script>";
+		if(memberService.signup(id, nickname, password, email, ROLE_USER)) {
+			message = "<script>alert('회원가입이 완료 되었습니다.'); location.href='/account/logIn';</script>";
 		} else {
 			message = "<script>alert('회원가입이 되지않았습니다.\\n회원가입을 다시 진행해 주세요.'); history.go(-1);</script>";
 		}
