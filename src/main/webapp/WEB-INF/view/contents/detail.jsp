@@ -92,10 +92,8 @@
 				                            <c:if test="${(reply.reply_secret eq true) && (nickname ne reply.member_nickname || nickname ne post.nickname)}">
 				                            	<div class="comment">비밀 댓글 입니다.</div>
 				                            </c:if>
-				                            <c:if test="${nickname eq comment.member_nickname}">
-				                            	<div class="commRegDate"><fmt:formatDate value="${reply.regDate}" pattern="yyyy-MM-dd hh:mm" /><span class="reply_delete" onclick="deleteReply(${reply.no})">삭제</span></div>
-				                        	</c:if>
-				                        	
+				                            
+				                            <div class="commRegDate"><fmt:formatDate value="${reply.regDate}" pattern="yyyy-MM-dd hh:mm" /><c:if test="${nickname eq comment.member_nickname}"><span class="reply_delete" onclick="deleteReply(${reply.no})">삭제</span></c:if></div>
 				                        </div>
 				                    </div>
 					            </c:if>
