@@ -445,6 +445,18 @@ main {
     border: 2px solid #393939;
 }
 
+#reply{
+	color: #393939;
+	font-size: 1.1rem;
+	
+}
+
+#comment{
+	color: #393939;
+	font-size: 1.1rem;
+	
+}
+
 /* footer */
 #footer {
     height: 80px;

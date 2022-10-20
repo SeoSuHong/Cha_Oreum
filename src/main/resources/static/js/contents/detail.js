@@ -72,7 +72,11 @@ $(function() {
 // 댓글 입력 버튼 클릭 시
 function sendComment(no, nickname) {
 	let contents = $("#comment_txt");
-	
+	let comment_secret = 0;
+	if($('#comment_secret').is(":checked")){
+		comment_secret = 1;
+	}
+	console.log(comment_secret);
 	if(nickname == null || nickname == '') {
 		let check = confirm("회원만 이용이 가능합니다.\n로그인 하시겠습니까?");
 		
@@ -86,7 +90,7 @@ function sendComment(no, nickname) {
 	
 	$.ajax({
 		type : "post",
-		url : "/contents/comment?no=" + no + "&nickname=" + nickname + "&contents=" + contents.val(),
+		url : "/contents/comment?no=" + no + "&nickname=" + nickname + "&contents=" + contents.val() + "&comment_secret=" + comment_secret,
 		success : function(result) {
 			if(result) {
 				location.reload();
@@ -100,7 +104,11 @@ function sendComment(no, nickname) {
 // 답글 입력 버튼 클릭 시
 function sendReply(obj, no, nickname) {
 	let contents = $(obj).parent().prev().prev();
-	
+	let reply_secret = 0;
+	if($(".reply_secret").is(":checked")){
+		reply_secret = 1;
+	}
+	console.log(reply_secret);
 	if(nickname == null || nickname == '') {
 		let check = confirm("회원만 이용이 가능합니다.\n로그인 하시겠습니까?");
 		
@@ -114,7 +122,7 @@ function sendReply(obj, no, nickname) {
 
 	$.ajax({
 		type : "post",
-		url : "/contents/reply?no=" + no + "&nickname=" + nickname + "&contents=" + contents.val(),
+		url : "/contents/reply?no=" + no + "&nickname=" + nickname + "&contents=" + contents.val() + "&reply_secret=" + reply_secret,
 		success : function(result) {
 			if(result) {
 				location.reload();

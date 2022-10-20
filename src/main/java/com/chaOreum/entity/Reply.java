@@ -8,15 +8,17 @@ public class Reply {
 	private String member_nickname;
 	private String contents;
 	private Date regDate;
+	private boolean reply_secret;
 	
 	public Reply() {}
 
-	public Reply(int no, int comment_no, String member_nickname, String contents, Date regDate) {
+	public Reply(int no, int comment_no, String member_nickname, String contents, Date regDate, boolean reply_secret) {
 		this.no = no;
 		this.comment_no = comment_no;
 		this.member_nickname = member_nickname;
 		this.contents = contents;
 		this.regDate = regDate;
+		this.reply_secret = reply_secret;
 	}
 
 	public int getNo() {
@@ -59,9 +61,18 @@ public class Reply {
 		this.regDate = regDate;
 	}
 
+	public boolean getReply_secret() {
+		return reply_secret;
+	}
+
+	public void setReply_secret(boolean reply_secret) {
+		this.reply_secret = reply_secret;
+	}
+
 	@Override
 	public String toString() {
 		return "Reply [no=" + no + ", comment_no=" + comment_no + ", member_nickname=" + member_nickname + ", contents="
-				+ contents + ", regDate=" + regDate + "]";
+				+ contents + ", regDate=" + regDate + ", reply_secret=" + reply_secret + "]";
 	}
+
 }

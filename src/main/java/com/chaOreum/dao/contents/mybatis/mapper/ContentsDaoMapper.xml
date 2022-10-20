@@ -84,11 +84,11 @@
   </select>
   
   <insert id="insertComment">
-  	INSERT INTO comment VALUES(DEFAULT, #{no}, #{nickname}, #{contents}, DEFAULT);
+  	INSERT INTO comment VALUES(DEFAULT, #{no}, #{nickname}, #{contents}, DEFAULT, #{comment_secret});
   </insert>
   
   <insert id="insertReply">
-  	INSERT INTO reply VALUES(DEFAULT, #{no}, #{nickname}, #{contents}, DEFAULT);
+  	INSERT INTO reply VALUES(DEFAULT, #{no}, #{nickname}, #{contents}, DEFAULT, #{reply_secret});
   </insert>
   
   <delete id="deleteComment">

@@ -160,6 +160,12 @@ main {
 	top: 295px;
 	margin-left: 220px;
 	padding: 5px;
+	background-color: white;
+	font-size: 1.1rem;
+	font-weight: bold;
+	border: none;
+	color: #AEAEAE;
+	cursor: pointer;
 }
 
 /* 컨텐츠 */
