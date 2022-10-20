@@ -26,7 +26,7 @@ CREATE TABLE post(
     member_id    VARCHAR(20)    NOT NULL,
     subCategory_no     INT(11)        NOT NULL,
     title              VARCHAR(50)    NOT NULL,
-    contents           TEXT           NOT NULL,
+    contents           LONGTEXT       NOT NULL,
     regDate            DATE           NOT NULL    DEFAULT (CURRENT_DATE),
     fileName           VARCHAR(100),
     fileSize           VARCHAR(100),

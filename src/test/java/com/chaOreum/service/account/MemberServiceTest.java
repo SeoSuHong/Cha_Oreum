@@ -35,4 +35,5 @@ class MemberServiceTest {
 		
 		System.out.println(code);
 	}
+	
 }

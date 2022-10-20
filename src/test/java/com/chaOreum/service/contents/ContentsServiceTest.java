@@ -74,7 +74,7 @@ class ContentsServiceTest {
 	
 	@Test
 	void 답글_입력() {
-		int result = contentsService.sendReply(1, "Dev_Hong", "답글 테스트 입니다.");
+		int result = contentsService.sendReply(1, "Dev_Hong", "답글 테스트 입니다.", false);
 		
 		System.out.println(result);
 	}
