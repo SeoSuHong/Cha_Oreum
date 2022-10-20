@@ -42,7 +42,7 @@ function myContents(nickname) {
 		const message = confirm('회원만 이용이 가능합니다.\n로그인 하시겠습니까?');
 		
 		if(message) {
-			location.href = "account/logIn";
+			location.href = "/account/logIn";
 		}
 	}
 }
