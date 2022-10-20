@@ -62,7 +62,7 @@
 	                            <c:if test="${(comment.comment_secret eq true) && (nickname eq comment.member_nickname || nickname eq post.nickname)}">
 	                            	<div class="comment">${comment.contents}</div>
 	                            </c:if>
-	                            <c:if test="${(comment.comment_secret eq true) && (nickname ne comment.member_nickname || nickname ne post.nickname)}">
+	                            <c:if test="${(comment.comment_secret eq true) && (nickname ne comment.member_nickname) && (nickname ne post.nickname)}">
 	                            	<div class="comment">비밀 댓글 입니다.</div>
 	                            </c:if>
 		                        <div class="commRegDate"><span><fmt:formatDate value="${comment.regDate}" pattern="yyyy-MM-dd hh:mm" /></span><span class="reply_btn">답글 쓰기</span><c:if test="${nickname eq comment.member_nickname}"><span class="comment_delete" onclick="deleteComment(${comment.no})">삭제</span></c:if></div>
@@ -89,7 +89,7 @@
 				                            <c:if test="${(reply.reply_secret eq true) && (nickname eq reply.member_nickname || nickname eq post.nickname)}">
 				                            	<div class="comment">${reply.contents}</div>
 				                            </c:if>
-				                            <c:if test="${(reply.reply_secret eq true) && (nickname ne reply.member_nickname || nickname ne post.nickname)}">
+				                            <c:if test="${(reply.reply_secret eq true) && (nickname ne reply.member_nickname) && (nickname ne post.nickname)}">
 				                            	<div class="comment">비밀 댓글 입니다.</div>
 				                            </c:if>
 				                            
