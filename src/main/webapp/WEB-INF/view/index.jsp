@@ -62,7 +62,7 @@
 
                 <!-- 컨텐츠 -->
                 <div id="contents">
-	
+                	
 					<c:forEach var="post" items="${list}">
 	                    <div class="content">
 	                        <div class="information">
