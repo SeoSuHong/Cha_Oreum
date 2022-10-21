@@ -4,6 +4,7 @@ import java.util.Date;
 
 public class NoticeReply {
 	private int no;
+	private int notice_no;
 	private int noticeComment_no;
 	private String member_nickname;
 	private String contents;
@@ -11,9 +12,9 @@ public class NoticeReply {
 	
 	public NoticeReply() {}
 
-	public NoticeReply(int no, int noticeComment_no, String member_nickname, String contents, Date regDate) {
-		super();
+	public NoticeReply(int no, int notice_no, int noticeComment_no, String member_nickname, String contents, Date regDate) {
 		this.no = no;
+		this.notice_no = notice_no;
 		this.noticeComment_no = noticeComment_no;
 		this.member_nickname = member_nickname;
 		this.contents = contents;
@@ -26,6 +27,14 @@ public class NoticeReply {
 
 	public void setNo(int no) {
 		this.no = no;
+	}
+	
+	public int getNotice_no() {
+		return notice_no;
+	}
+
+	public void setNotice_no(int notice_no) {
+		this.notice_no = notice_no;
 	}
 
 	public int getNoticeComment_no() {
