@@ -5,71 +5,6 @@
         ,url('../font/NanumGothic.woff') format('woff');
 } */
 
-* {
-    margin: 0;
-    padding: 0;
-}
-
-*:focus {
-    outline: none;
-}
-
-body {
-    width: 1280px;
-    margin: 0 auto;
-}
-
-#body {
-    min-height: 1000px;
-    border-left: 3px solid #AEAEAE;
-    border-right: 3px solid #AEAEAE;
-    display: flex;
-    overflow: hidden;
-}
-
-a {
-    color: black;
-    text-decoration: none;
-}
-
-ul {
-    list-style: none;
-}
-
-/* herder */
-#header {
-    height: 250px;
-    background-color: #393939;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-#header_empty {
-    width: 180px;
-}
-
-#logo {
-    height: 150px;
-}
-
-#account {
-    width: 160px;
-    margin-right: 20px;
-    display: flex;
-    justify-content: space-between;
-}
-
-#account a {
-    font-size: 20px;
-    color: #AEAEAE;
-    margin-bottom: 200px;
-}
-
-#account a:hover {
-    text-decoration: underline;
-}
-
 /* findid_main */
 #findid_main {width: 1274px; height: 90vh; margin: 0 auto; display: flex; align-items: center; 
     border-width: 0px 3px 0px 3px; border-style: solid; border-color: #AEAEAE;}
@@ -90,14 +25,3 @@ ul {
 #login_uri,#find_pwd_uri {text-decoration: none; font-size: 1rem;
     color: #2d2d2d;}
 #login_uri:hover,#find_pwd_uri:hover {font-weight: bold;}
-
-/* footer */
-#footer {
-    height: 80px;
-    font-size: 25px;
-    line-height: 70px;
-    border-width: 2px 3px 3px 3px;
-    border-style: solid;
-    border-color: #AEAEAE;
-    padding-left: 30px;
-}

@@ -25,7 +25,7 @@ import com.chaOreum.entity.Post;
 import com.chaOreum.entity.PostView;
 import com.chaOreum.entity.Reply;
 import com.chaOreum.entity.SubCategory;
-import com.chaOreum.service.board.contents.ContentsService;
+import com.chaOreum.service.contents.ContentsService;
 import com.chaOreum.service.include.IncludeService;
 import com.chaOreum.service.util.RequestService;
 
