@@ -8,8 +8,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.chaOreum.service.board.contents.ContentsService;
-import com.chaOreum.service.board.notice.NoticeService;
+import com.chaOreum.service.admin.notice.NoticeService;
+import com.chaOreum.service.contents.ContentsService;
 import com.chaOreum.service.include.IncludeService;
 
 @Controller
@@ -37,7 +37,7 @@ public class AdminController {
 		boolean role = false;
 		if(session.getAttribute("admin") != null)
 			role = (boolean) session.getAttribute("admin");
-		if(!role) return "admin/notAdmin";
+		if(!role) return "/admin/notAdmin";
 		
 		return "admin.index";
 	}

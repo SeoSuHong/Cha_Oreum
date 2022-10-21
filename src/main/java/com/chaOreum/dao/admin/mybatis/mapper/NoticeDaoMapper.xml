@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.chaOreum.dao.admin.NoticeDao">
+	
+	<select id="getViewList" resultType="com.chaOreum.entity.NoticeView">
+		SELECT N.*, M.nickname admin_nickname FROM notice N
+		JOIN member M ON M.id = N.admin_id 
+		ORDER BY no
+	</select>
+	
+	<select id="getView" resultType="com.chaOreum.entity.NoticeView">
+		SELECT N.*, M.nickname admin_nickname FROM notice N
+		JOIN member M ON M.id = N.admin_id 
+		WHERE N.no = ${no}
+	</select>
+	
+	<insert id="set" parameterType="com.chaOreum.entity.Notice">
+		INSERT INTO notice VALUES(DEFAULT, #{admin_id}, #{title}, #{contents}, DEFAULT);
+	</insert>
+	
+	<select id="getComments" resultType="com.chaOreum.entity.NoticeComment">
+		SELECT * FROM noticeComment WHERE notice_no = #{no}
+	</select>
+	
+	<select id="getReplies" resultType="com.chaOreum.entity.NoticeReply">
+		SELECT * FROM noticeReply WHERE notice_no = #{no}
+	</select>
+	
+	<delete id="delete">
+		DELETE FROM notice WHERE no = #{no}
+	</delete>
+	
+</mapper>

@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.chaOreum.entity.MainCategory;
 import com.chaOreum.entity.NoticeView;
 import com.chaOreum.entity.SubCategory;
-import com.chaOreum.service.board.notice.NoticeService;
+import com.chaOreum.service.admin.notice.NoticeService;
 import com.chaOreum.service.include.IncludeService;
 
 @Controller

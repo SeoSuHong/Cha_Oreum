@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/admin/manager/post/")
 public class PostController {
 
-	@GetMapping("")
+	@GetMapping("view")
 	public String post() {
 		
 		return "admin.manager.post.post";

@@ -11,7 +11,7 @@ import org.springframework.mock.web.MockHttpServletRequest;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.chaOreum.entity.PostView;
-import com.chaOreum.service.board.contents.ContentsService;
+import com.chaOreum.service.contents.ContentsService;
 import com.chaOreum.service.util.RequestService;
 
 @SpringBootTest

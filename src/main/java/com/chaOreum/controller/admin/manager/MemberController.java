@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/admin/manager/member/")
 public class MemberController {
 
-	@GetMapping("")
+	@GetMapping("view")
 	public String member() {
 		
 		return "admin.manager.member.member";

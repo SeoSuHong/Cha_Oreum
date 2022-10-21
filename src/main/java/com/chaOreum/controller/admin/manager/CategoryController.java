@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/admin/manager/category/")
 public class CategoryController {
 
-	@GetMapping("")
+	@GetMapping("view")
 	public String category() {
 		
 		return "admin.manager.category.category";

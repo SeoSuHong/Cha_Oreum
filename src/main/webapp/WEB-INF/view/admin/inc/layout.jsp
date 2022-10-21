@@ -10,10 +10,13 @@
     <link href="../image/headLogo.png" rel="shortcut icon" type="image/x-icon">
     <title>Cha Oreum</title>
     <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
-    <link rel="stylesheet" href="css/admin/inc/layout.css">
+    <link rel="stylesheet" href="/css/admin/inc/layout.css">
     <link rel="stylesheet" href="<tiles:getAsString name="css" />">
-    <script src="js/inc/header.js"></script>
-    <script src="js/admin/inc/aside.js"></script>
+    <link rel="stylesheet" href="/css/summernote/summernote-lite.css">
+    <script src="/js/summernote/summernote-lite.js"></script>
+    <script src="/js/summernote/summernote-ko-KR.js"></script>
+    <script src="/js/inc/header.js"></script>
+    <script src="/js/admin/inc/aside.js"></script>
     <script src="<tiles:getAsString name="js" />"></script>
 </head>
 <body>
