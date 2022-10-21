@@ -67,8 +67,6 @@ main {
     padding-right: 30px;
     padding-bottom: 10px;
     overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
 }
 
 #contents {
