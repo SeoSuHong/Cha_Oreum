@@ -90,7 +90,7 @@ function sendComment(no, nickname) {
 	
 	$.ajax({
 		type : "post",
-		url : "/contents/comment?no=" + no + "&nickname=" + nickname + "&contents=" + contents.val() + "&comment_secret=" + comment_secret,
+		url : "/board/contents/comment?no=" + no + "&nickname=" + nickname + "&contents=" + contents.val() + "&comment_secret=" + comment_secret,
 		success : function(result) {
 			if(result) {
 				location.reload();
@@ -122,7 +122,7 @@ function sendReply(obj, no, nickname) {
 
 	$.ajax({
 		type : "post",
-		url : "/contents/reply?no=" + no + "&nickname=" + nickname + "&contents=" + contents.val() + "&reply_secret=" + reply_secret,
+		url : "/board/contents/reply?no=" + no + "&nickname=" + nickname + "&contents=" + contents.val() + "&reply_secret=" + reply_secret,
 		success : function(result) {
 			if(result) {
 				location.reload();
