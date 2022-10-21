@@ -16,11 +16,11 @@
     <put-attribute name="main" value="/WEB-INF/view/{1}.jsp" />
   </definition>
   
-  <definition name="contents.*" template="/WEB-INF/view/contents/inc/layout.jsp" extends="layout.common">
-    <put-attribute name="css" value="/css/contents/{1}.css" />
-    <put-attribute name="js" value="/js/contents/{1}.js" />
+  <definition name="board.*.*" template="/WEB-INF/view/board//inc/layout.jsp" extends="layout.common">
+    <put-attribute name="css" value="/css/board/{1}/{2}.css" />
+    <put-attribute name="js" value="/js/board/{1}/{2}.js" />
     <put-attribute name="title" value="" />
-    <put-attribute name="main" value="/WEB-INF/view/contents/{1}.jsp" />
+    <put-attribute name="main" value="/WEB-INF/view/board/{1}/{2}.jsp" />
   </definition>
   
   <definition name="account.*" template="/WEB-INF/view/account/inc/layout.jsp" extends="layout.common">

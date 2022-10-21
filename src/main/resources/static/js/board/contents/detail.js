@@ -20,7 +20,7 @@ function like(no, id) {
 		}
 	}
 	
-	const like_url = "/contents/like?no=" + no + "&id=" + id + "&l=like";
+	const like_url = "/board/contents/like?no=" + no + "&id=" + id + "&l=like";
 	// 좋아요 클릭 시 좋아요 및 이모지 변경
 	$.ajax({
 		type : "post",
@@ -38,7 +38,7 @@ function like(no, id) {
 
 function unlike(no, id) {
 	// 좋아요 취소 클릭 시 좋아요 취소 및 이모지 변경
-	const unlike_url = "/contents/like?no=" + no + "&id=" + id + "&l=unlike";
+	const unlike_url = "/board/contents/like?no=" + no + "&id=" + id + "&l=unlike";
 	$.ajax({
 		type : "post",
 		url : unlike_url,
@@ -86,7 +86,7 @@ function sendComment(no, nickname) {
 	
 	$.ajax({
 		type : "post",
-		url : "/contents/comment?no=" + no + "&nickname=" + nickname + "&contents=" + contents.val(),
+		url : "/board/contents/comment?no=" + no + "&nickname=" + nickname + "&contents=" + contents.val(),
 		success : function(result) {
 			if(result) {
 				location.reload();
@@ -114,7 +114,7 @@ function sendReply(obj, no, nickname) {
 
 	$.ajax({
 		type : "post",
-		url : "/contents/reply?no=" + no + "&nickname=" + nickname + "&contents=" + contents.val(),
+		url : "/board/contents/reply?no=" + no + "&nickname=" + nickname + "&contents=" + contents.val(),
 		success : function(result) {
 			if(result) {
 				location.reload();
@@ -132,7 +132,7 @@ function deleteComment(no) {
 	if(delete_chk) {
 		$.ajax({
 			type : "post",
-			url : "/contents/delete_comment?no=" + no,
+			url : "/board/contents/delete_comment?no=" + no,
 			success : function(result) {
 				if(result) {
 					location.reload();
@@ -151,7 +151,7 @@ function deleteReply(no) {
 	if(delete_chk) {
 		$.ajax({
 			type : "post",
-			url : "/contents/delete_reply?no=" + no,
+			url : "/board/contents/delete_reply?no=" + no,
 			success : function(result) {
 				if(result) {
 					location.reload();
@@ -168,7 +168,7 @@ function delete_post(no) {
 	let check = confirm("게시글을 삭제 하시겠습니까?\n삭제된 게시글은 복구할 수 없습니다.");
 	
 	if(check) {
-		location.href="/contents/delete_post?no=" + no;
+		location.href="/board/contents/delete_post?no=" + no;
 	}
 }
 

@@ -5,7 +5,7 @@
     <header>
         <div id="header">
             <div id="header_empty"></div>
-            <a href="/"><img src="../image/logo.png" alt="logo" id="logo"></a>
+            <a href="/"><img src="/image/logo.png" alt="logo" id="logo"></a>
             
             <c:if test="${empty id}">
 	            <div id="account">

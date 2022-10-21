@@ -1,4 +1,4 @@
-package com.chaOreum.service.contents;
+package com.chaOreum.service.board.contents;
 
 import java.util.List;
 

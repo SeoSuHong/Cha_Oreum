@@ -72,3 +72,35 @@ CREATE TABLE hot(
     FOREIGN KEY(post_no) REFERENCES post(no),
     PRIMARY KEY(no)
 );
+
+CREATE TABLE notice(
+	no          INT(11)        NOT NULL    AUTO_INCREMENT,
+	admin_id    VARCHAR(20)    NOT NULL,
+	title       VARCHAR(50)    NOT NULL,
+	contents    TEXT           NOT NULL,
+	regDate     DATE           NOT NULL    DEFAULT (CURRENT_DATE),
+	FOREIGN KEY(admin_id) REFERENCES member(id),
+	PRIMARY KEY(no)
+);
+
+CREATE TABLE noticeComment(
+	no                 INT(11)          NOT NULL    AUTO_INCREMENT,
+    notice_no          INT(11)          NOT NULL,
+    member_nickname    VARCHAR(20)      NOT NULL,
+    contents           VARCHAR(1000)    NOT NULL,
+    regDate            DATETIME         NOT NULL    DEFAULT NOW(),
+    FOREIGN KEY(notice_no) REFERENCES notice(no),
+    FOREIGN KEY(member_nickname) REFERENCES member(nickname),
+    PRIMARY KEY(no)
+)
+
+CREATE TABLE noticeReply(
+	no                 INT(11)          NOT NULL    AUTO_INCREMENT,
+    noticeComment_no         INT(11)          NOT NULL,
+    member_nickname    VARCHAR(20)      NOT NULL,
+    contents           VARCHAR(1000)    NOT NULL,
+    regDate            DATETIME         NOT NULL    DEFAULT NOW(),
+    FOREIGN KEY(noticeComment_no) REFERENCES noticeComment(no),
+    FOREIGN KEY(member_nickname) REFERENCES member(nickname),
+    PRIMARY KEY(no)
+)

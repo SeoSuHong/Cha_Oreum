@@ -6,7 +6,7 @@ $(function() {
 	
 	$.ajax({
 		type : "post",
-		url : "/contents/getScByMc?no=" + mainCategory,
+		url : "/board/contents/getScByMc?no=" + mainCategory,
 		success : function(list) {				
 			for(let i = 0; i < list.length; i++){
 				$("#subCategory").append("<option value='" + list[i].no +"'>" + list[i].name + "</option>");
@@ -25,7 +25,7 @@ function changeMainCategory() {
 	if(no != null && no != '') {
 		$.ajax({
 			type : "post",
-			url : "/contents/getScByMc?no=" + no,
+			url : "/board/contents/getScByMc?no=" + no,
 			success : function(list) {
 				$("#subCategory option").remove();
 				$("#subCategory").append("<option value=''> -- 선택해 주세요 -- </option>");				
@@ -75,7 +75,7 @@ function sendFile(file, el) {
 	$.ajax({
 		data : form_data,
 		type : "post",
-		url : "/contents/contents_fileUpload",
+		url : "/board/contents/contents_fileUpload",
 		cache : false,
 		contentType : false,
 		encType : "multipart/form-data",

@@ -13,20 +13,25 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.chaOreum.entity.MainCategory;
+import com.chaOreum.entity.NoticeView;
 import com.chaOreum.entity.Paging;
 import com.chaOreum.entity.PostView;
 import com.chaOreum.entity.SubCategory;
-import com.chaOreum.service.contents.ContentsService;
+import com.chaOreum.service.board.contents.ContentsService;
+import com.chaOreum.service.board.notice.NoticeService;
 import com.chaOreum.service.include.IncludeService;
 
 @Controller
 public class HomeController {
 	
 	@Autowired
-	IncludeService includeService;
+	private IncludeService includeService;
 	
 	@Autowired
-	ContentsService contentsService;
+	private ContentsService contentsService;
+	
+	@Autowired
+	private NoticeService noticeService;
 	
 	@GetMapping("/")
 	public String index(Model model, HttpSession session,
@@ -51,6 +56,9 @@ public class HomeController {
 		}
 		
 		// main
+		// 공지사항 가져오기
+		List<NoticeView> noticeViewList = noticeService.getNoticeViewList();
+		
 		// parameter에 따른 post리스트 가져오기
 		List<PostView> list = contentsService.getViewList(c, n, t, s, p);
 		
@@ -79,6 +87,7 @@ public class HomeController {
 		model.addAttribute("mainCategories", mainCategories);
 		model.addAttribute("subCategories", subCategories);
 		model.addAttribute("list", list);
+		model.addAttribute("noticeViewList", noticeViewList);
 		model.addAttribute("page", new Paging(endPage, block_firstPage, block_endPage, block_per_page, endBlock_firstPage));
 		model.addAttribute("c", c);
 		model.addAttribute("t", t);

@@ -26,7 +26,7 @@ function sendFile(file, el) {
 	$.ajax({
 		data : form_data,
 		type : "post",
-		url : "/contents/contents_fileUpload",
+		url : "/board/contents/contents_fileUpload",
 		cache : false,
 		contentType : false,
 		encType : "multipart/form-data",
@@ -44,7 +44,7 @@ function changeMainCategory() {
 	if(no != null && no != '') {
 		$.ajax({
 			type : "post",
-			url : "/contents/getScByMc?no=" + no,
+			url : "/board/contents/getScByMc?no=" + no,
 			success : function(list) {
 				$("#subCategory option").remove();
 				$("#subCategory").append("<option value=''> -- 선택해 주세요 -- </option>");				

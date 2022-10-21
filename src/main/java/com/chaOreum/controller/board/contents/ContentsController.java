@@ -1,4 +1,4 @@
-package com.chaOreum.controller.contents;
+package com.chaOreum.controller.board.contents;
 
 import java.io.File;
 import java.io.IOException;
@@ -25,12 +25,12 @@ import com.chaOreum.entity.Post;
 import com.chaOreum.entity.PostView;
 import com.chaOreum.entity.Reply;
 import com.chaOreum.entity.SubCategory;
-import com.chaOreum.service.contents.ContentsService;
+import com.chaOreum.service.board.contents.ContentsService;
 import com.chaOreum.service.include.IncludeService;
 import com.chaOreum.service.util.RequestService;
 
 @Controller
-@RequestMapping("/contents/")
+@RequestMapping("/board/contents/")
 public class ContentsController {
 	
 	@Autowired
@@ -74,7 +74,7 @@ public class ContentsController {
 		model.addAttribute("comments", comments);
 		model.addAttribute("replies", replies);
 		
-		return "contents.detail";
+		return "board.contents.detail";
 	}
 	
 	@PostMapping("like")
@@ -195,7 +195,7 @@ public class ContentsController {
 		model.addAttribute("mainCategories", mainCategories);
 		model.addAttribute("subCategories", subCategories);
 		
-		return "contents.reg";
+		return "board.contents.reg";
 	}
 	
 	@PostMapping("reg")
@@ -217,7 +217,7 @@ public class ContentsController {
 			
 			realPath += File.separator + fileName;
 			File saveFile = new File(realPath);
-			
+			System.out.println(file.getOriginalFilename());
 			file.transferTo(saveFile);
 		}
 		
@@ -315,7 +315,7 @@ public class ContentsController {
 		PostView post = contentsService.getView(no);
 		model.addAttribute("post", post);
 		
-		return "contents.edit";
+		return "board.contents.edit";
 	}
 	
 	@PostMapping("edit")
@@ -402,15 +402,8 @@ public class ContentsController {
 		Post post = new Post(no, id, subCategory, title, contents, null, saveFileName, saveFileSize);
 		int result = contentsService.editPost(post);
 		
-		if(result == 1) message = "<script>alert('게시글을 수정하였습니다.'); location.href='/contents/detail?no=" + no + "';</script>";
-		else message = "<script>alert('게시글 수정에 실패하였습니다.\n다시 시도해 주세요.'); location.href='/contents/detail?no=" + no + "';</script>";
-		
-		System.out.println("no : " + no);
-		System.out.println("subCategory : " + subCategory);
-		System.out.println("title : " + title);
-		System.out.println("contents : " + contents);
-		System.out.println("fileName : " + saveFileName);
-		System.out.println("fileSize : " + saveFileSize);
+		if(result == 1) message = "<script>alert('게시글을 수정하였습니다.'); location.href='/board/contents/detail?no=" + no + "';</script>";
+		else message = "<script>alert('게시글 수정에 실패하였습니다.\n다시 시도해 주세요.'); location.href='/board/contents/detail?no=" + no + "';</script>";
 		
 		return message;
 	}

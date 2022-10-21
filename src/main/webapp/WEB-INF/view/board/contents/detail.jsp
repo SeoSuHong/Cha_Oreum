@@ -45,7 +45,7 @@
                     </div>
                 </c:if>
                 <div onclick="comment_focus()">
-                    <img src="../image/comment.png" id="comment_img"><div id="comment_btn">댓글 쓰기</div>
+                    <img src="/image/comment.png" id="comment_img"><div id="comment_btn">댓글 쓰기</div>
                 </div>
             </div>
 
@@ -101,7 +101,7 @@
             <!-- 수정, 삭제 -->
 			<c:if test="${nickname eq post.nickname}">
 	            <div id="update_wrap">
-                    <input type="button" id="update" value="수 정" onclick="location.href='/contents/edit?no=${post.no}'">
+                    <input type="button" id="update" value="수 정" onclick="location.href='/board/contents/edit?no=${post.no}'">
                     <input type="button" id="delete" value="삭 제" onclick="delete_post(${post.no})">
 	            </div>
 	        </c:if>

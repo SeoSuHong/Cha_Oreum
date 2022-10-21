@@ -5,7 +5,7 @@
 		<main>
         
             <div>
-                <form name="editForm" action="/contents/edit" method="post" enctype="multipart/form-data">
+                <form name="editForm" action="/board/contents/edit" method="post" enctype="multipart/form-data">
                     <div id="regCategory">
                         <div>* Main Category</div>
                         <select name="mainCategory" id="mainCategory" onchange="changeMainCategory()">

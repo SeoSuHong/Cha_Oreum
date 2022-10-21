@@ -4,7 +4,7 @@
 		<main>
         
             <div>
-                <form name="regForm" action="/contents/reg" method="post" enctype="multipart/form-data">
+                <form name="regForm" action="/board/contents/reg" method="post" enctype="multipart/form-data">
                     <div id="regCategory">
                         <div>* Main Category</div>
                         <select name="mainCategory" id="mainCategory" onchange="changeMainCategory()">

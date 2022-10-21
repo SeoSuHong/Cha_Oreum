@@ -57,7 +57,7 @@
                 <!-- 글 쓰기 -->
                 <c:if test="${not empty nickname && nickname eq n}">
 	                <div id="reg_wrap">
-	                    <a href="/contents/reg" id="reg">글 쓰기</a>
+	                    <a href="/board/contents/reg" id="reg">글 쓰기</a>
 	                </div>
 	            </c:if>
 	            
@@ -72,36 +72,14 @@
 		            			<th id="noticeWriter">작성자</th>
 		            			<th id="noticeRegDate">작성일</th>
 		            		</tr>
-		            		<tr>
-		            			<td style="text-align: center;">1</td>
-		            			<td style="padding-left: 5px;"><a href="">비밀 댓글(추후 업데이트 예정)</a></td>
-		            			<td style="text-align: center;">관리자</td>
-		            			<td style="text-align: center;">2022-10-20</td>
-		            		</tr>
-		            		<tr>
-		            			<td style="text-align: center;">2</td>
-		            			<td style="padding-left: 5px;"><a href="">태희는 바보인 듯 하다.</a></td>
-		            			<td style="text-align: center;">관리자</td>
-		            			<td style="text-align: center;">2022-10-20</td>
-		            		</tr>
-		            		<tr>
-		            			<td style="text-align: center;">3</td>
-		            			<td style="padding-left: 5px;"><a href="">그런 듯 한게 아니라 바보이다.</a></td>
-		            			<td style="text-align: center;">관리자</td>
-		            			<td style="text-align: center;">2022-10-20</td>
-		            		</tr>
-		            		<tr>
-		            			<td style="text-align: center;">4</td>
-		            			<td style="padding-left: 5px;"><a href="">Cha Oreum 상반기 이벤트</a></td>
-		            			<td style="text-align: center;">관리자</td>
-		            			<td style="text-align: center;">2022-10-20</td>
-		            		</tr>
-		            		<tr>
-		            			<td style="text-align: center;">5</td>
-		            			<td style="padding-left: 5px;"><a href="">Develop Study 모집 카테고리 (추후 업데이트 예정)</a></td>
-		            			<td style="text-align: center;">관리자</td>
-		            			<td style="text-align: center;">2022-10-20</td>
-		            		</tr>
+		            		<c:forEach var="notice" items="${noticeViewList}" varStatus="st">
+			            		<tr>
+			            			<td style="text-align: center;">${st.count}</td>
+			            			<td style="padding-left: 5px;"><a href="/board/notice/detail?no=${notice.no}">${notice.title}</a></td>
+			            			<td style="text-align: center;">${notice.admin_nickname}</td>
+			            			<td style="text-align: center;"><fmt:formatDate value="${notice.regDate}" pattern="yyyy-MM-dd"/></td>
+			            		</tr>
+			            	</c:forEach>
 		            	</table>
 		            </div>
 				</c:if>
@@ -123,7 +101,7 @@
 	                            </div>
 	                        </div>
 	
-	                        <div class="title"><a href="/contents/detail?no=${post.no}">${post.title}</a></div>
+	                        <div class="title"><a href="/board/contents/detail?no=${post.no}">${post.title}</a></div>
 	                        <div class="cont">${post.contents}</div>
 	                    </div>
                     </c:forEach>

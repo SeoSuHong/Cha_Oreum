@@ -15,7 +15,7 @@ import com.chaOreum.entity.Reply;
 @Repository
 public class MybatisContentsDao implements ContentsDao {
 	
-	ContentsDao mapper;
+	private ContentsDao mapper;
 	
 	@Autowired
 	public MybatisContentsDao(SqlSession session) {
