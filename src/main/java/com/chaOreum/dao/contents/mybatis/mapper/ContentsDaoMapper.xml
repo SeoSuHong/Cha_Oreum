@@ -10,6 +10,7 @@
 		JOIN mainCategory MC ON MC.no = SC.mainCategory_no
 		JOIN member M ON M.id = P.member_id
 			WHERE P.no = #{no}
+			ORDER BY P.regDate DESC
   </select>
 
   <select id="getViewList" resultType="com.chaOreum.entity.PostView">
@@ -28,7 +29,7 @@
 					AND P.title LIKE '%${title}%'
 				</if>
 			</where>
-			<if test="sort == 'new' or sort == null and sort == ''">
+			<if test="sort == 'new' or sort == null">
 	        	ORDER BY P.regDate DESC
 	        </if>
 	        <if test="sort == 'hot'">
@@ -84,11 +85,11 @@
   </select>
   
   <insert id="insertComment">
-  	INSERT INTO comment VALUES(DEFAULT, #{no}, #{nickname}, #{contents}, DEFAULT);
+  	INSERT INTO comment VALUES(DEFAULT, #{no}, #{nickname}, #{contents}, DEFAULT, #{comment_secret});
   </insert>
   
   <insert id="insertReply">
-  	INSERT INTO reply VALUES(DEFAULT, #{no}, #{nickname}, #{contents}, DEFAULT);
+  	INSERT INTO reply VALUES(DEFAULT, #{no}, #{nickname}, #{contents}, DEFAULT, #{reply_secret});
   </insert>
   
   <delete id="deleteComment">

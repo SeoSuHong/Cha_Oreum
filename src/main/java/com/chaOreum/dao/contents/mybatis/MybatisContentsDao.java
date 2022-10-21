@@ -78,13 +78,13 @@ public class MybatisContentsDao implements ContentsDao {
 	}
 	
 	@Override
-	public int insertComment(int no, String nickname, String contents) {
-		return mapper.insertComment(no, nickname, contents);
+	public int insertComment(int no, String nickname, String contents, boolean comment_secret) {
+		return mapper.insertComment(no, nickname, contents, comment_secret);
 	}
 	
 	@Override
-	public int insertReply(int no, String nickname, String contents) {
-		return mapper.insertReply(no, nickname, contents);
+	public int insertReply(int no, String nickname, String contents, boolean reply_secret) {
+		return mapper.insertReply(no, nickname, contents, reply_secret);
 	}
 	
 	@Override

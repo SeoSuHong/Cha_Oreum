@@ -19,8 +19,8 @@ public interface ContentsDao {
 	int deleteHot(int no, String id);
 	List<Comment> getComments(int no);
 	List<Reply> getReplies(int no);
-	int insertComment(int no, String nickname, String contents);
-	int insertReply(int no, String nickname, String contents);
+	int insertComment(int no, String nickname, String contents, boolean comment_secret);
+	int insertReply(int no, String nickname, String contents, boolean reply_secret);
 	int deleteComment(int no);
 	int deleteReplies(int no);
 	int deleteReply(int no);

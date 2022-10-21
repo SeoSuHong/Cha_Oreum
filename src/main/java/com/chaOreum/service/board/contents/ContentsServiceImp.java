@@ -90,13 +90,13 @@ public class ContentsServiceImp implements ContentsService {
 	}
 	
 	@Override
-	public int sendComment(int no, String nickname, String contents) {
-		return contentsDao.insertComment(no, nickname, contents);
+	public int sendComment(int no, String nickname, String contents, boolean comment_secret) {
+		return contentsDao.insertComment(no, nickname, contents, comment_secret);
 	}
 	
 	@Override
-	public int sendReply(int no, String nickname, String contents) {
-		return contentsDao.insertReply(no, nickname, contents);
+	public int sendReply(int no, String nickname, String contents, boolean reply_secret) {
+		return contentsDao.insertReply(no, nickname, contents, reply_secret);
 	}
 	
 	@Override
@@ -118,4 +118,5 @@ public class ContentsServiceImp implements ContentsService {
 	public int getEndPage(int category_no, String nickname, String title) {
 		return contentsDao.getEndPage(category_no, nickname, title);
 	}
+
 }

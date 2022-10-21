@@ -105,11 +105,11 @@ public class ContentsController {
 	// 댓글 작성
 	@PostMapping("comment")
 	@ResponseBody
-	public boolean comment(int no, String nickname, String contents) {
+	public boolean comment(int no, String nickname, String contents, boolean comment_secret) {
 		boolean result = false;
 		
 		try {
-			int sendComment = contentsService.sendComment(no, nickname, contents);
+			int sendComment = contentsService.sendComment(no, nickname, contents, comment_secret);
 			if(sendComment == 1)
 				result = true;
 		} catch(Exception e) {
@@ -122,11 +122,11 @@ public class ContentsController {
 	// 답글 작성
 	@PostMapping("reply")
 	@ResponseBody
-	public boolean reply(int no, String nickname, String contents) {
+	public boolean reply(int no, String nickname, String contents, boolean reply_secret) {
 		boolean result = false;
 		
 		try {
-			int sendReply = contentsService.sendReply(no, nickname, contents);
+			int sendReply = contentsService.sendReply(no, nickname, contents, reply_secret);
 			if(sendReply == 1)
 				result = true;
 		} catch(Exception e) {

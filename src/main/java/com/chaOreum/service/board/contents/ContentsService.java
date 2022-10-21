@@ -33,9 +33,9 @@ public interface ContentsService {
 	// 답글 가져오기
 	List<Reply> getReplies(int no);
 	// 댓글 작성
-	int sendComment(int no, String nickname, String contents);
+	int sendComment(int no, String nickname, String contents, boolean comment_secret);
 	// 답글 작성
-	int sendReply(int no, String nickname, String contents);
+	int sendReply(int no, String nickname, String contents, boolean reply_secret);
 	// 댓글 삭제
 	int deleteComment(int no);
 	// 삭제하려는 댓글의 답글 전부 삭제
