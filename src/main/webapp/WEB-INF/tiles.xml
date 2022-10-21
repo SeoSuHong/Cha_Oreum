@@ -29,4 +29,23 @@
     <put-attribute name="title" value="{1}" />
     <put-attribute name="main" value="/WEB-INF/view/account/{1}.jsp" />
   </definition>
+  
+  <definition name="layout.admin" template="/WEB-INF/view/admin/inc/layout.jsp" extends="layout.common">
+    <put-attribute name="aside" value="/WEB-INF/view/admin/inc/aside.jsp" />
+  </definition>
+  
+  <definition name="admin.manager.*.*" extends="layout.admin">
+    <put-attribute name="css" value="/css/admin/manager/{1}/{2}.css" />
+    <put-attribute name="js" value="/js/admin/manager/{1}/{2}.js" />
+    <put-attribute name="title" value="홈" />
+    <put-attribute name="main" value="/WEB-INF/view/admin/manager/{1}/{2}.jsp" />
+  </definition>
+  
+  <definition name="admin.*" extends="layout.admin">
+    <put-attribute name="css" value="/css/admin/{1}.css" />
+    <put-attribute name="js" value="/js/admin/{1}.js" />
+    <put-attribute name="title" value="홈" />
+    <put-attribute name="main" value="/WEB-INF/view/admin/{1}.jsp" />
+  </definition>
+  
 </tiles-definitions>

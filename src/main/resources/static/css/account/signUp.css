@@ -36,40 +36,6 @@ ul {
     list-style: none;
 }
 
-/* herder */
-#header {
-    height: 250px;
-    background-color: #393939;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-#header_empty {
-    width: 180px;
-}
-
-#logo {
-    height: 150px;
-}
-
-#account {
-    width: 160px;
-    margin-right: 20px;
-    display: flex;
-    justify-content: space-between;
-}
-
-#account a {
-    font-size: 20px;
-    color: #AEAEAE;
-    margin-bottom: 200px;
-}
-
-#account a:hover {
-    text-decoration: underline;
-}
-
 /*signupmain*/
 #signup_main {width: 1274px; height: 90vh; margin: 0 auto; display: flex; align-items: center; 
     border-width: 0px 3px 0px 3px; border-style: solid; border-color: #AEAEAE;}
@@ -95,14 +61,3 @@ ul {
 #signup_sp {font-size: 1rem; font-weight: bold; color: white; }
 #idserch {text-decoration: none; color: #2d2d2d;}
 #idserch:hover {font-weight: bold;}
-
-/* footer */
-#footer {
-    height: 80px;
-    font-size: 25px;
-    line-height: 70px;
-    border-width: 2px 3px 3px 3px;
-    border-style: solid;
-    border-color: #AEAEAE;
-    padding-left: 30px;
-}

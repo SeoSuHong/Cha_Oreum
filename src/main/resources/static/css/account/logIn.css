@@ -35,40 +35,6 @@ ul {
     list-style: none;
 }
 
-/* herder */
-#header {
-    height: 250px;
-    background-color: #393939;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-#header_empty {
-    width: 180px;
-}
-
-#logo {
-    height: 150px;
-}
-
-#account {
-    width: 160px;
-    margin-right: 20px;
-    display: flex;
-    justify-content: space-between;
-}
-
-#account a {
-    font-size: 20px;
-    color: #AEAEAE;
-    margin-bottom: 200px;
-}
-
-#account a:hover {
-    text-decoration: underline;
-}
-
 /*loginmain*/
 #loginmain {width: 1274px; height: 90vh; margin: 0 auto; display: flex; align-items: center; 
     border-width: 0px 3px 0px 3px; border-style: solid; border-color: #AEAEAE;}
@@ -84,14 +50,3 @@ ul {
 #lobtn {font-size: 1.2rem; font-weight: bold; color: white;}
 .lowst {text-decoration: none; color: #2D2D2D; margin-top: 50px;}
 #signup:hover, #idserch:hover {font-weight: bold;}
-
-/* footer */
-#footer {
-    height: 80px;
-    font-size: 25px;
-    line-height: 70px;
-    border-width: 2px 3px 3px 3px;
-    border-style: solid;
-    border-color: #AEAEAE;
-    padding-left: 30px;
-}
