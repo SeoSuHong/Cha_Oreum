@@ -19,4 +19,12 @@ public interface NoticeDao {
 	List<NoticeComment> getComments(int no);
 
 	List<NoticeReply> getReplies(int no);
+
+	int setComment(NoticeComment comment);
+
+	int setReply(NoticeReply reply);
+
+	int commentDelete(int no);
+
+	int replyDelete(int no);
 }

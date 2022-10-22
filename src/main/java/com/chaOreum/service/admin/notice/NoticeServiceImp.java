@@ -38,8 +38,28 @@ public class NoticeServiceImp implements NoticeService {
 	}
 	
 	@Override
+	public int setComment(NoticeComment comment) {
+		return noticeDao.setComment(comment);
+	}
+	
+	@Override
+	public int commentDelete(int no) {
+		return noticeDao.commentDelete(no);
+	}
+	
+	@Override
 	public List<NoticeReply> getReplies(int no) {
 		return noticeDao.getReplies(no);
+	}
+	
+	@Override
+	public int setReply(NoticeReply reply) {
+		return noticeDao.setReply(reply);
+	}
+	
+	@Override
+	public int replyDelete(int no) {
+		return noticeDao.replyDelete(no);
 	}
 	
 	@Override

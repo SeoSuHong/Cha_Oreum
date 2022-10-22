@@ -62,7 +62,7 @@
 	            </c:if>
 	            
 	            <!-- 공지사항 -->
-	            <c:if test="${empty p || p eq 1 && n ne nickname}">
+	            <c:if test="${(empty p || p eq 1) && (empty n || n ne nickname)}">
 		            <div id="notice">
 		            	<div id="notice_txt">※ 공지사항 ※</div>
 		            	<table id="noticeList">

@@ -39,75 +39,11 @@ main {
     white-space: nowrap;
 }
 
-#files {
-    font-size: 18px;
-    color: #AEAEAE;
-    border-bottom: 1px solid #AEAEAE;
-    padding: 10px 30px;
-    display: flex;
-}
-
-#file {
-    margin-right: 20px;
-}
-
-.fileName {
-    color: #AEAEAE;
-}
-
-.fileName:hover {
-    text-decoration: underline;
-}
-
-.fileSize {
-    font-size: 14px;
-}
-
 #contents {
     font-size: 22px;
     border-bottom: 1px solid #AEAEAE;
+    margin-bottom: 50px;
     padding: 20px 10px;
-}
-
-#guest {
-    width: 400px;
-    margin: 60px auto 50px;
-    display: flex;
-    justify-content: space-between;
-}
-
-#guest>div {
-    height: 50px;
-    border: 2px solid #AEAEAE;
-    border-radius: 30px;
-    padding: 5px 15px;
-    box-shadow: 2px 2px 2px black;
-    display: flex;
-    justify-content: center;
-    cursor: pointer;
-}
-
-#guest>div:active {
-    box-shadow: none;
-    position: relative;
-    top: 2px;
-    left: 2px;
-}
-
-#hart {
-    font-size: 35px;
-}
-
-#like, #comment_btn {
-    font-size: 20px;
-    font-weight: bold;
-    line-height: 50px;
-    margin-left: 10px;
-}
-
-#comment_img {
-    width: 40px;
-    padding-bottom: 5px;
 }
 
 /* comment */

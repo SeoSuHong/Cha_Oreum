@@ -63,6 +63,46 @@ public class NoticeController {
 		return "admin.manager.notice.detail";
 	}
 	
+	@PostMapping("comment")
+	@ResponseBody
+	public boolean setComment(int no, String nickname, String contents, boolean secret) {
+		
+		NoticeComment comment = new NoticeComment(0, no, nickname, contents, null, secret);
+		int insert = noticeService.setComment(comment);
+		
+		if(insert == 1) return true;
+		else return false;
+	}
+	
+	@PostMapping("commentDelete")
+	@ResponseBody
+	public boolean commentDelete(int no) {
+		int delete = noticeService.commentDelete(no);
+		
+		if(delete == 1) return true;
+		else return false;
+	}
+	
+	@PostMapping("replyDelete")
+	@ResponseBody
+	public boolean replyDelete(int no) {
+		int delete = noticeService.replyDelete(no);
+		
+		if(delete == 1) return true;
+		else return false;
+	}
+	
+	@PostMapping("reply")
+	@ResponseBody
+	public boolean setReply(int no, int comment_no, String nickname, String contents, boolean secret) {
+		
+		NoticeReply reply = new NoticeReply(0, no, comment_no, nickname, contents, null, secret);
+		int insert = noticeService.setReply(reply);
+		
+		if(insert == 1) return true;
+		else return false;
+	}
+	
 	@GetMapping("reg")
 	public String reg(HttpSession session) {
 		// 권한 확인
@@ -117,14 +157,16 @@ public class NoticeController {
 	}
 	
 	@GetMapping("edit")
-	public String edit(int no, HttpSession session) {
+	public String edit(int no, Model model, HttpSession session) {
 		// 권한 확인
 		boolean role = false;
 		if(session.getAttribute("admin") != null)
 			role = (boolean) session.getAttribute("admin");
 		if(!role) return "/admin/notAdmin";
 		
+		Notice notice = noticeService.getView(no);
 		
+		model.addAttribute("notice", notice);
 		
 		return "admin.manager.notice.edit";
 	}

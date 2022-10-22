@@ -21,12 +21,28 @@
 	</insert>
 	
 	<select id="getComments" resultType="com.chaOreum.entity.NoticeComment">
-		SELECT * FROM noticeComment WHERE notice_no = #{no}
+		SELECT * FROM noticeComment WHERE notice_no = #{no} ORDER BY regDate DESC
 	</select>
 	
+	<insert id="setComment" parameterType="com.chaOreum.entity.NoticeComment">
+		INSERT INTO noticeComment VALUES(DEFAULT, #{notice_no}, #{member_nickname}, #{contents}, DEFAULT, #{secret})
+	</insert>
+	
+	<delete id="commentDelete">
+		DELETE FROM noticeComment WHERE no = #{no}
+	</delete>
+	
 	<select id="getReplies" resultType="com.chaOreum.entity.NoticeReply">
-		SELECT * FROM noticeReply WHERE notice_no = #{no}
+		SELECT * FROM noticeReply WHERE notice_no = #{no} ORDER BY regDate DESC
 	</select>
+	
+	<insert id="setReply" parameterType="com.chaOreum.entity.NoticeReply">
+		INSERT INTO noticeReply VALUES(DEFAULT, #{notice_no}, #{comment_no}, #{member_nickname}, #{contents}, DEFAULT, #{secret})
+	</insert>
+	
+	<delete id="replyDelete">
+		DELETE FROM noticeReply WHERE no = #{no}
+	</delete>
 	
 	<delete id="delete">
 		DELETE FROM notice WHERE no = #{no}
