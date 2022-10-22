@@ -89,6 +89,7 @@ CREATE TABLE noticeComment(
     member_nickname    VARCHAR(20)      NOT NULL,
     contents           VARCHAR(1000)    NOT NULL,
     regDate            DATETIME         NOT NULL    DEFAULT NOW(),
+    secret             BIT(1)           NOT NULL    b'0',
     FOREIGN KEY(notice_no) REFERENCES notice(no),
     FOREIGN KEY(member_nickname) REFERENCES member(nickname),
     PRIMARY KEY(no)
@@ -97,10 +98,11 @@ CREATE TABLE noticeComment(
 CREATE TABLE noticeReply(
 	no                  INT(11)          NOT NULL    AUTO_INCREMENT,
 	notice_no           INT(11)          NOT NULL,
-    noticeComment_no    INT(11)          NOT NULL,
+    comment_no          INT(11)          NOT NULL,
     member_nickname     VARCHAR(20)      NOT NULL,
     contents            VARCHAR(1000)    NOT NULL,
     regDate             DATETIME         NOT NULL    DEFAULT NOW(),
+    secret              BIT(1)           NOT NULL    b'0',
     FOREIGN KEY(notice_no) REFERENCES notice(no),
     FOREIGN KEY(noticeComment_no) REFERENCES noticeComment(no),
     FOREIGN KEY(member_nickname) REFERENCES member(nickname),

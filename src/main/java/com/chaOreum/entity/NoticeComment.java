@@ -8,16 +8,18 @@ public class NoticeComment {
 	private String member_nickname;
 	private String contents;
 	private Date regDate;
+	private boolean secret;
 	
 	public NoticeComment() {}
 
-	public NoticeComment(int no, int notice_no, String member_nickname, String contents, Date regDate) {
+	public NoticeComment(int no, int notice_no, String member_nickname, String contents, Date regDate, boolean secret) {
 		super();
 		this.no = no;
 		this.notice_no = notice_no;
 		this.member_nickname = member_nickname;
 		this.contents = contents;
 		this.regDate = regDate;
+		this.secret = secret;
 	}
 
 	public int getNo() {
@@ -59,10 +61,18 @@ public class NoticeComment {
 	public void setRegDate(Date regDate) {
 		this.regDate = regDate;
 	}
+	
+	public boolean isSecret() {
+		return secret;
+	}
+	
+	public void setSecret(boolean secret) {
+		this.secret = secret;
+	}
 
 	@Override
 	public String toString() {
 		return "NoticeComment [no=" + no + ", notice_no=" + notice_no + ", member_nickname=" + member_nickname
-				+ ", contents=" + contents + ", regDate=" + regDate + "]";
+				+ ", contents=" + contents + ", regDate=" + regDate + ", secret=" + secret + "]";
 	}
 }

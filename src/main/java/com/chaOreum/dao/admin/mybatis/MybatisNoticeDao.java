@@ -43,8 +43,28 @@ public class MybatisNoticeDao implements NoticeDao {
 	}
 	
 	@Override
+	public int setComment(NoticeComment comment) {
+		return mapper.setComment(comment);
+	}
+	
+	@Override
+	public int commentDelete(int no) {
+		return mapper.commentDelete(no);
+	}
+
+	@Override
 	public List<NoticeReply> getReplies(int no) {
 		return mapper.getReplies(no);
+	}
+	
+	@Override
+	public int setReply(NoticeReply reply) {
+		return mapper.setReply(reply);
+	}
+	
+	@Override
+	public int replyDelete(int no) {
+		return mapper.replyDelete(no);
 	}
 	
 	@Override
