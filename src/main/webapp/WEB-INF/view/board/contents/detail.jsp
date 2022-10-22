@@ -93,7 +93,7 @@
 				                            	<div class="comment">비밀 댓글 입니다.</div>
 				                            </c:if>
 				                            
-				                            <div class="commRegDate"><fmt:formatDate value="${reply.regDate}" pattern="yyyy-MM-dd hh:mm" /><c:if test="${nickname eq comment.member_nickname}"><span class="reply_delete" onclick="deleteReply(${reply.no})">삭제</span></c:if></div>
+				                            <div class="commRegDate"><fmt:formatDate value="${reply.regDate}" pattern="yyyy-MM-dd hh:mm" /><c:if test="${nickname eq reply.member_nickname}"><span class="reply_delete" onclick="deleteReply(${reply.no})">삭제</span></c:if></div>
 				                        </div>
 				                    </div>
 					            </c:if>

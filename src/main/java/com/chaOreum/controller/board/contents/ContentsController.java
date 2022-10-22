@@ -14,6 +14,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -188,8 +189,14 @@ public class ContentsController {
 	}
 	
 	@GetMapping("reg")
-	public String reg(Model model) {
+	public String reg(Model model, HttpSession session) {
 		// aside
+		String nickname = (String) session.getAttribute("nickname");
+		if(nickname == null) {
+			model.addAttribute("message", "로그인 후 이용할 수 있는 페이지입니다\\n로그인 페이지로 이동합니다.");
+			model.addAttribute("url", "/account/logIn");
+			return "/alert";
+		}
 		List<MainCategory> mainCategories = includeService.getMainCategories();
 		List<SubCategory> subCategories = includeService.getSubCategories();
 		model.addAttribute("mainCategories", mainCategories);
