@@ -65,6 +65,11 @@ main {
     font-size: 22px;
     border-bottom: 1px solid #AEAEAE;
     padding: 20px 10px;
+    
+}
+
+#contents>*{
+	white-space: pre-wrap !important;
 }
 
 #guest {
