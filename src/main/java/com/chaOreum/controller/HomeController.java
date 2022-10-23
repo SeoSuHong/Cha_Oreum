@@ -94,7 +94,6 @@ public class HomeController {
 		model.addAttribute("n", n);
 		model.addAttribute("s", s);
 		model.addAttribute("p", p);
-		
 		return "home.index";
 	}
 

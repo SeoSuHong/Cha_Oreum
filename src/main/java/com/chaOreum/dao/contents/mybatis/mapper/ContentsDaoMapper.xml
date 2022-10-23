@@ -10,7 +10,6 @@
 		JOIN mainCategory MC ON MC.no = SC.mainCategory_no
 		JOIN member M ON M.id = P.member_id
 			WHERE P.no = #{no}
-			ORDER BY P.regDate DESC
   </select>
 
   <select id="getViewList" resultType="com.chaOreum.entity.PostView">
@@ -29,7 +28,7 @@
 					AND P.title LIKE '%${title}%'
 				</if>
 			</where>
-			<if test="sort == 'new' or sort == null">
+			<if test="sort == 'new' or sort == null or sort == ''">
 	        	ORDER BY P.regDate DESC
 	        </if>
 	        <if test="sort == 'hot'">
