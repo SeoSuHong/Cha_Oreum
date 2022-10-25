@@ -38,6 +38,11 @@ public class MybatisNoticeDao implements NoticeDao {
 	}
 	
 	@Override
+	public int edit(Notice notice) {
+		return mapper.edit(notice);
+	}
+	
+	@Override
 	public List<NoticeComment> getComments(int no) {
 		return mapper.getComments(no);
 	}

@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.chaOreum.dao.admin.CategoryDao">
+	
+	<select id="getMainList" resultType="com.chaOreum.entity.MainCategory">
+		SELECT MC.*, COUNT(P.cnt) post_cnt FROM mainCategory MC
+			LEFT OUTER JOIN (
+				SELECT no, mainCategory_no FROM subCategory
+			) SC ON SC.mainCategory_no = MC.no
+		    LEFT OUTER JOIN(
+				SELECT subCategory_no, COUNT(*) cnt FROM post GROUP BY no
+			) P ON P.subCategory_no = SC.no
+		GROUP BY MC.no
+	</select>
+	
+	<select id="getSubList" resultType="com.chaOreum.entity.SubCategory">
+		SELECT SC.*, COUNT(P.cnt) post_cnt FROM subCategory SC
+		    LEFT OUTER JOIN(
+				SELECT subCategory_no, COUNT(*) cnt FROM post GROUP BY no
+			) P ON P.subCategory_no = SC.no
+		GROUP BY SC.no
+		ORDER BY mainCategory_no, no
+	</select>
+	
+	<insert id="regMainCategory">
+		INSERT INTO mainCategory VALUES(DEFAULT, #{name})
+	</insert>
+	
+	<update id="editMainCategory">
+		UPDATE mainCategory SET name = #{name} WHERE no = #{no}
+	</update>
+	
+	<delete id="deleteMainCategory">
+		DELETE FROM mainCategory WHERE no = #{no}
+	</delete>
+	
+	<insert id="regSubCategory">
+		INSERT INTO subCategory VALUES(DEFAULT, #{mainCategory_no}, #{name})
+	</insert>
+	
+	<update id="editSubCategory">
+		UPDATE subCategory SET mainCategory_no = #{mainCategory_no}, name = #{name} WHERE no = #{no}
+	</update>
+	
+	<delete id="deleteSubCategory">
+		DELETE FROM subCategory WHERE no = #{no}
+	</delete>
+	
+</mapper>

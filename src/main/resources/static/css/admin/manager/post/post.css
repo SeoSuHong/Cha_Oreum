@@ -1,0 +1,62 @@
+@charset "UTF-8";
+/* main */
+main {
+    min-width: 0;
+    flex: 1;
+}
+
+#category {
+	text-align: center;
+	margin: 80px 0 30px;
+}
+
+#total {
+	font-weight: bold;
+	margin-right: 70px;
+	float: right;
+}
+
+#postTbl, tr, th {
+	border: 2px solid black;
+}
+
+#postTbl {
+	width: 90%;
+	border-collapse: collapse;
+	margin: 0 auto;
+}
+
+#postTbl td {
+	font-weight: bold;
+	padding-left: 10px;
+}
+
+.postTr {
+	height: 35px;
+}
+
+.postTr a:hover {
+	text-decoration: underline;
+	text-decoration-thickness: 2px; 
+}
+
+
+
+input {
+	color: #AEAEAE;
+	font-weight: bold;
+	background-color: white;
+	border: 2px solid #AEAEAE;
+	border-radius: 10px;
+	padding: 2px 15px;
+	cursor: pointer;
+}
+
+input:hover {
+	color: black;
+	border-color: black;
+}
+
+input:first-child {
+	margin-right: 3px;
+}

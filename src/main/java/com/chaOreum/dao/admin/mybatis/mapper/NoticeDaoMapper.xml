@@ -20,6 +20,10 @@
 		INSERT INTO notice VALUES(DEFAULT, #{admin_id}, #{title}, #{contents}, DEFAULT);
 	</insert>
 	
+	<update id="edit" parameterType="com.chaOreum.entity.Notice">
+		UPDATE notice SET title = #{title}, contents = #{contents} WHERE no = #{no}
+	</update>
+	
 	<select id="getComments" resultType="com.chaOreum.entity.NoticeComment">
 		SELECT * FROM noticeComment WHERE notice_no = #{no} ORDER BY regDate DESC
 	</select>

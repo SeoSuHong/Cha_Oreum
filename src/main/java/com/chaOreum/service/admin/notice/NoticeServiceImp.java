@@ -33,6 +33,11 @@ public class NoticeServiceImp implements NoticeService {
 	}
 	
 	@Override
+	public int edit(Notice notice) {
+		return noticeDao.edit(notice);
+	}
+	
+	@Override
 	public List<NoticeComment> getComments(int no) {
 		return noticeDao.getComments(no);
 	}

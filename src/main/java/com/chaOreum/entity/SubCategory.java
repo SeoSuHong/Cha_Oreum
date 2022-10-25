@@ -4,14 +4,22 @@ public class SubCategory {
 	private int no;
 	private int mainCategory_no;
 	private String name;
+	private int post_cnt;
 	
 	public SubCategory() {}
 
 	public SubCategory(int no, int mainCategory_no, String name) {
+		this.no = no;
+		this.mainCategory_no = mainCategory_no;
+		this.name = name;
+	}
+	
+	public SubCategory(int no, int mainCategory_no, String name, int post_cnt) {
 		super();
 		this.no = no;
 		this.mainCategory_no = mainCategory_no;
 		this.name = name;
+		this.post_cnt = post_cnt;
 	}
 
 	public int getNo() {
@@ -38,8 +46,17 @@ public class SubCategory {
 		this.name = name;
 	}
 
+	public int getPost_cnt() {
+		return post_cnt;
+	}
+
+	public void setPost_cnt(int post_cnt) {
+		this.post_cnt = post_cnt;
+	}
+
 	@Override
 	public String toString() {
-		return "SubCategory [no=" + no + ", mainCategory_no=" + mainCategory_no + ", name=" + name + "]";
+		return "SubCategory [no=" + no + ", mainCategory_no=" + mainCategory_no + ", name=" + name + ", post_cnt="
+				+ post_cnt + "]";
 	}
 }
