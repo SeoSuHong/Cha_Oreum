@@ -1,5 +1,4 @@
 // main
-
 // summernote 에디터
 $(document).ready(function() {
 	$('#contents').summernote({
@@ -19,11 +18,11 @@ $(document).ready(function() {
 });
 
 function sendFile(file, el) {
-	let userId = $("#userId").val();
+	let adminId = $("#adminId").val();
 	let form_data = new FormData();
 	
 	form_data.append('file', file);
-	form_data.append('id', userId);
+	form_data.append('id', adminId);
 	$.ajax({
 		data : form_data,
 		type : "post",
@@ -39,7 +38,7 @@ function sendFile(file, el) {
 }
 
 // 수정 버튼 클릭 시
-function edit() {
+function editPost() {
 	if(editForm.title.value == null || editForm.title.value == '') {
 		alert("제목을 입력해 주세요.");
 		editForm.title.focus(); return;

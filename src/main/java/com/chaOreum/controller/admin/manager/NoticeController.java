@@ -2,7 +2,6 @@ package com.chaOreum.controller.admin.manager;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.ServletContext;
@@ -22,6 +21,7 @@ import com.chaOreum.entity.Notice;
 import com.chaOreum.entity.NoticeComment;
 import com.chaOreum.entity.NoticeReply;
 import com.chaOreum.entity.NoticeView;
+import com.chaOreum.entity.Post;
 import com.chaOreum.service.admin.notice.NoticeService;
 
 @Controller("adminNoticeController")
@@ -35,7 +35,12 @@ public class NoticeController {
 	private ServletContext ctx;
 	
 	@GetMapping("view")
-	public String notice(Model model) {
+	public String notice(Model model, HttpSession session) {
+		// 권한 확인
+		boolean role = false;
+		if(session.getAttribute("admin") != null)
+			role = (boolean) session.getAttribute("admin");
+		if(!role) return "/admin/notAdmin";
 		
 		List<NoticeView> list = noticeService.getViewList();
 		
@@ -169,6 +174,50 @@ public class NoticeController {
 		model.addAttribute("notice", notice);
 		
 		return "admin.manager.notice.edit";
+	}
+	
+	@PostMapping("edit")
+	@ResponseBody
+	public String edit(int no, String title, String contents, MultipartFile[] files, HttpSession session) throws IOException {
+		String message = "";
+		
+		
+		// contents image 처리
+		String id = (String) session.getAttribute("id");
+		for(MultipartFile file : files) {
+			if(file.getOriginalFilename() == null || file.getOriginalFilename().equals("")) continue;
+			
+			String fileName = id + "_" + file.getOriginalFilename();
+			
+			String savePath = "/static/notice_img";  // 저장 폴더
+			String realPath = ctx.getRealPath(savePath);   // 저장 폴더 경로
+
+			File save = new File(realPath);
+			if(!save.exists()) save.mkdirs();
+			
+			realPath += File.separator + fileName;
+			File saveFile = new File(realPath);
+
+			file.transferTo(saveFile);
+		}
+		
+		// contents_img_remove 파일 전부 삭제
+		String removePath = "/static/notice_img_remove";
+		String removeRealPath = ctx.getRealPath(removePath);
+		File removeFile = new File(removeRealPath);
+		FileUtils.cleanDirectory(removeFile);
+		
+		// contents 내용 img 경로 변경
+		contents = contents.replaceAll("notice_img_remove", "notice_img");
+		
+		Notice notice = new Notice(no, id, title, contents, null);
+		int update = noticeService.edit(notice);
+		
+		if(update == 1) message = "<script>alert('공지사항을 수정하였습니다.'); location.href='detail?no=" + no + "';</script>";
+		else message = "<script>alert('공지사항 수정에 실패하였습니다.\n다시 시도해 주세요.'); location.href='history.go(-1)';</script>";
+		
+		
+		return message;
 	}
 	
 	@PostMapping("notice_fileUpload")

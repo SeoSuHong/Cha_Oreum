@@ -16,6 +16,8 @@ public interface NoticeDao {
 
 	int set(Notice notice);
 
+	int edit(Notice notice);
+
 	List<NoticeComment> getComments(int no);
 
 	List<NoticeReply> getReplies(int no);
@@ -27,4 +29,5 @@ public interface NoticeDao {
 	int commentDelete(int no);
 
 	int replyDelete(int no);
+
 }

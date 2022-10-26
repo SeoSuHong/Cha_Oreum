@@ -22,9 +22,9 @@
 
                     <div id="edit_btn">
                     	<input type="hidden" name="no" value="${notice.no}">
-                        <input type="button" id="edit" value="수정" onclick="edit()">
+                        <input type="button" id="edit" value="수정" onclick="editPost()">
+                        <input type="hidden" id="adminId" value="${id}">
                     </div>
-                    <input type="hidden" id="userId" value="${id}">
                 </form>
             </div>
             

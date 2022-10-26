@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.chaOreum.dao.admin.PostDao">
+	
+  <select id="getViewList" resultType="com.chaOreum.entity.PostView">
+  	SELECT SC.name subCategory, P.* FROM post P 
+		JOIN subCategory SC ON SC.no = P.subCategory_no 
+			<where>
+				<if test="category != null and category != ''">
+					SC.name LIKE '%${category}%'
+				</if>
+				<if test="title != null and title != ''"> 
+					AND P.title LIKE '%${title}%'
+				</if>
+				<if test="id != null and id != ''">
+					AND P.member_id LIKE '%${id}%'
+				</if>
+			</where>
+	        ORDER BY P.subCategory_no 
+	        LIMIT #{offset}, #{size};
+  </select>
+  
+  <select id="getEndPage" resultType="int">
+  	SELECT COUNT(*) FROM post P
+  		JOIN subCategory SC ON SC.no = P.subCategory_no
+	  		<where>
+				<if test="category != null and category != ''">
+					SC.name LIKE '%${category}%'
+				</if>
+				<if test="id != null and id != ''">
+					AND P.member_id LIKE '%${id}%'
+				</if>
+				<if test="title != null and title != ''"> 
+					AND P.title LIKE '%${title}%'
+				</if>
+			</where>
+  </select>
+  
+  <delete id="delete">
+  	DELETE FROM post WHERE no = #{no}
+  </delete>
+	
+</mapper>

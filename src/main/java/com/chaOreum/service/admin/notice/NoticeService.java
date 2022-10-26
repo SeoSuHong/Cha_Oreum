@@ -14,6 +14,9 @@ public interface NoticeService {
 	NoticeView getView(int no);
 	// 공지사항 등록
 	int set(Notice notice);
+	// 공지사항 수정
+	int edit(Notice notice);
+	
 	// 댓글 모두 가져오기
 	List<NoticeComment> getComments(int no);
 	// 댓글의 모든 답글 가져오기
