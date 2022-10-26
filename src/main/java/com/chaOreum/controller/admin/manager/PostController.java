@@ -36,6 +36,12 @@ public class PostController {
 			@RequestParam(required = false) String i,
 			@RequestParam(defaultValue = "1") int p) {
 		
+		// 권한 확인
+		boolean role = false;
+		if(session.getAttribute("admin") != null)
+			role = (boolean) session.getAttribute("admin");
+		if(!role) return "/admin/notAdmin";
+		
 		List<PostView> list = postService.getViewList(c, t, i, p);
 		
 		// 페이징
@@ -72,7 +78,12 @@ public class PostController {
 	}
 	
 	@GetMapping("detail")
-	public String detail(int no, Model model) {
+	public String detail(int no, Model model, HttpSession session) {
+		// 권한 확인
+		boolean role = false;
+		if(session.getAttribute("admin") != null)
+			role = (boolean) session.getAttribute("admin");
+		if(!role) return "/admin/notAdmin";
 		
 		PostView post = contentsService.getView(no);
 		
