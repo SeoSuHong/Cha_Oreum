@@ -11,6 +11,14 @@ public class PostView extends Post {
 
 	public PostView() {}
 
+	public PostView(int no, String member_id, int subCategory_no, String subCategory, String title, String contents, Date regDate,
+			String fileName, String fileSize) {
+		super(no, member_id, subCategory_no, title, contents, regDate, fileName, fileSize);
+		this.subCategory = subCategory;
+	}
+
+
+
 	public PostView(String mainCategory, String subCategory, String nickname, int no, String member_id, int subCategory_no, String title, String contents, Date regDate,
 			String fileName, String fileSize, int view, int hot) {
 		
