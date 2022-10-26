@@ -67,56 +67,12 @@ main {
     padding: 20px 10px;
 }
 
-#guest {
-    width: 400px;
-    margin: 60px auto 50px;
-    display: flex;
-    justify-content: space-between;
-}
-
-#guest>div {
-    height: 50px;
-    border: 2px solid #AEAEAE;
-    border-radius: 30px;
-    padding: 5px 15px;
-    box-shadow: 2px 2px 2px black;
-    display: flex;
-    justify-content: center;
-    cursor: pointer;
-}
-
-#guest>div:active {
-    box-shadow: none;
-    position: relative;
-    top: 2px;
-    left: 2px;
-}
-
-#hart {
-    font-size: 35px;
-}
-
-#like, #comment_btn {
-    font-size: 20px;
-    font-weight: bold;
-    line-height: 50px;
-    margin-left: 10px;
-}
-
-#comment_img {
-    width: 40px;
-    padding-bottom: 5px;
-}
-
 /* comment */
-#comments, #writeComment {
+#comments {
     border: 2px solid #AEAEAE;
     border-radius: 10px;
+    margin: 50px 0;
     padding: 0 20px 20px;
-}
-
-#comments {
-    border-bottom: 0.5px solid #AEAEAE;
 }
 
 .mainComment {
@@ -139,8 +95,8 @@ main {
     padding-bottom: 10px;
 }
 
-.reply_btn, .comment_delete {
-    margin-left: 20px;
+.comment_delete {
+    margin-left: 10px;
     cursor: pointer;
 }
 
@@ -149,7 +105,7 @@ main {
     cursor: pointer;
 }
 
-.reply_btn:hover, .comment_delete:hover, .reply_delete:hover {
+.comment_delete:hover, .reply_delete:hover {
     text-decoration: underline;
 }
 
@@ -168,10 +124,6 @@ main {
     font-size: 16px;
     border: none;
     resize: none;
-}
-
-.reply_btn_wrap {
-    float: right;
 }
 
 .reply_send {
@@ -196,73 +148,6 @@ main {
     border-bottom: 1px solid #AEAEAE;
     margin: 0 40px;
     padding: 10px 30px 0px;
-}
-
-#comment_nick {
-    font-size: 26px;
-    font-weight: bold;
-    margin: 8px 25px;
-}
-
-#comment_wrap {
-    height: 195px;
-    border: 2px solid #AEAEAE;
-    border-radius: 10px;
-    padding: 10px;
-}
-
-#comment_txt {
-    width: 100%;
-    height: 150px;
-    font-size: 18px;
-    border: none;
-    resize: none;
-}
-
-#comment_btn_wrap {
-    float: right;
-}
-
-#comment_send {
-    color: #AEAEAE;
-    font-size: 17px;
-    font-weight: bold;
-    border: 2px solid #AEAEAE;
-    border-radius: 7px;
-    background-color: white;
-    margin: 5px 20px;
-    padding: 5px 15px;
-    cursor: pointer;
-}
-
-#comment_send:hover {
-    color: #393939;
-    border: 2px solid #393939;
-    text-decoration: none;
-}
-
-#update_wrap {
-    height: 170px;
-    text-align: center;
-    line-height: 200px;
-}
-
-#update_wrap input {
-    width: 120px;
-    height: 60px;
-    color: #AEAEAE;
-    font-size: 20px;
-    font-weight: bold;
-    border: 2px solid #AEAEAE;
-    border-radius: 10px;
-    background-color: white;
-    margin: 0 50px;
-    cursor: pointer;
-}
-
-#update_wrap input:hover {
-    color: #393939;
-    border: 2px solid #393939;
 }
 
 #reply{

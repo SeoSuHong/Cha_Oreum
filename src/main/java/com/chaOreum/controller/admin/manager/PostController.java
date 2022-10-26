@@ -12,9 +12,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.chaOreum.entity.Comment;
 import com.chaOreum.entity.Paging;
 import com.chaOreum.entity.PostView;
+import com.chaOreum.entity.Reply;
 import com.chaOreum.service.admin.post.PostService;
+import com.chaOreum.service.contents.ContentsService;
 
 @Controller
 @RequestMapping("/admin/manager/post/")
@@ -22,6 +25,9 @@ public class PostController {
 
 	@Autowired
 	private PostService postService;
+	
+	@Autowired
+	private ContentsService contentsService;
 	
 	@GetMapping("view")
 	public String post(Model model, HttpSession session,
@@ -67,6 +73,16 @@ public class PostController {
 	
 	@GetMapping("detail")
 	public String detail(int no, Model model) {
+		
+		PostView post = contentsService.getView(no);
+		
+		List<Comment> comments = contentsService.getComments(no);
+		List<Reply> replies = contentsService.getReplies(no);
+		
+		model.addAttribute("post", post);
+		model.addAttribute("comments", comments);
+		model.addAttribute("replies", replies);
+		
 		return "admin.manager.post.detail";
 	}
 	
