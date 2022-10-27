@@ -147,8 +147,15 @@ public class MemberController {
 	@PostMapping("infoReg")
 	public String infoReg(String id, String nickname, String password, String email_front, String email_back, String email) {
 		String message = "";
-
-		password = hashService.getHash(password);
+		
+		Member getMemberInfo = memberService.getInfo(id);
+		String repw = getMemberInfo.getPassword();
+		System.out.println(repw);
+		System.out.println(password);
+		
+		if(repw != password && !repw.equals(password)) {
+			password = hashService.getHash(password);
+		}
 		email = email_front + "@" + email_back;
 		
 		if(memberService.updateInfo(id, nickname, password, email)) {
