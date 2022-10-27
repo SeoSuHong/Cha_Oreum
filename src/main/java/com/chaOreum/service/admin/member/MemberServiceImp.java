@@ -1,0 +1,37 @@
+package com.chaOreum.service.admin.member;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.chaOreum.dao.admin.MemberDao;
+import com.chaOreum.entity.Member;
+
+@Service("adminMemberServiceImp")
+public class MemberServiceImp implements MemberService {
+	
+	@Autowired
+	private MemberDao adminmemberDao;
+	
+	@Override
+	public List<Member> getMemberList(String nid, String email, String nickname, String id, int page) {
+		return adminmemberDao.getMemberList(nid, email, nickname, id, page);
+	}
+
+	@Override
+	public boolean deleteMember(String id) {
+		return adminmemberDao.deleteMember(id);
+	}
+
+	@Override
+	public boolean upgradeMember(String id, String role) {
+		return adminmemberDao.upgradeMember(id, role);
+	}
+
+	@Override
+	public int getEndPage(String nid, String email, String nickname, String id) {
+		return adminmemberDao.getEndPage(nid, email, nickname, id);
+	}
+
+}

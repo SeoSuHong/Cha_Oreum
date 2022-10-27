@@ -4,6 +4,7 @@ CREATE TABLE member(
     password    VARCHAR(100)    NOT NULL,
     email       VARCHAR(45)     NOT NULL,
     role        VARCHAR(10)     NOT NULL,
+    joindate	DATE			DEFAULT (CURRENT_DATE),
     PRIMARY KEY(id)
 );
 
@@ -27,7 +28,7 @@ CREATE TABLE post(
     subCategory_no     INT(11)        NOT NULL,
     title              VARCHAR(50)    NOT NULL,
     contents           LONGTEXT       NOT NULL,
-    regDate            DATE           NOT NULL    DEFAULT (CURRENT_DATE),
+    regDate            DATETIME       NOT NULL    DEFAULT NOW(),
     fileName           VARCHAR(100),
     fileSize           VARCHAR(100),
     FOREIGN KEY(member_id) REFERENCES member(id),

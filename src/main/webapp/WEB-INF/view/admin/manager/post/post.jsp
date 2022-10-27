@@ -66,7 +66,7 @@
         	<c:if test="${p < page.endBlock_firstPage}">
          	<span id="nextPage" class="movePage" onclick="moveNextPage(${page.block_firstPage})">Next</span>
          	<span id="lastPage" class="movePage" onclick="moveLastPage(${page.endPage})">Last</span>
-         </c:if>
+         	</c:if>
         </div>
 		
 		<form name="postForm" action="view" method="get">
