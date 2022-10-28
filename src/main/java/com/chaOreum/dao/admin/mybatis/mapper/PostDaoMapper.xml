@@ -18,7 +18,7 @@
 					AND P.member_id LIKE '%${id}%'
 				</if>
 			</where>
-	        ORDER BY P.subCategory_no 
+	        ORDER BY P.no DESC
 	        LIMIT #{offset}, #{size};
   </select>
   

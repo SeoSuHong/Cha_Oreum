@@ -7,7 +7,7 @@
 	<select id="getViewList" resultType="com.chaOreum.entity.NoticeView">
 		SELECT N.*, M.nickname admin_nickname FROM notice N
 		JOIN member M ON M.id = N.admin_id 
-		ORDER BY no
+		ORDER BY no DESC
 	</select>
 	
 	<select id="getView" resultType="com.chaOreum.entity.NoticeView">
