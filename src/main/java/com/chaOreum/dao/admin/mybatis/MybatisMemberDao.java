@@ -9,7 +9,7 @@ import org.springframework.stereotype.Repository;
 import com.chaOreum.dao.admin.MemberDao;
 import com.chaOreum.entity.Member;
 
-@Repository("adminMybatisMemberDao")
+@Repository("adminMemberDao")
 public class MybatisMemberDao implements MemberDao {
 	
 	private MemberDao mapper;

@@ -8,30 +8,30 @@ import org.springframework.stereotype.Service;
 import com.chaOreum.dao.admin.MemberDao;
 import com.chaOreum.entity.Member;
 
-@Service("adminMemberServiceImp")
+@Service("adminMemberService")
 public class MemberServiceImp implements MemberService {
 	
 	@Autowired
-	private MemberDao adminmemberDao;
+	private MemberDao memberDao;
 	
 	@Override
 	public List<Member> getMemberList(String nid, String email, String nickname, String id, int page) {
-		return adminmemberDao.getMemberList(nid, email, nickname, id, page);
+		return memberDao.getMemberList(nid, email, nickname, id, page);
 	}
 
 	@Override
 	public boolean deleteMember(String id) {
-		return adminmemberDao.deleteMember(id);
+		return memberDao.deleteMember(id);
 	}
 
 	@Override
 	public boolean upgradeMember(String id, String role) {
-		return adminmemberDao.upgradeMember(id, role);
+		return memberDao.upgradeMember(id, role);
 	}
 
 	@Override
 	public int getEndPage(String nid, String email, String nickname, String id) {
-		return adminmemberDao.getEndPage(nid, email, nickname, id);
+		return memberDao.getEndPage(nid, email, nickname, id);
 	}
 
 }

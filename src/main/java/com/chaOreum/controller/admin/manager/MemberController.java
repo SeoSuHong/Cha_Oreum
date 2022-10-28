@@ -21,7 +21,7 @@ import com.chaOreum.service.admin.member.MemberService;
 public class MemberController {
 	
 	@Autowired
-	private MemberService adminmemberDao;
+	private MemberService memberService;
 	
 	@GetMapping("view")
 	public String member(Model model, HttpSession session,
@@ -38,29 +38,29 @@ public class MemberController {
 		
 		String nid = (String) session.getAttribute("id");
 		
-		List<Member> MemberList = adminmemberDao.getMemberList(nid, e, n, i, p);
+		List<Member> MemberList = memberService.getMemberList(nid, e, n, i, p);
 		
 		// 페이징
-				int currPage = p;  // 현재 페이지
-				int block_per_page = 5;  // 블럭 당 페이지 수
-				int currBlock = currPage / block_per_page;  // 현재 블럭
-				if(currPage % block_per_page > 0)
-					currBlock++;
-				int block_firstPage = (currBlock * block_per_page) - 4;  // 현재 블럭의 첫번째 페이지
-				int block_endPage = block_firstPage + block_per_page - 1;  // 현재 블럭의 마지막 페이지
-				int endPage = 0;  // 마지막 페이지
-				int member_cnt = adminmemberDao.getEndPage(nid, e, n, i);  // 총 회원수
-				int divPage = member_cnt / 10;
-				float modPage = member_cnt % 10;
-				
-				if(modPage == 0)
-					endPage = divPage;
-				else
-					endPage = divPage + 1;
-				int endBlock = endPage / block_per_page;  // 마지막 페이지의 블럭
-				if(endPage % block_per_page > 0)
-					endBlock++;
-				int endBlock_firstPage = (endBlock * block_per_page) - 4;
+		int currPage = p;  // 현재 페이지
+		int block_per_page = 5;  // 블럭 당 페이지 수
+		int currBlock = currPage / block_per_page;  // 현재 블럭
+		if(currPage % block_per_page > 0)
+			currBlock++;
+		int block_firstPage = (currBlock * block_per_page) - 4;  // 현재 블럭의 첫번째 페이지
+		int block_endPage = block_firstPage + block_per_page - 1;  // 현재 블럭의 마지막 페이지
+		int endPage = 0;  // 마지막 페이지
+		int member_cnt = memberService.getEndPage(nid, e, n, i);  // 총 회원수
+		int divPage = member_cnt / 10;
+		float modPage = member_cnt % 10;
+		
+		if(modPage == 0)
+			endPage = divPage;
+		else
+			endPage = divPage + 1;
+		int endBlock = endPage / block_per_page;  // 마지막 페이지의 블럭
+		if(endPage % block_per_page > 0)
+			endBlock++;
+		int endBlock_firstPage = (endBlock * block_per_page) - 4;
 		
 		model.addAttribute("MemberList", MemberList);
 		model.addAttribute("e", e);
@@ -79,7 +79,7 @@ public class MemberController {
 		
 		String messege = "<script>alert('추방에 실패하였습니다.'); history.go(-1);</script>";
 		
-		if(adminmemberDao.deleteMember(id))
+		if(memberService.deleteMember(id))
 			messege = "<script>alert('추방에 성공하였습니다.'); location.href='view';</script>";
 		
 		return messege;
@@ -96,7 +96,7 @@ public class MemberController {
 		if(role_.equals("admin")||role_ == "admin") role = "user";
 		if(role_.equals("user")||role_ == "user") role = "admin";
 		
-		if(adminmemberDao.upgradeMember(id, role))
+		if(memberService.upgradeMember(id, role))
 			messege = "<script>alert('권한 변경에 성공하였습니다.'); location.href='view';</script>";
 		
 		return messege;

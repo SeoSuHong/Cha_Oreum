@@ -10,7 +10,7 @@
 	<groupId>com.ChaOreum</groupId>
 	<artifactId>ChaOreum</artifactId>
 	<version>1</version>
-	<packaging>jar</packaging>
+	<packaging>war</packaging>
 	<name>ChaOreum</name>
 	<description>Developer Blog</description>
 	<properties>

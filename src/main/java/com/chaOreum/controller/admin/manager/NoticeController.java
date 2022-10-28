@@ -88,15 +88,6 @@ public class NoticeController {
 		else return false;
 	}
 	
-	@PostMapping("replyDelete")
-	@ResponseBody
-	public boolean replyDelete(int no) {
-		int delete = noticeService.replyDelete(no);
-		
-		if(delete == 1) return true;
-		else return false;
-	}
-	
 	@PostMapping("reply")
 	@ResponseBody
 	public boolean setReply(int no, int comment_no, String nickname, String contents, boolean secret) {
@@ -105,6 +96,15 @@ public class NoticeController {
 		int insert = noticeService.setReply(reply);
 		
 		if(insert == 1) return true;
+		else return false;
+	}
+
+	@PostMapping("replyDelete")
+	@ResponseBody
+	public boolean replyDelete(int no) {
+		int delete = noticeService.replyDelete(no);
+		
+		if(delete == 1) return true;
 		else return false;
 	}
 	
@@ -124,7 +124,7 @@ public class NoticeController {
 	public String reg(String title, String contents, MultipartFile[] files, HttpSession session) throws IllegalStateException, IOException {
 		String message = "";
 		String id = (String) session.getAttribute("id");
-		System.out.println(id);
+
 		// contents image 처리
 		for(MultipartFile file : files) {
 			if(file.getOriginalFilename() == null || file.getOriginalFilename().equals("")) continue;

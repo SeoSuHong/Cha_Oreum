@@ -56,9 +56,6 @@ public class ContentsController {
 		// main
 		String clientIPAddress = requestService.getClientIpAddress(request);  // 사용자 IP주소
 		int viewCount = contentsService.setViewCount(no, clientIPAddress);
-		if(viewCount == 1) {
-			System.out.println("Increase ViewCount");
-		}
 		
 		PostView post = contentsService.getView(no);  // 현재 게시글의 정보
 		
@@ -189,13 +186,15 @@ public class ContentsController {
 	
 	@GetMapping("reg")
 	public String reg(Model model, HttpSession session) {
-		// aside
+		// 로그인 확인
 		String nickname = (String) session.getAttribute("nickname");
 		if(nickname == null) {
 			model.addAttribute("message", "로그인 후 이용할 수 있는 페이지입니다\\n로그인 페이지로 이동합니다.");
 			model.addAttribute("url", "/account/logIn");
 			return "/alert";
 		}
+		
+		// aside
 		List<MainCategory> mainCategories = includeService.getMainCategories();
 		List<SubCategory> subCategories = includeService.getSubCategories();
 		model.addAttribute("mainCategories", mainCategories);
@@ -206,7 +205,12 @@ public class ContentsController {
 	
 	@PostMapping("reg")
 	@ResponseBody
-	public String reg(int subCategory, String title, String contents, @RequestParam(required = false) MultipartFile[] files, @RequestParam(required = false) MultipartFile[] attachments, HttpSession session) throws IllegalStateException, IOException {
+	public String reg(int subCategory, 
+					String title, 
+					String contents, 
+					@RequestParam(required = false) MultipartFile[] files, 
+					@RequestParam(required = false) MultipartFile[] attachments, 
+					HttpSession session) throws IllegalStateException, IOException {
 		String nickname = (String) session.getAttribute("nickname");
 
 		// contents image 처리
@@ -223,7 +227,7 @@ public class ContentsController {
 			
 			realPath += File.separator + fileName;
 			File saveFile = new File(realPath);
-			System.out.println(file.getOriginalFilename());
+
 			file.transferTo(saveFile);
 		}
 		
