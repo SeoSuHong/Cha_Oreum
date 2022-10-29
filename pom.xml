@@ -10,6 +10,7 @@
 	<groupId>com.ChaOreum</groupId>
 	<artifactId>ChaOreum</artifactId>
 	<version>1</version>
+	<!-- 배포 형식 지정 -->
 	<packaging>war</packaging>
 	<name>ChaOreum</name>
 	<description>Developer Blog</description>
@@ -75,6 +76,14 @@
 			<groupId>commons-fileupload</groupId>
 			<artifactId>commons-fileupload</artifactId>
 			<version>1.4</version>
+		</dependency>
+		
+		
+		<!-- 배포를 위한 톰켓 라이브러리 -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-tomcat</artifactId>
+			<scope>provided</scope>
 		</dependency>
 		
 	</dependencies>
