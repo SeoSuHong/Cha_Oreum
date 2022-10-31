@@ -51,7 +51,7 @@
 	                        <span style="color: #AEAEAE;">조회</span>
 	                    </c:if>
                     </div>
-	            	<c:if test="${n ne nickname}"><input type="button" id="notice_btn" value="공지사항 숨기기"></c:if>
+	            	<c:if test="${(empty p || p eq 1) && (empty nickname || n ne nickname)}"><input type="button" id="notice_btn" value="공지사항 숨기기"></c:if>
                 </div>
 
                 <!-- 글 쓰기 -->
@@ -62,7 +62,7 @@
 	            </c:if>
 	            
 	            <!-- 공지사항 -->
-	            <c:if test="${(empty p || p eq 1) && (empty n || n ne nickname)}">
+	            <c:if test="${(empty p || p eq 1) && (empty nickname || n ne nickname)}">
 		            <div id="notice">
 		            	<div id="notice_txt">※ 공지사항 ※</div>
 		            	<table id="noticeList">
