@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.chaOreum.aspect.RoleCheck;
 import com.chaOreum.entity.MainCategory;
 import com.chaOreum.entity.SubCategory;
 import com.chaOreum.service.admin.category.CategoryService;
@@ -23,13 +24,9 @@ public class CategoryController {
 	@Autowired
 	private CategoryService categoryService;
 	
+	@RoleCheck
 	@GetMapping("view")
 	public String category(Model model, HttpSession session) {
-		// 권한 확인
-		boolean role = false;
-		if(session.getAttribute("admin") != null)
-			role = (boolean) session.getAttribute("admin");
-		if(!role) return "/admin/notAdmin";
 		
 		List<MainCategory> mainList = categoryService.getMainList();
 		List<SubCategory> subList = categoryService.getSubList();

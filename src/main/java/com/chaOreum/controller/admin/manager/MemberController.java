@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.chaOreum.aspect.RoleCheck;
 import com.chaOreum.entity.Member;
 import com.chaOreum.entity.Paging;
 import com.chaOreum.service.admin.member.MemberService;
@@ -23,18 +24,13 @@ public class MemberController {
 	@Autowired
 	private MemberService memberService;
 	
+	@RoleCheck
 	@GetMapping("view")
 	public String member(Model model, HttpSession session,
 			@RequestParam(required = false) String e,
 			@RequestParam(required = false) String n,
 			@RequestParam(required = false) String i,
 			@RequestParam(defaultValue = "1") int p) {
-		
-		//권한 확인
-		boolean role = false;
-		if(session.getAttribute("admin") != null)
-			role = (boolean) session.getAttribute("admin");
-		if(!role) return "/admin/notAdmin";
 		
 		String nid = (String) session.getAttribute("id");
 		
@@ -73,6 +69,7 @@ public class MemberController {
 		return "admin.manager.member.member";
 	}
 	
+	@RoleCheck
 	@ResponseBody
 	@GetMapping("delete")
 	public String delete(String id) {
@@ -85,6 +82,7 @@ public class MemberController {
 		return messege;
 	}
 	
+	@RoleCheck
 	@ResponseBody
 	@GetMapping("upgrade")
 	public String upgrade(String id, String role_) {
