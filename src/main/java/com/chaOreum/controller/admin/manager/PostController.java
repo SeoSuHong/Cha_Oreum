@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.chaOreum.aspect.RoleCheck;
 import com.chaOreum.entity.Comment;
 import com.chaOreum.entity.Paging;
 import com.chaOreum.entity.PostView;
@@ -29,18 +30,13 @@ public class PostController {
 	@Autowired
 	private ContentsService contentsService;
 	
+	@RoleCheck
 	@GetMapping("view")
 	public String post(Model model, HttpSession session,
 			@RequestParam(required = false) String c,
 			@RequestParam(required = false) String t,
 			@RequestParam(required = false) String i,
 			@RequestParam(defaultValue = "1") int p) {
-		
-		// 권한 확인
-		boolean role = false;
-		if(session.getAttribute("admin") != null)
-			role = (boolean) session.getAttribute("admin");
-		if(!role) return "/admin/notAdmin";
 		
 		List<PostView> list = postService.getViewList(c, t, i, p);
 		
@@ -77,14 +73,9 @@ public class PostController {
 		return "admin.manager.post.post";
 	}
 	
+	@RoleCheck
 	@GetMapping("detail")
 	public String detail(int no, Model model, HttpSession session) {
-		// 권한 확인
-		boolean role = false;
-		if(session.getAttribute("admin") != null)
-			role = (boolean) session.getAttribute("admin");
-		if(!role) return "/admin/notAdmin";
-		
 		PostView post = contentsService.getView(no);
 		
 		List<Comment> comments = contentsService.getComments(no);
@@ -97,6 +88,7 @@ public class PostController {
 		return "admin.manager.post.detail";
 	}
 	
+	@RoleCheck
 	@GetMapping("delete")
 	@ResponseBody
 	public String delete(int no) {

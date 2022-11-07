@@ -17,11 +17,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.chaOreum.aspect.RoleCheck;
 import com.chaOreum.entity.Notice;
 import com.chaOreum.entity.NoticeComment;
 import com.chaOreum.entity.NoticeReply;
 import com.chaOreum.entity.NoticeView;
-import com.chaOreum.entity.Post;
 import com.chaOreum.service.admin.notice.NoticeService;
 
 @Controller("adminNoticeController")
@@ -34,14 +34,9 @@ public class NoticeController {
 	@Autowired
 	private ServletContext ctx;
 	
+	@RoleCheck
 	@GetMapping("view")
 	public String notice(Model model, HttpSession session) {
-		// 권한 확인
-		boolean role = false;
-		if(session.getAttribute("admin") != null)
-			role = (boolean) session.getAttribute("admin");
-		if(!role) return "/admin/notAdmin";
-		
 		List<NoticeView> list = noticeService.getViewList();
 		
 		model.addAttribute("list", list);
@@ -49,14 +44,9 @@ public class NoticeController {
 		return "admin.manager.notice.notice";
 	}
 	
+	@RoleCheck
 	@GetMapping("detail")
 	public String detail(int no, Model model, HttpSession session) {
-		// 권한 확인
-		boolean role = false;
-		if(session.getAttribute("admin") != null)
-			role = (boolean) session.getAttribute("admin");
-		if(!role) return "/admin/notAdmin";
-		
 		NoticeView notice = noticeService.getView(no);
 		List<NoticeComment> comments = noticeService.getComments(no);
 		List<NoticeReply> replies = noticeService.getReplies(no);
@@ -108,13 +98,9 @@ public class NoticeController {
 		else return false;
 	}
 	
+	@RoleCheck
 	@GetMapping("reg")
 	public String reg(HttpSession session) {
-		// 권한 확인
-		boolean role = false;
-		if(session.getAttribute("admin") != null)
-			role = (boolean) session.getAttribute("admin");
-		if(!role) return "/admin/notAdmin";
 		
 		return "admin.manager.notice.reg";
 	}
@@ -161,13 +147,9 @@ public class NoticeController {
 		return message;
 	}
 	
+	@RoleCheck
 	@GetMapping("edit")
 	public String edit(int no, Model model, HttpSession session) {
-		// 권한 확인
-		boolean role = false;
-		if(session.getAttribute("admin") != null)
-			role = (boolean) session.getAttribute("admin");
-		if(!role) return "/admin/notAdmin";
 		
 		Notice notice = noticeService.getView(no);
 		
@@ -180,7 +162,6 @@ public class NoticeController {
 	@ResponseBody
 	public String edit(int no, String title, String contents, MultipartFile[] files, HttpSession session) throws IOException {
 		String message = "";
-		
 		
 		// contents image 처리
 		String id = (String) session.getAttribute("id");
@@ -245,6 +226,7 @@ public class NoticeController {
 		return result;
 	}
 	
+	@RoleCheck
 	@GetMapping("delete")
 	@ResponseBody
 	public String delete(int no) {

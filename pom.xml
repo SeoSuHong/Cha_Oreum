@@ -9,8 +9,7 @@
 	</parent>
 	<groupId>com.ChaOreum</groupId>
 	<artifactId>ChaOreum</artifactId>
-	<version>1</version>
-	<!-- 배포 형식 지정 -->
+	<version>0.0.1</version>
 	<packaging>war</packaging>
 	<name>ChaOreum</name>
 	<description>Developer Blog</description>
@@ -30,6 +29,10 @@
 		<dependency>
 			<groupId>org.apache.tomcat.embed</groupId>
 			<artifactId>tomcat-embed-jasper</artifactId>
+		</dependency>
+		<dependency>
+		    <groupId>org.springframework.boot</groupId>
+		    <artifactId>spring-boot-starter-aop</artifactId>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
