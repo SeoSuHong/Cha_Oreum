@@ -40,9 +40,6 @@ public class ContentsController {
 	private ContentsService contentsService;
 	
 	@Autowired
-	private ServletContext ctx;
-	
-	@Autowired
 	private RequestService requestService;
 
 	@GetMapping("detail")
@@ -219,22 +216,22 @@ public class ContentsController {
 			if(file.getOriginalFilename() == null || file.getOriginalFilename().equals("")) continue;
 			String fileName = id + "_" + file.getOriginalFilename();
 			
-			String filePath = "/static/contents_img";
-			String realPath = ctx.getRealPath(filePath);
+			String filePath = "/home/ubuntu/chaOreum/images/contents_img";
+//			String realPath = ctx.getRealPath(filePath);
 			
-			File savePath = new File(realPath);
+			File savePath = new File(filePath);
 			if(!savePath.exists()) savePath.mkdirs();
 			
-			realPath += File.separator + fileName;
-			File saveFile = new File(realPath);
+			filePath += File.separator + fileName;
+			File saveFile = new File(filePath);
 
 			file.transferTo(saveFile);
 		}
 		
 		// contents_img_remove 파일 전부 삭제
-		String removePath = "/static/contents_img_remove";
-		String removeRealPath = ctx.getRealPath(removePath);
-		File removeFile = new File(removeRealPath);
+		String removePath = "/home/ubuntu/chaOreum/images/contents_img_remove";
+//		String removeRealPath = ctx.getRealPath(removePath);
+		File removeFile = new File(removePath);
 		FileUtils.cleanDirectory(removeFile);
 		
 		// contents 내용 img 경로 변경
@@ -255,15 +252,15 @@ public class ContentsController {
 			fileSize.append(file.getSize());
 			fileSize.append("/");
 			
-			String filePath = "/static/post_attachments";
-			String realPath = ctx.getRealPath(filePath);
+			String filePath = "/home/ubuntu/chaOreum/images/post_attachments";
+//			String realPath = ctx.getRealPath(filePath);
 			
 			// 업로드하기 위한 경로가 없을 경우 생성
-			File savePath = new File(realPath);
+			File savePath = new File(filePath);
 			if(!savePath.exists()) savePath.mkdirs();
 
-			realPath += File.separator + fileName_;
-			File saveFile = new File(realPath);
+			filePath += File.separator + fileName_;
+			File saveFile = new File(filePath);
 			file.transferTo(saveFile);
 		}
 		
@@ -293,24 +290,24 @@ public class ContentsController {
 	public String contents_fileUpload(MultipartFile file, String id) throws IllegalStateException, IOException {
 		
 		// 업로드할 폴더 경로
-		String filePath = "/static/contents_img_remove";
-		String realPath = ctx.getRealPath(filePath);
+		String filePath = "/home/ubuntu/chaOreum/images/contents_img_remove";
+//		String realPath = ctx.getRealPath(filePath);  // 배포 시 root를 찾을 수 없어 클라우드 환경에서 관리하려는 경로를 절대경로로 설정해준다.
 
 		// 업로드할 파일 이름
 		String org_fileName = file.getOriginalFilename();
 		String str_fileName = id + "_" + org_fileName;
-
+		
 		// 업로드하기 위한 경로가 없을 경우 생성
-		File savePath = new File(realPath);
+		File savePath = new File(filePath);
 		if (!savePath.exists()) savePath.mkdirs();
 		
-		realPath += File.separator + str_fileName;
-		File saveFile = new File(realPath);
+		filePath += File.separator + str_fileName;
+		File saveFile = new File(filePath);
 		file.transferTo(saveFile);
-		
-		String result = filePath + File.separator + str_fileName;
 
-		return result;
+		String mappingPath = "/contents_img_remove" + File.separator + str_fileName;
+		
+		return mappingPath;
 	}
 	
 	@GetMapping("edit")
@@ -341,8 +338,8 @@ public class ContentsController {
 		String saveFileName = "";  // DB에 저장될 fileName
 		String saveFileSize = "";  // DB에 저장될 fileSize
 		
-		String savePath = "/static/post_attachments";  // 저장 폴더
-		String realPath = ctx.getRealPath(savePath);   // 저장 폴더 경로
+		String savePath = "/home/ubuntu/chaOreum/images/post_attachments";  // 저장 폴더
+//		String realPath = ctx.getRealPath(savePath);   // 저장 폴더 경로
 
 		// 삭제하지 않은 파일들 saveFileName에 추가
 		if(fileName != null) {
@@ -355,7 +352,7 @@ public class ContentsController {
 		// 삭제한 파일들 저장 폴더에서 삭제
 		if(remove_fileName != null) {
 			for(int i = 0; i < remove_fileName.length; i++) {
-				String removePath = realPath + File.separator + remove_fileName[i];  // 삭제 파일 경로
+				String removePath = savePath + File.separator + remove_fileName[i];  // 삭제 파일 경로
 				
 				File removeFile = new File(removePath);
 				if(removeFile.exists()) removeFile.delete();  // 삭제 파일 존재할 경우 삭제
@@ -373,10 +370,10 @@ public class ContentsController {
 			saveFileSize += add_fileSize + "/";  // DB 저장 fileSize에 추가
 			
 			// 저장 폴더가 없을 시 생성
-			File saveFile = new File(realPath);
+			File saveFile = new File(savePath);
 			if(!saveFile.exists()) saveFile.mkdirs();
 			
-			String attachmentPath = realPath + File.separator + add_fileName;
+			String attachmentPath = savePath + File.separator + add_fileName;
 			File attachment = new File(attachmentPath);
 			file.transferTo(attachment);
 		}
@@ -388,22 +385,22 @@ public class ContentsController {
 			
 			String fileName_ = id + "_" + file.getOriginalFilename();
 			
-			String filePath = "/static/contents_img";
-			String realPath_ = ctx.getRealPath(filePath);
+			String filePath = "/home/ubuntu/chaOreum/images/contents_img";
+//			String realPath_ = ctx.getRealPath(filePath);
 			
-			File savePath_ = new File(realPath_);
+			File savePath_ = new File(filePath);
 			if(!savePath_.exists()) savePath_.mkdirs();
 			
-			realPath_ += File.separator + fileName_;
-			File saveFile = new File(realPath_);
+			filePath += File.separator + fileName_;
+			File saveFile = new File(filePath);
 
 			file.transferTo(saveFile);
 		}
 		
 		// contents_img_remove 파일 전부 삭제
-		String removePath = "/static/contents_img_remove";
-		String removeRealPath = ctx.getRealPath(removePath);
-		File removeFile = new File(removeRealPath);
+		String removePath = "/home/ubuntu/chaOreum/images/contents_img_remove";
+//		String removeRealPath = ctx.getRealPath(removePath);
+		File removeFile = new File(removePath);
 		FileUtils.cleanDirectory(removeFile);
 		
 		// contents 내용 img 경로 변경
@@ -416,8 +413,6 @@ public class ContentsController {
 		else message = "<script>alert('게시글 수정에 실패하였습니다.\n다시 시도해 주세요.'); location.href='/board/contents/detail?no=" + no + "';</script>";
 		
 		return message;
-	}
+		}
 }
-
-
 

@@ -31,9 +31,6 @@ public class NoticeController {
 	@Autowired
 	private NoticeService noticeService;
 	
-	@Autowired
-	private ServletContext ctx;
-	
 	@RoleCheck
 	@GetMapping("view")
 	public String notice(Model model, HttpSession session) {
@@ -116,22 +113,22 @@ public class NoticeController {
 			if(file.getOriginalFilename() == null || file.getOriginalFilename().equals("")) continue;
 			String fileName = id + "_" + file.getOriginalFilename();
 			
-			String filePath = "/static/notice_img";
-			String realPath = ctx.getRealPath(filePath);
+			String filePath = "/home/ubuntu/chaOreum/images/notice_img";
+//			String realPath = ctx.getRealPath(filePath);
 			
-			File savePath = new File(realPath);
+			File savePath = new File(filePath);
 			if(!savePath.exists()) savePath.mkdirs();
 			
-			realPath += File.separator + fileName;
-			File saveFile = new File(realPath);
+			filePath += File.separator + fileName;
+			File saveFile = new File(filePath);
 			
 			file.transferTo(saveFile);
 		}
 		
 		// notice_img_remove 파일 전부 삭제
-		String removePath = "/static/notice_img_remove";
-		String removeRealPath = ctx.getRealPath(removePath);
-		File removeFile = new File(removeRealPath);
+		String removePath = "/home/ubuntu/chaOreum/images/notice_img_remove";
+//		String removeRealPath = ctx.getRealPath(removePath);
+		File removeFile = new File(removePath);
 		FileUtils.cleanDirectory(removeFile);
 		
 		// contents 내용 img 경로 변경
@@ -170,22 +167,22 @@ public class NoticeController {
 			
 			String fileName = id + "_" + file.getOriginalFilename();
 			
-			String savePath = "/static/notice_img";  // 저장 폴더
-			String realPath = ctx.getRealPath(savePath);   // 저장 폴더 경로
+			String savePath = "/home/ubuntu/chaOreum/images/notice_img";  // 저장 폴더
+//			String realPath = ctx.getRealPath(savePath);   // 저장 폴더 경로
 
-			File save = new File(realPath);
+			File save = new File(savePath);
 			if(!save.exists()) save.mkdirs();
 			
-			realPath += File.separator + fileName;
-			File saveFile = new File(realPath);
+			savePath += File.separator + fileName;
+			File saveFile = new File(savePath);
 
 			file.transferTo(saveFile);
 		}
 		
 		// contents_img_remove 파일 전부 삭제
-		String removePath = "/static/notice_img_remove";
-		String removeRealPath = ctx.getRealPath(removePath);
-		File removeFile = new File(removeRealPath);
+		String removePath = "/home/ubuntu/chaOreum/images/notice_img_remove";
+//		String removeRealPath = ctx.getRealPath(removePath);
+		File removeFile = new File(removePath);
 		FileUtils.cleanDirectory(removeFile);
 		
 		// contents 내용 img 경로 변경
@@ -206,24 +203,24 @@ public class NoticeController {
 	public String notice_fileUpload(MultipartFile file, String id) throws IllegalStateException, IOException {
 
 		// 업로드할 폴더 경로
-		String filePath = "/static/notice_img_remove";
-		String realPath = ctx.getRealPath(filePath);
+		String filePath = "/home/ubuntu/chaOreum/images/notice_img_remove";
+//		String realPath = ctx.getRealPath(filePath);
 
 		// 업로드할 파일 이름
 		String org_fileName = file.getOriginalFilename();
 		String str_fileName = id + "_" + org_fileName;
 
 		// 업로드하기 위한 경로가 없을 경우 생성
-		File savePath = new File(realPath);
+		File savePath = new File(filePath);
 		if (!savePath.exists()) savePath.mkdirs();
 		
-		realPath += File.separator + str_fileName;
-		File saveFile = new File(realPath);
+		filePath += File.separator + str_fileName;
+		File saveFile = new File(filePath);
 		file.transferTo(saveFile);
-		
-		String result = filePath + File.separator + str_fileName;
 
-		return result;
+		String mappingPath = "/notice_img_remove" + File.separator + str_fileName;
+		
+		return mappingPath;
 	}
 	
 	@RoleCheck

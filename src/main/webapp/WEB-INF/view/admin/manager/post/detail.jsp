@@ -18,7 +18,7 @@
 	                    <div class="file">
 	                    	<c:set var="fileSize" value="${fn:split(post.fileSize, '/')}"/>
 	                    	<c:forTokens var="fileName" items="${post.fileName}" delims="/" varStatus="st">
-	                        	<div><a download href="/static/post_attachments/${fileName}" class="fileName">${fileName}</a> | 
+	                        	<div><a download href="/post_attachments/${fileName}" class="fileName">${fileName}</a> | 
 	                        	<span class="fileSize"><fmt:formatNumber value="${fileSize[st.index] / 1024}" pattern=".00" />KB</span></div>
 	                        </c:forTokens>
 	                    </div>
